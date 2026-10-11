@@ -30,34 +30,33 @@ export class ReviewsUploadController {
    * POST /reviews/photos
    * Recebe multipart/form-data com o campo "photo".
    */
-@Post()
-@UseFilters(MulterExceptionFilter)
-@UseInterceptors(FileInterceptor('photo', reviewPhotoMulterOptions))
-async uploadReviewPhoto(
-  @UploadedFile() file: Express.Multer.File,   // ← Removemos o ParseFilePipe por enquanto
-): Promise<UploadPhotoResponseDto> {
-  
-  if (!file) {
-    throw new BadRequestException('Nenhum arquivo enviado.');
-  }
+  @Post()
+  @UseFilters(MulterExceptionFilter)
+  @UseInterceptors(FileInterceptor('photo', reviewPhotoMulterOptions))
+  async uploadReviewPhoto(
+    @UploadedFile() file: Express.Multer.File, // ← Removemos o ParseFilePipe por enquanto
+  ): Promise<UploadPhotoResponseDto> {
+    if (!file) {
+      throw new BadRequestException('Nenhum arquivo enviado.');
+    }
 
-  // Validação manual simples por enquanto
-  if (!file.mimetype.startsWith('image/')) {
-    throw new BadRequestException('Arquivo deve ser uma imagem.');
-  }
+    // Validação manual simples por enquanto
+    if (!file.mimetype.startsWith('image/')) {
+      throw new BadRequestException('Arquivo deve ser uma imagem.');
+    }
 
-  const fileBuffer = readFileSync(file.path);
-  if (!isValidImageSignature(fileBuffer)) {
-    throw new BadRequestException('O arquivo não é uma imagem válida.');
-  }
+    const fileBuffer = readFileSync(file.path);
+    if (!isValidImageSignature(fileBuffer)) {
+      throw new BadRequestException('O arquivo não é uma imagem válida.');
+    }
 
-  return {
-    fileId: file.filename,
-    url: `/reviews/photos/${file.filename}`,
-    sizeInBytes: file.size,
-    mimeType: file.mimetype,
-  };
-}
+    return {
+      fileId: file.filename,
+      url: `/reviews/photos/${file.filename}`,
+      sizeInBytes: file.size,
+      mimeType: file.mimetype,
+    };
+  }
 
   /**
    * GET /reviews/photos/:fileId

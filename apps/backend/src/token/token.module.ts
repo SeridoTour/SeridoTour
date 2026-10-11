@@ -6,7 +6,6 @@ import { UsersModule } from '../modules/users/users.module';
 import { AuthModule } from '../auth/auth.module';
 import { forwardRef } from '@nestjs/common';
 
-
 @Module({
   imports: [PrismaModule, UsersModule, forwardRef(() => AuthModule)],
   providers: [TokenService],
