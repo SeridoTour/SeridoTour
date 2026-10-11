@@ -7,7 +7,7 @@ export class CreatePlaceDto {
 
   @IsString()
   @IsNotEmpty({ message: 'A descrição é obrigatória.' })
-  description!: string; 
+  description!: string;
 
   @IsString()
   city!: string;
@@ -15,7 +15,7 @@ export class CreatePlaceDto {
   @IsNumber()
   @Min(-90)
   @Max(90)
-  latitude!: number; 
+  latitude!: number;
 
   @IsNumber()
   @Min(-180)
@@ -23,6 +23,8 @@ export class CreatePlaceDto {
   longitude!: number;
 
   @IsString()
-  @IsNotEmpty({ message: 'A categoria (ex: natureza, historico) é obrigatória.' })
+  @IsNotEmpty({
+    message: 'A categoria (ex: natureza, historico) é obrigatória.',
+  })
   category!: string;
 }

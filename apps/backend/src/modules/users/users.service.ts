@@ -11,10 +11,9 @@ import { Role } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-
   constructor(
     private readonly prisma: PrismaService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
   ) {}
 
   async listUsers(): Promise<RespostaDto[]> {
@@ -24,7 +23,6 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<RespostaDto> {
-
     const existeEmail = await this.prisma.user.findUnique({
       where: {
         email: createUserDto.email,
@@ -47,7 +45,7 @@ export class UsersService {
 
     const senhaCriptografada = await bcrypt.hash(createUserDto.password, 8);
 
-    const role = 
+    const role =
       createUserDto.codigoguia === this.configService.getOrThrow('CODIGO_GUIA')
         ? Role.GUIA
         : Role.USER;
@@ -57,13 +55,13 @@ export class UsersService {
         name: createUserDto.name,
         email: createUserDto.email,
         password: senhaCriptografada,
-        role: role
+        role: role,
       },
       select: {
         name: true,
         email: true,
-        role: true
-      }
+        role: true,
+      },
     });
 
     return newUser;
@@ -72,8 +70,8 @@ export class UsersService {
   async findOne(email: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: {
-        email: email
-      }
+        email: email,
+      },
     });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
@@ -84,8 +82,8 @@ export class UsersService {
   async findById(id: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');

@@ -10,15 +10,19 @@ import { JwtStrategy } from './jwt.strategy';
 import { TokenModule } from '../token/token.module';
 
 @Module({
-  imports: [UsersModule, PassportModule,
+  imports: [
+    UsersModule,
+    PassportModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.getOrThrow('JWT_SECRET'),
-        signOptions: { expiresIn: configService.getOrThrow('JWT_EXPIRES_IN') as never },
+        signOptions: {
+          expiresIn: configService.getOrThrow('JWT_EXPIRES_IN'),
+        },
       }),
     }),
-    TokenModule
+    TokenModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],

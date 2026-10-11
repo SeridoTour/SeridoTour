@@ -5,7 +5,9 @@ import {
   HttpHealthIndicator,
   MemoryHealthIndicator,
   DiskHealthIndicator,
+  PrismaHealthIndicator,
 } from '@nestjs/terminus';
+import { PrismaService } from '../../prisma/prisma.service';
 
 /**
  * Rota /health — usada por orquestradores (Docker, Kubernetes, Render,
@@ -16,13 +18,8 @@ import {
  * - Memória heap não deve ultrapassar 300MB (evita alarme falso em apps pequenas,
  *   ajuste conforme o ambiente real de produção).
  * - Espaço em disco: pelo menos 10% livre no volume raiz.
- * - Ping na própria API pública que a aplicação consome (OpenWeatherMap),
- *   apenas como indicador informativo — não derruba o healthcheck sozinho
- *   pois é uma dependência externa (ver nota abaixo).
- *
- * OBS: se o projeto tiver banco de dados (TypeORM/Mongoose/Prisma), adicione
- * aqui também um indicador de DB (ex: TypeOrmHealthIndicator) — é o item
- * mais importante de um health check real.
+ * - Conectividade com banco de dados (Prisma/PostgreSQL) — crítica.
+ * - Ping na API pública OpenWeatherMap (opcional, não derruba healthcheck).
  */
 @Controller('health')
 export class HealthController {
@@ -31,6 +28,8 @@ export class HealthController {
     private readonly http: HttpHealthIndicator,
     private readonly memory: MemoryHealthIndicator,
     private readonly disk: DiskHealthIndicator,
+    private readonly prisma: PrismaHealthIndicator,
+    private readonly prismaService: PrismaService,
   ) {}
 
   @Get()
@@ -44,6 +43,8 @@ export class HealthController {
           path: '/',
           thresholdPercent: 0.9, // falha se menos de 10% de espaço livre
         }),
+      // Verificação crítica: banco de dados
+      () => this.prisma.pingCheck('database', this.prismaService),
       // Exemplo de dependência externa monitorada sem derrubar o healthcheck
       // principal em caso de instabilidade pontual da API de terceiros:
       // () => this.http.pingCheck('openweathermap', 'https://api.openweathermap.org'),

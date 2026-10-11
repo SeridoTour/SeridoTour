@@ -1,4 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import type { Cache } from 'cache-manager';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
@@ -6,12 +8,23 @@ import { FindAllPlacesQueryDto } from './dto/find-all-places-query.dto';
 
 @Injectable()
 export class PlacesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+  ) {}
+
+  private async invalidatePlacesCache(): Promise<void> {
+    // Limpa todo o cache (apropriado para store em memória).
+    // Em produção com Redis, usar SCAN + DEL por prefixo 'places_list'.
+    await this.cacheManager.clear();
+  }
 
   async create(createPlaceDto: CreatePlaceDto) {
-    return this.prisma.place.create({
+    const result = await this.prisma.place.create({
       data: createPlaceDto,
     });
+    await this.invalidatePlacesCache();
+    return result;
   }
 
   async findAll(query: FindAllPlacesQueryDto) {
@@ -55,15 +68,19 @@ export class PlacesService {
   }
 
   async update(id: string, updatePlaceDto: UpdatePlaceDto) {
-    await this.findOne(id); 
-    return this.prisma.place.update({
+    await this.findOne(id);
+    const result = await this.prisma.place.update({
       where: { id },
       data: updatePlaceDto,
     });
+    await this.invalidatePlacesCache();
+    return result;
   }
 
   async remove(id: string) {
     await this.findOne(id);
-    return this.prisma.place.delete({ where: { id } });
+    const result = await this.prisma.place.delete({ where: { id } });
+    await this.invalidatePlacesCache();
+    return result;
   }
 }

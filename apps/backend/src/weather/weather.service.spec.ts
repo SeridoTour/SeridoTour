@@ -36,7 +36,13 @@ describe('WeatherService', () => {
         data: {
           name: 'Fortaleza',
           weather: [{ main: 'Clear', description: 'céu limpo', icon: '01d' }],
-          main: { temp: 30, feels_like: 32, temp_min: 28, temp_max: 31, humidity: 70 },
+          main: {
+            temp: 30,
+            feels_like: 32,
+            temp_min: 28,
+            temp_max: 31,
+            humidity: 70,
+          },
           wind: { speed: 5 },
           dt: 1710000000,
         },
@@ -68,9 +74,9 @@ describe('WeatherService', () => {
     const axiosError = new AxiosError('Not Found');
     axiosError.response = { status: 404 } as any;
 
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(
-      throwError(() => axiosError),
-    );
+    jest
+      .spyOn(httpService, 'get')
+      .mockReturnValueOnce(throwError(() => axiosError));
 
     const result = await service.getWeatherByCity('Cidade Inexistente');
 
@@ -82,9 +88,9 @@ describe('WeatherService', () => {
     const axiosError = new AxiosError('Connection refused');
     axiosError.code = 'ECONNREFUSED';
 
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(
-      throwError(() => axiosError),
-    );
+    jest
+      .spyOn(httpService, 'get')
+      .mockReturnValueOnce(throwError(() => axiosError));
 
     const result = await service.getWeatherByCity('Fortaleza');
 

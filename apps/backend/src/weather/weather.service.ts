@@ -111,7 +111,8 @@ export class WeatherService {
       );
       return {
         success: false,
-        error: 'Tempo limite excedido ao consultar o serviço de clima. Tente novamente em instantes.',
+        error:
+          'Tempo limite excedido ao consultar o serviço de clima. Tente novamente em instantes.',
       };
     }
 

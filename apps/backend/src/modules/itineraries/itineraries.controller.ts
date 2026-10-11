@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Request } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Request,
+  UseInterceptors,
+} from '@nestjs/common';
+import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { ItinerariesService } from './itineraries.service';
 import { CreateItineraryDto } from './dto/create-itinerary.dto';
 import { UpdateItineraryDto } from './dto/update-itinerary.dto';
@@ -20,7 +31,11 @@ export class ItinerariesController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(60000) // 1 minuto (dados mais dinâmicos que places)
   findAll(@Request() req) {
+    // Cache por usuário: o CacheInterceptor usa o user ID do request
+    // para criar chaves isoladas (ex: 'itineraries_list::user_123')
     return this.itinerariesService.findAll(req.user);
   }
 
@@ -32,7 +47,10 @@ export class ItinerariesController {
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateItineraryDto: UpdateItineraryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateItineraryDto: UpdateItineraryDto,
+  ) {
     return this.itinerariesService.update(id, updateItineraryDto);
   }
 

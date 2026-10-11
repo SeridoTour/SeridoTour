@@ -68,7 +68,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const responseObj = response as Record<string, unknown>;
       return {
         statusCode: status,
-        message: (responseObj.message as string | string[]) ?? exception.message,
+        message:
+          (responseObj.message as string | string[]) ?? exception.message,
         error: responseObj.error as string | undefined,
       };
     }
@@ -87,7 +88,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
    * antes de gravar — assim nenhum segredo ou dado sensível vai parar
    * no log (ex: Authorization header, senha em um body de login, etc).
    */
-  private logError(exception: unknown, request: Request, statusCode: number): void {
+  private logError(
+    exception: unknown,
+    request: Request,
+    statusCode: number,
+  ): void {
     const logContext = {
       method: request.method,
       path: request.url,

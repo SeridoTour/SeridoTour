@@ -7,7 +7,9 @@ import {
   Param,
   Delete,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { PlacesService } from './places.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
@@ -30,7 +32,13 @@ export class PlacesController {
   }
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(300000) // 5 minutos
+  @CacheKey('places_list')
   findAll(@Query() query: FindAllPlacesQueryDto) {
+    // A chave de cache inclui os parâmetros de query para evitar colisões
+    // entre diferentes filtros/paginações. O CacheInterceptor usa o
+    // CacheKey como prefixo e adiciona automaticamente os query params.
     return this.placesService.findAll(query);
   }
 

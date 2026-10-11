@@ -3,7 +3,6 @@ import { ItinerariesService } from './itineraries.service';
 import { ItinerariesController } from './itineraries.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
-
 @Module({
   imports: [PrismaModule],
   controllers: [ItinerariesController],

@@ -1,12 +1,9 @@
-import {
-  Controller,
-  Get,
-  HttpStatus,
-  Query,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Res } from '@nestjs/common';
 import type { Response } from 'express';
-import { WeatherByCityQueryDto, WeatherByCoordsQueryDto } from './dto/weather-query.dto';
+import {
+  WeatherByCityQueryDto,
+  WeatherByCoordsQueryDto,
+} from './dto/weather-query.dto';
 import { WeatherService } from './weather.service';
 
 /**
@@ -34,8 +31,14 @@ export class WeatherController {
   }
 
   @Get('coords')
-  async getByCoords(@Query() query: WeatherByCoordsQueryDto, @Res() res: Response) {
-    const result = await this.weatherService.getWeatherByCoords(query.lat, query.lon);
+  async getByCoords(
+    @Query() query: WeatherByCoordsQueryDto,
+    @Res() res: Response,
+  ) {
+    const result = await this.weatherService.getWeatherByCoords(
+      query.lat,
+      query.lon,
+    );
 
     if (!result.success) {
       return res.status(HttpStatus.SERVICE_UNAVAILABLE).json({

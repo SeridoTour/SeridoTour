@@ -46,7 +46,9 @@ export function sanitizeForLog(input: unknown, depth = 0): unknown {
 
   if (typeof input === 'object') {
     const result: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(input as Record<string, unknown>)) {
+    for (const [key, value] of Object.entries(
+      input as Record<string, unknown>,
+    )) {
       result[key] = isSensitiveKey(key)
         ? '***REDACTED***'
         : sanitizeForLog(value, depth + 1);

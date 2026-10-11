@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
@@ -8,7 +9,6 @@ import { HealthModule } from './common/health/health.module';
 import { ItinerariesModule } from './modules/itineraries/itineraries.module';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { PlacesModule } from './modules/places/places.module';
-import { PontosTuristicosModule } from './common/pontos-turisticos/pontos-turisticos.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { ReviewsUploadModule } from './modules/reviews/reviews-upload.module';
@@ -23,9 +23,18 @@ import { WeatherModule } from './weather/weather.module';
       validationSchema: Joi.object({
         DATABASE_URL: Joi.string().required(),
         JWT_SECRET: Joi.string().required().min(32),
-        JWT_EXPIRES_IN: Joi.string().pattern(/^\d+[smhd]$/).required(),
-        JWT_REFRESH_EXPIRES_IN: Joi.string().pattern(/^\d+[smhd]$/).required(),
+        JWT_EXPIRES_IN: Joi.string()
+          .pattern(/^\d+[smhd]$/)
+          .required(),
+        JWT_REFRESH_EXPIRES_IN: Joi.string()
+          .pattern(/^\d+[smhd]$/)
+          .required(),
       }),
+    }),
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 300000, // 5 minutos default
+      max: 100,
     }),
     PrismaModule,
     ItinerariesModule,
@@ -34,7 +43,6 @@ import { WeatherModule } from './weather/weather.module';
     AuthModule,
     TokenModule,
     WeatherModule,
-    PontosTuristicosModule,
     HealthModule,
     ReviewsUploadModule,
   ],

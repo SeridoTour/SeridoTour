@@ -1,4 +1,11 @@
-import { IsString, IsNotEmpty, IsArray, IsUUID, IsInt, Min } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsUUID,
+  IsInt,
+  Min,
+} from 'class-validator';
 
 export class CreateItineraryDto {
   @IsString()
@@ -13,8 +20,15 @@ export class CreateItineraryDto {
   @Min(1)
   duracaoDias!: number;
 
-  @IsArray({ message: 'Os locais devem ser enviados em formato de lista (array).' })
-  @IsUUID('4', { each: true, message: 'Cada ID de local deve ser um UUID válido.' })
-  @IsNotEmpty({ message: 'O roteiro precisa ter pelo menos um ponto turístico associado.' })
+  @IsArray({
+    message: 'Os locais devem ser enviados em formato de lista (array).',
+  })
+  @IsUUID('4', {
+    each: true,
+    message: 'Cada ID de local deve ser um UUID válido.',
+  })
+  @IsNotEmpty({
+    message: 'O roteiro precisa ter pelo menos um ponto turístico associado.',
+  })
   placeIds!: string[];
 }

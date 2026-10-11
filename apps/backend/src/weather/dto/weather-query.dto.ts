@@ -1,5 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsLatitude, IsLongitude, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsLatitude,
+  IsLongitude,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 /**
  * Consulta por cidade (nome do ponto/roteiro)

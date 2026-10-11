@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../modules/users/users.service';
 import * as bcrypt from 'bcrypt';
@@ -17,7 +16,7 @@ export class AuthService {
 
   async validarUsuario(email: string, password: string): Promise<any> {
     const user = await this.usersService.findOne(email);
-    if (user && await bcrypt.compare(password, user.password)) {
+    if (user && (await bcrypt.compare(password, user.password))) {
       const { password, ...result } = user;
       return result;
     }
@@ -28,7 +27,7 @@ export class AuthService {
     const payload = { name: user.name, sub: user.id, role: user.role };
     const accessToken = this.jwtService.sign(payload);
     const refreshToken = this.jwtService.sign(payload, {
-      expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES_IN') as never,
+      expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES_IN'),
     });
     await this.tokenService.saveToken(refreshToken, user.id);
     return {
