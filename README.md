@@ -1,142 +1,146 @@
-# 🗺️ NortheasTour — Planejamento de Roteiros Turísticos Regionais
+### SeridóTour — Planejamento de Roteiros Turísticos Regionais
 
-O **NortheasTour** é uma aplicação web full-stack para planejamento, compartilhamento e descoberta de roteiros turísticos no Nordeste.
+O **SeridóTour** é uma aplicação web *full-stack* desenvolvida para o planejamento, compartilhamento e descoberta de roteiros turísticos no Nordeste brasileiro. O projeto foi iniciado como requisito prático da disciplina de **Desenvolvimento Web Back-end** e atualmente encontra-se em evolução na disciplina de **Projeto Integrador I** do curso de Tecnologia em Sistemas para Internet do IFRN Campus Currais Novos.
 
-Projeto prático final desenvolvido para a disciplina de **Desenvolvimento Web Back-end** no curso de Tecnologia em Sistemas para Internet do IFRN Campus Currais Novos.
+#### 👥 Equipe e Responsabilidades
 
-## 👥 Integrantes e Responsabilidades
+A equipe atua de forma paralela em frentes específicas para garantir a entrega de ponta a ponta (E2E):
 
-- **Manoel Serafim** - (Dev Core & Regras de Negócio): Responsável pelo domínio principal (Pontos Turísticos e Roteiros) e aplicação dos fluxos de estado.
-- **João Emanuel** - (Dev Segurança & Auth): Responsável por Autenticação, Proteção de Rotas, Guards, JWT e Perfil de Acesso.
-- **Cauã Macêdo** - (Dev Integrações & Recursos Extras): Responsável por Upload de Arquivos, Cache, Observabilidade e Integração com API Externa.
-- **Romulo Cesar** - (Dev Infra & Dados): Responsável pelo Setup, Docker, Banco de Dados (Prisma/PostgreSQL) e Estrutura Inicial.
+* **Manoel Serafim** - (Dev Core & Regras de Negócio)
 
-## 🚀 Tecnologias Utilizadas
+* **João Emanuel** - (Dev Segurança & Auth)
 
-- **Back-end:** NestJS, Prisma ORM
-- **Front-end:** Vue 3, Vite, Vue Router, Pinia
-- **Banco de Dados:** PostgreSQL
-- **Infraestrutura:** Docker e Docker Compose
+* **Cauã Macêdo** - (Dev Integrações & Recursos Extras)
 
-## 📦 Pré-requisitos
+* **Romulo Cesar** - (Dev Front-end & UX/UI):
 
-Antes de começar, tenha instalado:
+* **Felipe** - (Dev Front-end & UX/UI): 
 
-- Node.js 18 ou superior
-- Docker e Docker Desktop
-- Docker Compose
 
-## ⚙️ Variáveis de ambiente
+#### 🚀 Arquitetura e Tecnologias
 
-O projeto usa arquivos de exemplo para facilitar a configuração:
+O projeto adota uma arquitetura **Monorepo** utilizando Workspaces nativos do npm para centralizar e facilitar a gestão de todo o ecossistema.
 
-- `.env.example` na raiz do monorepo
-- `apps/backend/.env` para execução local do backend
+* **Back-end:** NestJS, Prisma ORM e PostgreSQL.
 
-Os valores padrão já estão prontos para desenvolvimento local com o banco no Docker.
 
-## 🐳 Opção 1: rodar tudo com Docker
+* **Front-end:** Vue 3 (Composition API), Vite, Vue Router, Pinia, Tailwind CSS e Leaflet.js (Mapas).
 
-Use esta opção se quiser subir banco, backend e frontend em containers.
 
-### Passo a passo
+* **Infraestrutura:** Docker e Docker Compose.
+
+
+* **Segurança:** Autenticação JWT com Refresh Tokens e restrição baseada em papéis (USER vs. ADMIN/GUIA).
+
+
+#### 🏛️ Regras de Negócio e Fluxo de Estado
+
+O sistema implementa regras estritas de domínio, com destaque para a máquina de estados obrigatória do recurso **Roteiro (Itinerary)**:
+
+* **Ciclo de Vida:** Rascunho (Draft) ➡️ Em Análise (Under Review) ➡️ Publicado (Published) ou Rejeitado (Rejected).
+
+* **Filtro de Visibilidade:** Apenas roteiros com o status "Publicado" são listados publicamente para outros turistas.
+
+* **Bloqueio de Edição (Conflito):** Se um autor tentar realizar modificações (PUT/PATCH) em um roteiro que se encontra "Em Análise", a API intercepta a requisição e retorna um erro `HTTP 409 Conflict`.
+
+---
+
+#### 📦 Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado em sua máquina:
+
+* Node.js (versões 18 ou 20 recomendadas)
+
+* Docker e Docker Desktop
+* Git
+
+#### ⚙️ Variáveis de Ambiente
+
+O projeto usa arquivos de exemplo para facilitar a configuração local:
+
+1. Copie o arquivo `.env.example` para `.env` na raiz do monorepo.
+2. Certifique-se de que o arquivo `apps/backend/.env` possui a `DATABASE_URL` corretamente configurada para execução do backend.
+3. No front-end (`apps/frontend/.env`), a variável `VITE_API_URL` deve apontar para o seu back-end local (padrão: `http://localhost:3000`).
+
+---
+
+#### 🐳 Opção 1: Rodar tudo com Docker (Recomendado)
+
+Use esta opção se quiser subir banco de dados, backend e frontend simultaneamente em contêineres isolados.
 
 1. Copie o arquivo de exemplo de ambiente, se ainda não existir um `.env` na raiz:
+```bash
+cp .env.example .env
 
-   ```bash
-   copy .env.example .env
-   ```
+```
+
 
 2. Suba a stack completa:
+```bash
+npm run docker:up
 
-   ```bash
-   npm run docker:up
-   ```
+```
+
 
 3. Acesse os serviços:
+* **Frontend:** `http://localhost:5173`
+* **Backend:** `http://localhost:3000`
+* **Banco PostgreSQL:** `localhost:5433`
 
-   - Frontend: http://localhost:5173
-   - Backend: http://localhost:3000
-   - Banco PostgreSQL: localhost:5433
 
-4. Para parar e remover os volumes do ambiente:
 
-   ```bash
-   npm run docker:down
-   ```
+Para parar e remover os volumes do ambiente:
 
-### O que acontece nessa opção
+```bash
+npm run docker:down
 
-- O PostgreSQL sobe primeiro.
-- O backend espera o banco ficar saudável.
-- O backend executa `prisma generate` e `prisma db push` automaticamente.
-- O frontend sobe em modo de desenvolvimento com hot reload.
+```
 
-## 🖥️ Opção 2: banco no Docker e resto local
+#### 🖥️ Opção 2: Banco no Docker e resto local
 
-Use esta opção se quiser manter apenas o banco em container e executar backend e frontend na sua máquina.
+Use esta opção se quiser manter apenas o PostgreSQL em contêiner e executar o backend e frontend manualmente na sua máquina.
 
-### Passo a passo
+1. Suba somente o banco de dados:
+```bash
+docker compose up -d postgres
 
-1. Suba somente o banco:
+```
 
-   ```bash
-   docker compose up -d postgres
-   ```
 
-2. Verifique se o banco está ativo:
+2. Confirme se o backend local está apontando para o banco do Docker. O arquivo `apps/backend/.env` deve conter:
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5433/northeasTour?schema=public"
 
-   ```bash
-   docker compose ps
-   ```
+```
 
-3. Confirme se o backend local está apontando para o banco do Docker.
 
-   O arquivo `apps/backend/.env` deve usar:
+3. Instale as dependências gerais do monorepo:
+```bash
+npm install
 
-   ```env
-   DATABASE_URL="postgresql://postgres:postgres@localhost:5433/northeasTour?schema=public"
-   ```
+```
 
-4. Instale as dependências do monorepo, se ainda não tiver feito isso:
 
-   ```bash
-   npm install
-   ```
+4. Inicie o backend em modo desenvolvimento:
+```bash
+npm run start:backend
 
-5. Inicie o backend em modo desenvolvimento:
+```
 
-   ```bash
-   npm run start:backend
-   ```
 
-6. Em outro terminal, inicie o frontend:
+5. Em outro terminal, inicie o frontend:
+```bash
+npm run start:frontend
 
-   ```bash
-   npm run start:frontend
-   ```
+```
 
-7. Acesse os serviços:
 
-   - Frontend: http://localhost:5173
-   - Backend: http://localhost:3000
+#### 📝 Observações e Boas Práticas
 
-## 🔧 Comandos úteis
+* Se o Docker estiver em execução, mas algum serviço não subir, confira se as portas `3000`, `5173` e `5433` já não estão sendo utilizadas por outros processos.
 
-- `npm run docker:up` - sobe toda a stack com build
-- `npm run docker:down` - para a stack e remove volumes
-- `npm run start:backend` - backend local em modo watch
-- `npm run start:frontend` - frontend local com Vite
-- `docker compose up -d postgres` - sobe apenas o banco
+* Durante a inicialização via Docker Compose, o backend aguarda o banco de dados ficar saudável para aplicar os comandos `prisma generate` e rodar o seed inicial automaticamente.
 
-## 🧠 Boas práticas adotadas
+* O frontend roda com *hot reload* no Vite, refletindo alterações de interface em tempo real.
 
-- O backend usa `DATABASE_URL` separado para desenvolvimento local.
-- O frontend roda com hot reload e host exposto para acesso fora do container.
-- O Prisma é sincronizado automaticamente no ambiente Docker de desenvolvimento.
-
-## 📝 Observações
-
-- Se o Docker estiver em execução, mas algum serviço não subir, confira as portas `3000`, `5173` e `5433`.
-- Para produção, o ideal é substituir `prisma db push` por migrations versionadas.
-- Se mudar a URL do banco local, lembre-se de atualizar o `apps/backend/.env`.
+* Para produção, evite o comando `prisma db push` e utilize as migrações versionadas criadas pelo Prisma.

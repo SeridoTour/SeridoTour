@@ -9,8 +9,11 @@ export class CreateReviewDto {
   @Max(5)
   rating!: number;
 
-  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  comment?: string;
+  comment!: string;
+
+  @IsString()
+  @IsOptional()
+  photoUrl?: string;
 }

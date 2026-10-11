@@ -69,6 +69,7 @@ model Review {
   id        String   @id @default(uuid())
   rating    Int
   comment   String?
+  photoUrl  String?
 
   userId    String
   placeId   String

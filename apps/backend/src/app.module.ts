@@ -11,6 +11,7 @@ import { PlacesModule } from './modules/places/places.module';
 import { PontosTuristicosModule } from './pontos-turisticos/pontos-turisticos.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
+import { ReviewsUploadModule } from './modules/reviews/reviews-upload.module';
 import { TokenModule } from './token/token.module';
 import { UsersModule } from './modules/users/users.module';
 import { WeatherModule } from './weather/weather.module';
@@ -35,6 +36,7 @@ import { WeatherModule } from './weather/weather.module';
     WeatherModule,
     PontosTuristicosModule,
     HealthModule,
+    ReviewsUploadModule,
   ],
   controllers: [],
   providers: [
