@@ -26,13 +26,13 @@ export class AuthService {
   async login(user: any) {
     const payload = { name: user.name, sub: user.id, role: user.role };
     const accessToken = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(payload, {
-      expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES_IN'),
-    });
-    await this.tokenService.saveToken(refreshToken, user.id);
+    // const refreshToken = this.jwtService.sign(payload, {
+    //   expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES_IN') as never,
+    // });
+    await this.tokenService.saveToken(accessToken, user.id);
     return {
       access_token: accessToken,
-      refresh_token: refreshToken,
+      // refresh_token: refreshToken,
     };
   }
 }
