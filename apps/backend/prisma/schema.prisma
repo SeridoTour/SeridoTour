@@ -48,6 +48,7 @@ model Place {
   category    String
   latitude    Float
   longitude   Float
+  imageUrl    String?  // URL da imagem no Cloudinary (opcional)
 
   reviews     Review[]
   itineraries Itinerary[] // Relação N:M implícita
@@ -69,7 +70,7 @@ model Review {
   id        String   @id @default(uuid())
   rating    Int
   comment   String?
-  photoUrl  String?
+  imageUrl  String?  // URL da imagem no Cloudinary (opcional)
 
   userId    String
   placeId   String

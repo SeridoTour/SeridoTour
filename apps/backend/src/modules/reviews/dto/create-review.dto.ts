@@ -1,7 +1,6 @@
 import {
   IsInt,
   IsNotEmpty,
-  IsOptional,
   IsString,
   IsUUID,
   Max,
@@ -20,8 +19,4 @@ export class CreateReviewDto {
   @IsString()
   @IsNotEmpty()
   comment!: string;
-
-  @IsString()
-  @IsOptional()
-  photoUrl?: string;
 }
