@@ -36,10 +36,6 @@ export class CloudinaryService {
         {
           folder, // pasta no Cloudinary (ex.: "places" ou "reviews")
           resource_type: 'image', // tipo do recurso: imagem
-          // Transformação automática:
-          // quality: 'auto' — escolhe a melhor qualidade/tamanho
-          // fetch_format: 'auto' — entrega no melhor formato (WebP, AVIF, etc.) conforme o navegador
-          transformation: [{ quality: 'auto', fetch_format: 'auto' }],
         },
         // Callback quando o upload termina (sucesso ou erro)
         (error, result: UploadApiResponse | undefined) => {
