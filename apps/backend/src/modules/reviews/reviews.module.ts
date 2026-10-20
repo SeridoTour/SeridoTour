@@ -3,7 +3,6 @@ import { Module } from '@nestjs/common';
 import { PrismaModule } from '../../prisma/prisma.module';
 import { ReviewsController } from './reviews.controller';
 import { ReviewsService } from './reviews.service';
-import { ReviewsUploadController } from './reviews-upload.controller';
 // CloudinaryModule: traz o CloudinaryService para upload de imagens
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
@@ -12,7 +11,7 @@ import { CloudinaryModule } from '../cloudinary/cloudinary.module';
     PrismaModule,
     CloudinaryModule, // disponibiliza CloudinaryService para injeção
   ],
-  controllers: [ReviewsController, ReviewsUploadController],
+  controllers: [ReviewsController],
   providers: [ReviewsService],
 })
 export class ReviewsModule {}

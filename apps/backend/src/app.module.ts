@@ -13,7 +13,6 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { PlacesModule } from './modules/places/places.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
-import { ReviewsUploadModule } from './modules/reviews/reviews-upload.module';
 import { TokenModule } from './token/token.module';
 import { UsersModule } from './modules/users/users.module';
 import { WeatherModule } from './weather/weather.module';
@@ -56,7 +55,6 @@ import { WeatherModule } from './weather/weather.module';
     TokenModule,
     WeatherModule,
     HealthModule,
-    ReviewsUploadModule,
   ],
   controllers: [],
   providers: [
