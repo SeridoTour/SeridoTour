@@ -8,6 +8,7 @@ export type Place = {
   category: string
   latitude: number
   longitude: number
+  imageUrl?: string | null // URL da imagem no Cloudinary (opcional)
 }
 
 export const placesService = {

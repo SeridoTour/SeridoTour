@@ -63,43 +63,36 @@ const handleFileChange = (event: Event) => {
 
 const submitReview = async () => {
   if (!newReview.value.comment?.trim()) {
-    alert('Escreva um comentário.');
-    return;
+    alert('Escreva um comentário.')
+    return
   }
 
   try {
-    let photoUrl: string | null = null;
+    // FormData: permite enviar arquivos + dados juntos em multipart/form-data
+    // JSON comum não serve porque só aceita texto; arquivos são binários
+    const formData = new FormData()
+    formData.append('placeId', route.params.id as string)
+    formData.append('rating', String(newReview.value.rating))
+    formData.append('comment', newReview.value.comment.trim())
 
-    // 1. Upload da foto (se existir)
+    // Se houver arquivo selecionado, adiciona com o campo "image"
     if (selectedFile.value) {
-      const photoFormData = new FormData();
-      photoFormData.append('photo', selectedFile.value);
-
-      const uploadRes = await api.post('/reviews/photos', photoFormData);
-      
-      photoUrl = uploadRes.data.url;        // ← Pegue a URL
-      console.log('Foto enviada:', photoUrl);
+      formData.append('image', selectedFile.value)
     }
 
-    // 2. Criar o Review com a foto
-    const reviewPayload = {
-      placeId: route.params.id as string,
-      rating: Number(newReview.value.rating),
-      comment: newReview.value.comment.trim(),
-      photoUrl: photoUrl,                    // ← Envia a URL
-    };
+    // Envia tudo em UMA requisição (backend faz upload no Cloudinary e salva imageUrl)
+    // NÃO defina Content-Type: o axios/navegador coloca o boundary automaticamente
+    await api.post('/reviews', formData)
 
-    await api.post('/reviews', reviewPayload);
+    alert('✅ Avaliação enviada com sucesso!')
 
-    alert('✅ Avaliação enviada com sucesso!');
-
-    newReview.value = { rating: 5, comment: '' };
-    selectedFile.value = null;
-    await loadReviews();
+    newReview.value = { rating: 5, comment: '' }
+    selectedFile.value = null
+    await loadReviews()
 
   } catch (error: any) {
-    console.error(error.response?.data || error);
-    alert('Erro ao enviar avaliação');
+    console.error(error.response?.data || error)
+    alert('Erro ao enviar avaliação')
   }
 };
 
@@ -166,6 +159,15 @@ const getFullImageUrl = (url: string) => {
       </span>
       <p class="text-gray-700 mb-6">{{ place.description }}</p>
 
+      <!-- Imagem do place -->
+      <div v-if="place.imageUrl" class="mb-6">
+        <img
+          :src="getFullImageUrl(place.imageUrl)"
+          class="max-w-full h-auto rounded shadow"
+          alt="Imagem do local"
+        />
+      </div>
+
       <div v-if="authStore.isGuia" class="flex gap-3 mb-6">
         <router-link
           :to="`/places/${place.id}/edit`"
@@ -189,8 +191,8 @@ const getFullImageUrl = (url: string) => {
           
           <!-- Foto da avaliação -->
           <img
-            v-if="review.photoUrl"
-            :src="getFullImageUrl(review.photoUrl)"
+            v-if="review.imageUrl"
+            :src="getFullImageUrl(review.imageUrl)"
             class="mt-3 max-w-full h-auto rounded shadow"
             alt="Foto da avaliação"
           />
