@@ -1,6 +1,6 @@
-// Module do NestJS: agrupa providers e controllers relacionados
+
 import { Module } from '@nestjs/common';
-// Importa o service que criamos acima
+// Importa o service que será fornecido por este módulo
 import { CloudinaryService } from './cloudinary.service';
 
 @Module({
