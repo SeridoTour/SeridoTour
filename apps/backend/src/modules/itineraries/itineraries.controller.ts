@@ -8,12 +8,13 @@ import {
   Delete,
   Request,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { ItinerariesService } from './itineraries.service';
 import { CreateItineraryDto } from './dto/create-itinerary.dto';
 import { UpdateItineraryDto } from './dto/update-itinerary.dto';
-import { UseGuards } from '@nestjs/common';
+import { RejectItineraryDto } from './dto/reject-itinerary.dto';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { Role } from '@prisma/client';
 import { RolesGuard } from '../../auth/roles.guard';
@@ -29,13 +30,31 @@ export class ItinerariesController {
     return this.itinerariesService.create(createItineraryDto, req.user.id);
   }
 
+  // Roteiros do próprio usuário (qualquer status) — usado em "Meus roteiros".
+  @UseGuards(JwtAuthGuard)
+  @Get('meus')
+  findMine(@Request() req) {
+    return this.itinerariesService.findMine(req.user.id);
+  }
+
+  // Vitrine pública: não exige autenticação e lista apenas PUBLICADOS.
+  @Get('public')
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(60000)
+  @CacheKey('itineraries_public')
+  findPublished() {
+    return this.itinerariesService.findPublished();
+  }
+
+  @Get('public/:id')
+  findPublishedOne(@Param('id') id: string) {
+    return this.itinerariesService.findPublishedOne(id);
+  }
+
+  // Listagem global autenticada: GUIA vê todos; USER vê apenas publicados.
   @UseGuards(JwtAuthGuard)
   @Get()
-  @UseInterceptors(CacheInterceptor)
-  @CacheTTL(60000) // 1 minuto (dados mais dinâmicos que places)
   findAll(@Request() req) {
-    // Cache por usuário: o CacheInterceptor usa o user ID do request
-    // para criar chaves isoladas (ex: 'itineraries_list::user_123')
     return this.itinerariesService.findAll(req.user);
   }
 
@@ -45,13 +64,48 @@ export class ItinerariesController {
     return this.itinerariesService.findOne(id, req.user);
   }
 
+  // RASCUNHO/REJEITADO → EM_ANALISE (autor)
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id/submit')
+  submitForReview(@Param('id') id: string, @Request() req) {
+    return this.itinerariesService.submitForReview(id, req.user);
+  }
+
+  // EM_ANALISE → PUBLICADO (GUIA)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.GUIA)
+  @Patch(':id/publish')
+  publish(@Param('id') id: string) {
+    return this.itinerariesService.publish(id);
+  }
+
+  // EM_ANALISE → REJEITADO (GUIA)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.GUIA)
+  @Patch(':id/reject')
+  reject(
+    @Param('id') id: string,
+    @Body() rejectItineraryDto: RejectItineraryDto,
+  ) {
+    return this.itinerariesService.reject(id, rejectItineraryDto.reason);
+  }
+
+  // PUBLICADO → RASCUNHO (GUIA)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.GUIA)
+  @Patch(':id/unpublish')
+  unpublish(@Param('id') id: string) {
+    return this.itinerariesService.unpublish(id);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateItineraryDto: UpdateItineraryDto,
+    @Request() req,
   ) {
-    return this.itinerariesService.update(id, updateItineraryDto);
+    return this.itinerariesService.update(id, updateItineraryDto, req.user);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)

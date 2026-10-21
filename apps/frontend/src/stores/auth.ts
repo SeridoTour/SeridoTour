@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { api } from '../services/api';
 
@@ -12,7 +11,6 @@ export interface UserPayload {
 }
 
 export const useAuthStore = defineStore('auth', () => {
-  const router = useRouter();
   const accessToken = ref<string | null>(localStorage.getItem('access_token'));
   const refreshToken = ref<string | null>(localStorage.getItem('refresh_token'));
   let refreshTimer: number | undefined;
@@ -94,13 +92,11 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = () => {
     clearSession();
-    router.push('/');
   };
 
   const login = async (credentials: { email: string; password: string }) => {
     const { data } = await api.post('/auth/login', credentials);
     setTokens(data.access_token, data.refresh_token);
-    await router.push('/roteiros');
   };
 
   const register = async (payload: { name: string; email: string; password: string; codigoguia?: string }) => {

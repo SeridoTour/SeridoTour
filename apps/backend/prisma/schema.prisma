@@ -17,6 +17,13 @@ enum Role {
   GUIA
 }
 
+enum ItineraryStatus {
+  RASCUNHO
+  EM_ANALISE
+  PUBLICADO
+  REJEITADO
+}
+
 model User {
  
   password    String
@@ -48,6 +55,7 @@ model Place {
   category    String
   latitude    Float
   longitude   Float
+  imageUrl    String?  // URL da imagem no Cloudinary (opcional)
 
   reviews     Review[]
   itineraries Itinerary[] // Relação N:M implícita
@@ -59,17 +67,22 @@ model Itinerary {
   description String?
   duracaoDias Int
 
+  status          ItineraryStatus @default(RASCUNHO)
+  rejectionReason String?         // Motivo informado quando o roteiro é rejeitado
+
   userId      String
   user        User     @relation(fields: [userId], references: [id])
 
   places      Place[]  // Relação N:M implícita
+
+  @@index([status])
 }
 
 model Review {
   id        String   @id @default(uuid())
   rating    Int
   comment   String?
-  photoUrl  String?
+  imageUrl  String?  // URL da imagem no Cloudinary (opcional)
 
   userId    String
   placeId   String

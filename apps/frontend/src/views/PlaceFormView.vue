@@ -36,6 +36,41 @@ const form = ref({
   longitude: null as number | null
 });
 
+// Upload de imagem do place
+const selectedFile = ref<File | null>(null);
+const fileError = ref<string>('');
+const previewUrl = ref<string | null>(null);
+
+const handleFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  fileError.value = '';
+  previewUrl.value = null;
+
+  if (target.files && target.files.length > 0) {
+    const file = target.files[0];
+
+    if (file.size > 5 * 1024 * 1024) {
+      fileError.value = 'A imagem é muito grande. O limite é 5MB.';
+      target.value = '';
+      selectedFile.value = null;
+      return;
+    }
+
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      fileError.value = 'Formato inválido. Use JPEG, PNG ou WEBP.';
+      target.value = '';
+      selectedFile.value = null;
+      return;
+    }
+
+    selectedFile.value = file;
+    // Pré-visualização local (object URL)
+    previewUrl.value = URL.createObjectURL(file);
+  } else {
+    selectedFile.value = null;
+  }
+};
+
 onMounted(async () => {
   initMap();
   if (!isEditing.value) return;
@@ -91,35 +126,51 @@ const initMap = () => {
 
 const submitPlace = async () => {
   if (!form.value.latitude || !form.value.longitude) {
-    message.value = 'Por favor, selecione as coordenadas clicando no mapa.';
-    return;
+    message.value = 'Por favor, selecione as coordenadas clicando no mapa.'
+    return
   }
 
-  isLoading.value = true;
-  message.value = '';
+  isLoading.value = true
+  message.value = ''
 
   try {
-    if (isEditing.value) {
-      await api.patch(`/places/${route.params.id}`, form.value);
-      message.value = 'Ponto turístico atualizado com sucesso!';
-      setTimeout(() => router.push(`/places/${route.params.id}`), 800);
-      return;
+    // FormData: envia campos de texto + arquivo em multipart/form-data
+    const formData = new FormData()
+    formData.append('name', form.value.name)
+    formData.append('description', form.value.description)
+    formData.append('city', form.value.city)
+    formData.append('category', form.value.category)
+    formData.append('latitude', String(form.value.latitude))
+    formData.append('longitude', String(form.value.longitude))
+
+    // Se escolheu arquivo novo, envia; se editando e não escolheu, NÃO envia "image"
+    if (selectedFile.value) {
+      formData.append('image', selectedFile.value)
     }
 
-    await api.post('/places', form.value);
-    message.value = 'Ponto turístico cadastrado com sucesso!';
-    
+    if (isEditing.value) {
+      await api.patch(`/places/${route.params.id}`, formData)
+      message.value = 'Ponto turístico atualizado com sucesso!'
+      setTimeout(() => router.push(`/places/${route.params.id}`), 800)
+      return
+    }
+
+    await api.post('/places', formData)
+    message.value = 'Ponto turístico cadastrado com sucesso!'
+
     // Reseta o formulário
-    form.value = { name: '', description: '', city: '', category: '', latitude: null, longitude: null };
+    form.value = { name: '', description: '', city: '', category: '', latitude: null, longitude: null }
+    selectedFile.value = null
+    previewUrl.value = null
     if (marker && mapInstance) {
-      mapInstance.removeLayer(marker);
-      marker = null;
+      mapInstance.removeLayer(marker)
+      marker = null
     }
   } catch (error) {
-    message.value = 'Erro ao cadastrar local. Verifique os dados e tente novamente.';
-    console.error(error);
+    message.value = 'Erro ao cadastrar local. Verifique os dados e tente novamente.'
+    console.error(error)
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
 };
 </script>
@@ -156,6 +207,32 @@ const submitPlace = async () => {
               <option value="Lazer">Lazer</option>
             </select>
           </div>
+        </div>
+
+        <!-- Upload de imagem do place -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Imagem do Local (Opcional)
+          </label>
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            @change="handleFileChange"
+            class="block w-full text-sm text-gray-500
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-md file:border-0
+              file:text-sm file:font-semibold
+              file:bg-blue-50 file:text-blue-700
+              hover:file:bg-blue-100"
+          />
+          <p v-if="fileError" class="text-red-500 text-xs mt-1">{{ fileError }}</p>
+          <!-- Pré-visualização -->
+          <img
+            v-if="previewUrl"
+            :src="previewUrl"
+            class="mt-3 max-w-xs h-auto rounded shadow border"
+            alt="Pré-visualização da imagem"
+          />
         </div>
 
         <div class="grid grid-cols-2 gap-4">
