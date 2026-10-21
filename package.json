@@ -7,7 +7,7 @@
     "apps/*"
   ],
   "scripts": {
-    "start:backend": "npx --workspace=apps/backend run prisma generate && npx --workspace=apps/backend run prisma db push && npx --workspace=apps/backend run prisma db seed && npm run start:dev --workspace=apps/backend",
+    "start:backend": "npm exec --workspace=apps/backend -- prisma generate && npm exec --workspace=apps/backend -- prisma db push && npm exec --workspace=apps/backend -- prisma db seed && npm run start:dev --workspace=apps/backend",
     "start:frontend": "npm run dev --workspace=apps/frontend",
     "build:backend": "npm run build --workspace=apps/backend",
     "build:frontend": "npm run build --workspace=apps/frontend",
