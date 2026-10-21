@@ -1,4 +1,3 @@
-```vue
 <template>
   <main class="login-page">
     <!-- Painel esquerdo -->
@@ -80,7 +79,7 @@
             <button
               class="text-button"
               type="button"
-              @click="showRecoveryMessage"
+              @click="openMaintenance('Recuperação de senha')"
             >
               Esqueceu sua senha?
             </button>
@@ -126,11 +125,11 @@
         </div>
 
         <div class="social-buttons">
-          <button type="button" @click="socialNotice('Google')">
+          <button type="button" @click="openMaintenance('Google')">
             <strong class="google-letter">G</strong>
             Google
           </button>
-          <button type="button" @click="socialNotice('Apple')">
+          <button type="button" @click="openMaintenance('Apple')">
             <strong class="apple-letter">●</strong>
             Apple
           </button>
@@ -179,9 +178,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
+const route = useRoute()
+const router = useRouter()
 
 const isLogin = ref(true)
 const isLoading = ref(false)
@@ -207,14 +209,11 @@ function toggleMode() {
   }
 }
 
-function showRecoveryMessage() {
-  errorMessage.value =
-    'A recuperação de senha precisa ser conectada ao serviço do projeto.'
-}
-
-function socialNotice(provider: string) {
-  errorMessage.value =
-    `O acesso com ${provider} ainda precisa ser configurado.`
+function openMaintenance(feature: string) {
+  router.push({
+    name: 'manutencao',
+    query: { feature, from: 'login' }
+  })
 }
 
 async function handleSubmit() {
@@ -240,6 +239,16 @@ async function handleSubmit() {
 
       await authStore.register(payload)
     }
+
+    const redirect = route.query.redirect
+    const destination =
+      typeof redirect === 'string' &&
+      redirect.startsWith('/') &&
+      !redirect.startsWith('//')
+        ? redirect
+        : '/roteiros'
+
+    await router.push(destination)
   } catch (error: any) {
     console.error(error)
     const message = error.response?.data?.message || error.message
@@ -253,48 +262,39 @@ async function handleSubmit() {
 }
 </script>
 
-<style>
-:root {
+<style scoped>
+.login-page {
   --sand: #f5e9dc;
   --sand-light: #fbf3e9;
   --brown: #4a3021;
   --muted: #a39484;
   --terracotta: #b96035;
   --terracotta-dark: #a94f2a;
-}
 
-* {
+  display: grid;
+  grid-template-columns: 48% 52%;
+  width: 100%;
+  min-height: calc(100vh - 61px);
+  overflow: hidden;
+  background: var(--sand);
   box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  margin: 0;
-  min-height: 100%;
-}
-
-body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--brown);
 }
 
-button,
-input {
+.login-page *,
+.login-page *::before,
+.login-page *::after {
+  box-sizing: border-box;
+}
+
+.login-page button,
+.login-page input {
   font: inherit;
 }
 
-button {
+.login-page button {
   cursor: pointer;
-}
-
-.login-page {
-  display: grid;
-  grid-template-columns: 48% 52%;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background: var(--sand);
 }
 
 .login-panel {
@@ -617,7 +617,7 @@ button {
 
 .landscape-panel {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 61px);
   overflow: hidden;
   border-radius: 0 0 0 0;
   background-image:
@@ -733,7 +733,7 @@ button {
 @media (max-width: 760px) {
   .login-page {
     grid-template-columns: 1fr;
-    min-height: 100vh;
+    min-height: calc(100vh - 61px);
   }
 
   .login-panel {

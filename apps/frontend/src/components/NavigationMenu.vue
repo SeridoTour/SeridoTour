@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useAuthStore } from '../stores/auth';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const router = useRouter();
+const route = useRoute();
 const menuOpen = ref(false);
+
+const loginTarget = computed(() => {
+  const canReturn = route.name && !['login', 'manutencao', 'not-found'].includes(String(route.name));
+  return canReturn
+    ? { name: 'login', query: { redirect: route.fullPath } }
+    : { name: 'login' };
+});
 
 const handleLogout = () => {
   menuOpen.value = false;
@@ -28,9 +36,10 @@ const handleLogout = () => {
 
       <div :class="menuOpen ? 'flex' : 'hidden'" class="absolute left-0 right-0 top-full flex-col gap-1 border-b border-teal-800 bg-teal-950 p-4 md:static md:flex md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0">
         <router-link to="/" class="rounded-lg px-3 py-2 text-sm font-medium text-teal-100 hover:bg-teal-900 hover:text-white" @click="menuOpen = false">Explorar locais</router-link>
+        <router-link to="/roteiros-publicos" class="rounded-lg px-3 py-2 text-sm font-medium text-teal-100 hover:bg-teal-900 hover:text-white" @click="menuOpen = false">Explorar roteiros</router-link>
 
         <template v-if="!authStore.isAuthenticated">
-          <router-link to="/login" class="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-teal-900 hover:bg-teal-50" @click="menuOpen = false">Entrar</router-link>
+          <router-link v-if="route.name !== 'login'" :to="loginTarget" class="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-teal-900 hover:bg-teal-50" @click="menuOpen = false">Entrar</router-link>
         </template>
 
         <template v-else>

@@ -72,8 +72,9 @@ const loading = ref(true)
 const fetchItineraries = async () => {
   loading.value = true
   try {
-    // Busca os roteiros na API
-    const response = await api.get('/itineraries')
+    // Busca os roteiros na API (todos para GUIA, próprios para USER)
+    const endpoint = authStore.isGuia ? '/itineraries' : '/itineraries/meus'
+    const response = await api.get(endpoint)
     itineraries.value = response.data
   } catch (error) {
     console.error("Erro ao buscar itinerários:", error)

@@ -17,6 +17,13 @@ enum Role {
   GUIA
 }
 
+enum ItineraryStatus {
+  RASCUNHO
+  EM_ANALISE
+  PUBLICADO
+  REJEITADO
+}
+
 model User {
  
   password    String
@@ -60,10 +67,15 @@ model Itinerary {
   description String?
   duracaoDias Int
 
+  status          ItineraryStatus @default(RASCUNHO)
+  rejectionReason String?         // Motivo informado quando o roteiro é rejeitado
+
   userId      String
   user        User     @relation(fields: [userId], references: [id])
 
   places      Place[]  // Relação N:M implícita
+
+  @@index([status])
 }
 
 model Review {

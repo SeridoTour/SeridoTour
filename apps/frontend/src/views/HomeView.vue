@@ -18,13 +18,15 @@ L.Icon.Default.mergeOptions({
 });
 
 const places = ref<any[]>([]);
+const totalPlaces = ref(0);
 const router = useRouter();
 const mapContainer = ref<HTMLElement | null>(null);
 
 onMounted(async () => {
   try {
-    const response = await api.get('/places');
+    const response = await api.get('/places', { params: { limit: 100 } });
     places.value = response.data.data || response.data;
+    totalPlaces.value = response.data.meta?.total ?? places.value.length;
     initMap();
   } catch (error) {
     console.error('Erro ao buscar locais:', error);
@@ -56,7 +58,7 @@ const initMap = () => {
           <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Encontre seu próximo destino</h1>
           <p class="mt-2 max-w-xl text-teal-100">Descubra pontos turísticos, monte roteiros e viva experiências memoráveis.</p>
         </div>
-        <span class="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur">{{ places.length }} locais disponíveis</span>
+        <span class="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur">{{ totalPlaces }} locais disponíveis</span>
       </div>
     </section>
 

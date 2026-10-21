@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { ItineraryStatus, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -52,6 +52,7 @@ async function main() {
       description:
         'Roteiro de demonstração pelo litoral do Rio Grande do Norte.',
       duracaoDias: 3,
+      status: ItineraryStatus.PUBLICADO,
       user: {
         connect: {
           id: user.id,

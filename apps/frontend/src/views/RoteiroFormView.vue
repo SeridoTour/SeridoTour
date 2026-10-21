@@ -18,7 +18,7 @@ const form = ref({
 // Dentro do onMounted em RoteiroFormView.vue
 onMounted(async () => {
   try {
-    const response = await api.get('/places');
+    const response = await api.get('/places', { params: { limit: 100 } });
     
     // Verifique se o back-end retorna { data: [...] }
     // Se retornar { data: { data: [...] } }, você precisa acessar duas vezes
@@ -41,7 +41,7 @@ const submitRoteiro = async () => {
 
   try {
     await api.post('/itineraries', form.value);
-    message.value = 'Roteiro criado com sucesso!';
+    message.value = 'Roteiro criado como rascunho! Envie-o para análise na página Meus Roteiros.';
     setTimeout(() => {
       router.push('/roteiros');
     }, 1500);

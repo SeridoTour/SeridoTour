@@ -248,7 +248,7 @@ const getFullImageUrl = (url: string) => {
         </form>
       </div>
       <div v-else class="p-4 bg-yellow-50 text-yellow-800 rounded border border-yellow-200">
-        <router-link to="/login" class="underline font-semibold">
+        <router-link :to="{ name: 'login', query: { redirect: route.fullPath } }" class="underline font-semibold">
           Faça login para avaliar este local
         </router-link>
       </div>

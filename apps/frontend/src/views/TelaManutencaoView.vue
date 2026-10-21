@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#FDF8F2] flex flex-col justify-between items-center px-6 py-8 font-sans text-[#4A2E1B] relative overflow-hidden">
+  <div class="min-h-[calc(100vh_-_61px)] bg-[#FDF8F2] flex flex-col justify-between items-center px-6 py-8 font-sans text-[#4A2E1B] relative overflow-hidden">
     
     <header class="w-full max-w-7xl flex justify-between items-center z-10">
       <div class="flex items-center gap-3">
@@ -59,17 +59,23 @@
 
       
       <h2 class="text-4xl sm:text-5xl font-serif font-bold text-[#4A2E1B] mb-4">
-        Em breve!
+        {{ feature ? `${feature} em breve!` : 'Em breve!' }}
       </h2>
 
       
       <p class="text-[#6B5240] text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-        Esta funcionalidade ainda está em desenvolvimento, mas já está nos nossos planos. Em breve você poderá acessá-la e aproveitar essa novidade!
+        <template v-if="feature">
+          O acesso com {{ feature }} ainda está em desenvolvimento, mas já está nos nossos planos. Em breve você poderá utilizá-lo e aproveitar essa novidade!
+        </template>
+        <template v-else>
+          Esta funcionalidade ainda está em desenvolvimento, mas já está nos nossos planos. Em breve você poderá acessá-la e aproveitar essa novidade!
+        </template>
       </p>
 
       
       <div class="flex flex-col gap-3 w-full sm:w-auto">
         <router-link
+          v-if="fromLogin"
           to="/login"
           class="inline-flex items-center justify-center gap-2 bg-[#A04018] hover:bg-[#853312] text-white font-medium px-8 py-3 rounded-full shadow-md transition-all duration-200"
         >
@@ -103,8 +109,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+
+const feature = computed(() =>
+  typeof route.query.feature === 'string' ? route.query.feature : ''
+)
+const fromLogin = computed(() => route.query.from === 'login')
 </script>
 
 <style scoped>

@@ -72,7 +72,12 @@ api.interceptors.response.use(
         processQueue(refreshError, null);
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
-        window.location.href = '/login';
+        const currentPath = `${window.location.pathname}${window.location.search}`;
+        const loginUrl =
+          window.location.pathname === '/login'
+            ? '/login'
+            : `/login?redirect=${encodeURIComponent(currentPath)}`;
+        window.location.href = loginUrl;
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
