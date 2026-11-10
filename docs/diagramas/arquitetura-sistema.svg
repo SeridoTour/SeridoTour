@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="970" viewBox="0 0 1500 970">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#73899d" stroke-width="1.4"/></marker></defs>
+<rect width="1500" height="970" fill="white"/>
+<text x="40" y="38" font-family="Arial, sans-serif" font-size="16" fill="#1376ba" font-weight="700" text-anchor="start">SERIDÓTOUR / PROJETO INTEGRADOR</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="34" fill="#17334e" font-weight="700" text-anchor="start">Arquitetura do sistema</text>
+<text x="40" y="115" font-family="Arial, sans-serif" font-size="18" fill="#586f83" font-weight="400" text-anchor="start">Visão geral | aplicações, dados e integrações</text>
+<rect x="295" y="150" width="740" height="605" rx="18" fill="white" stroke="#1376ba" stroke-width="2"/>
+<text x="315" y="179" font-family="Arial, sans-serif" font-size="17" fill="#1376ba" font-weight="700" text-anchor="start">SISTEMA SERIDÓTOUR</text>
+<rect x="40" y="305" width="210" height="215" rx="14" fill="#f1f5f8" stroke="#647789" stroke-width="2"/>
+<rect x="56" y="320" width="46" height="26" rx="6" fill="#647789" stroke="#647789" stroke-width="2"/>
+<text x="79" y="339" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A1</text>
+<text x="58" y="375" font-family="Arial, sans-serif" font-size="23" fill="#647789" font-weight="700" text-anchor="start">Pessoas</text>
+<text x="58" y="403" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Atores do sistema</text>
+<text x="58" y="438" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Visitante</text>
+<text x="58" y="463" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Turista (USER)</text>
+<text x="58" y="488" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Guia (GUIA)</text>
+<rect x="330" y="210" width="280" height="215" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="346" y="225" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="369" y="244" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A2</text>
+<text x="348" y="280" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Interface web</text>
+<text x="348" y="308" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Vue 3 / navegador</text>
+<text x="348" y="343" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Telas, sessão e navegação</text>
+<text x="348" y="368" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Axios, Pinia e Router</text>
+<text x="348" y="393" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Mapas com Leaflet</text>
+<rect x="720" y="210" width="280" height="215" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="736" y="225" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="759" y="244" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A3</text>
+<text x="738" y="280" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">API REST</text>
+<text x="738" y="308" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">NestJS / Node.js</text>
+<text x="738" y="343" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Valida dados e permissões</text>
+<text x="738" y="368" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Aplica regras de turismo</text>
+<text x="738" y="393" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Acesso ao banco e serviços</text>
+<rect x="720" y="515" width="280" height="190" rx="14" fill="#eaf8f1" stroke="#148467" stroke-width="2"/>
+<rect x="736" y="530" width="46" height="26" rx="6" fill="#148467" stroke="#148467" stroke-width="2"/>
+<text x="759" y="549" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A4</text>
+<text x="738" y="585" font-family="Arial, sans-serif" font-size="23" fill="#148467" font-weight="700" text-anchor="start">Banco de dados</text>
+<text x="738" y="613" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">PostgreSQL / NeonDB</text>
+<text x="738" y="648" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Usuários, locais e roteiros</text>
+<text x="738" y="673" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Avaliações e tokens</text>
+<rect x="1110" y="150" width="350" height="180" rx="14" fill="#f5effb" stroke="#7350a2" stroke-width="2"/>
+<rect x="1126" y="165" width="46" height="26" rx="6" fill="#7350a2" stroke="#7350a2" stroke-width="2"/>
+<text x="1149" y="184" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A5</text>
+<text x="1128" y="220" font-family="Arial, sans-serif" font-size="23" fill="#7350a2" font-weight="700" text-anchor="start">Mapas</text>
+<text x="1128" y="248" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">OpenStreetMap</text>
+<text x="1128" y="283" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Fornece a base cartográfica</text>
+<text x="1128" y="308" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Carregada pelo navegador</text>
+<rect x="1110" y="400" width="350" height="180" rx="14" fill="#f5effb" stroke="#7350a2" stroke-width="2"/>
+<rect x="1126" y="415" width="46" height="26" rx="6" fill="#7350a2" stroke="#7350a2" stroke-width="2"/>
+<text x="1149" y="434" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A6</text>
+<text x="1128" y="470" font-family="Arial, sans-serif" font-size="23" fill="#7350a2" font-weight="700" text-anchor="start">Imagens</text>
+<text x="1128" y="498" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Cloudinary</text>
+<text x="1128" y="533" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Armazena e entrega imagens</text>
+<text x="1128" y="558" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">API envia; navegador exibe</text>
+<rect x="1110" y="650" width="350" height="180" rx="14" fill="#f5effb" stroke="#7350a2" stroke-width="2"/>
+<rect x="1126" y="665" width="46" height="26" rx="6" fill="#7350a2" stroke="#7350a2" stroke-width="2"/>
+<text x="1149" y="684" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">A7</text>
+<text x="1128" y="720" font-family="Arial, sans-serif" font-size="23" fill="#7350a2" font-weight="700" text-anchor="start">Clima</text>
+<text x="1128" y="748" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">OpenWeatherMap</text>
+<text x="1128" y="783" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Condições atuais via API</text>
+<text x="1128" y="808" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Ainda sem tela integrada</text>
+<polyline points="250,405 285,405 285,320 330,320" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<polyline points="610,300 720,300" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="613.0" y="262" width="104.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="665" y="281" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">JSON / JWT</text>
+<polyline points="860,425 860,515" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="799.4" y="458" width="121.19999999999999" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="860" y="477" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Prisma / SQL</text>
+<polyline points="580,210 580,135 1065,135 1065,238 1110,238" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="728.7" y="112" width="112.6" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="785" y="131" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Tiles HTTPS</text>
+<polyline points="1000,365 1040,365 1040,490 1110,490" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="989.4" y="441" width="121.19999999999999" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1050" y="460" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Upload HTTPS</text>
+<polyline points="480,425 480,785 1068,785 1068,545 1110,545" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="660.7" y="761" width="198.6" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="760" y="780" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Imagens por URL HTTPS</text>
+<polyline points="1000,390 1020,390 1020,740 1110,740" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="1035.5" y="701" width="61.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1066" y="720" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">HTTPS</text>
+<text x="40" y="868" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Azul: aplicação  •  Verde: dados  •  Roxo: serviço externo  •  Setas: chamadas; respostas retornam ao chamador.</text>
+<line x1="40" y1="904" x2="1460" y2="904" stroke="#d5e0e9"/>
+<text x="40" y="932" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">O frontend executa no navegador. O Prisma pertence à API. O navegador não acessa o PostgreSQL.</text>
+</svg>

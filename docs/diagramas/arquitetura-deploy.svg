@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1070" viewBox="0 0 1500 1070">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#73899d" stroke-width="1.4"/></marker></defs>
+<rect width="1500" height="1070" fill="white"/>
+<text x="40" y="38" font-family="Arial, sans-serif" font-size="16" fill="#1376ba" font-weight="700" text-anchor="start">SERIDÓTOUR / PROJETO INTEGRADOR</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="34" fill="#17334e" font-weight="700" text-anchor="start">Arquitetura de deploy</text>
+<text x="40" y="115" font-family="Arial, sans-serif" font-size="18" fill="#586f83" font-weight="400" text-anchor="start">Ambiente publicado + ambiente local | verificação em 09/11/2026</text>
+<rect x="40" y="145" width="1420" height="450" rx="18" fill="white" stroke="#1376ba" stroke-width="2"/>
+<text x="60" y="174" font-family="Arial, sans-serif" font-size="17" fill="#1376ba" font-weight="700" text-anchor="start">AMBIENTE PUBLICADO</text>
+<rect x="70" y="220" width="270" height="190" rx="14" fill="#f1f5f8" stroke="#647789" stroke-width="2"/>
+<rect x="86" y="235" width="46" height="26" rx="6" fill="#647789" stroke="#647789" stroke-width="2"/>
+<text x="109" y="254" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">D1</text>
+<text x="88" y="290" font-family="Arial, sans-serif" font-size="23" fill="#647789" font-weight="700" text-anchor="start">Navegador</text>
+<text x="88" y="318" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Computador ou celular</text>
+<text x="88" y="353" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Executa a aplicação Vue</text>
+<text x="88" y="378" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Consome a API pela internet</text>
+<rect x="415" y="220" width="340" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="431" y="235" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="454" y="254" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">D2</text>
+<text x="433" y="290" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Frontend / Vercel</text>
+<text x="433" y="318" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Hospedagem da interface</text>
+<text x="433" y="353" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Entrega HTML, CSS e JavaScript</text>
+<text x="433" y="378" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">SPA com fallback index.html</text>
+<rect x="830" y="220" width="290" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="846" y="235" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="869" y="254" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">D3</text>
+<text x="848" y="290" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">API / Render</text>
+<text x="848" y="318" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Backend NestJS</text>
+<text x="848" y="353" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Regras, login e integrações</text>
+<text x="848" y="378" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">northeastour.onrender.com</text>
+<rect x="1190" y="220" width="240" height="190" rx="14" fill="#eaf8f1" stroke="#148467" stroke-width="2"/>
+<rect x="1206" y="235" width="46" height="26" rx="6" fill="#148467" stroke="#148467" stroke-width="2"/>
+<text x="1229" y="254" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">D4</text>
+<text x="1208" y="290" font-family="Arial, sans-serif" font-size="23" fill="#148467" font-weight="700" text-anchor="start">PostgreSQL</text>
+<text x="1208" y="318" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Hospedagem: NeonDB</text>
+<text x="1208" y="353" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Banco gerenciado</text>
+<text x="1208" y="378" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Acesso pela API</text>
+<polyline points="340,275 415,275" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="344.5" y="237" width="61.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="375" y="256" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">HTTPS</text>
+<polyline points="200,410 200,465 975,465 975,410" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="409.0" y="441" width="362.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="590" y="460" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Chamadas HTTPS da SPA à API (JSON / JWT)</text>
+<polyline points="1120,315 1190,315" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="1120.2" y="276" width="69.6" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1155" y="295" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Prisma</text>
+<text x="75" y="535" font-family="Arial, sans-serif" font-size="20" fill="#1376ba" font-weight="700" text-anchor="start">Frontend: northeas-tour-frontend.vercel.app</text>
+<text x="75" y="566" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Vercel e URL Render identificadas no site público; API respondeu 200 em consulta de locais.</text>
+<rect x="40" y="625" width="1420" height="315" rx="18" fill="white" stroke="#ad650e" stroke-width="2"/>
+<text x="60" y="654" font-family="Arial, sans-serif" font-size="17" fill="#ad650e" font-weight="700" text-anchor="start">AMBIENTE LOCAL / DOCKER COMPOSE</text>
+<rect x="75" y="680" width="360" height="200" rx="14" fill="#fff5e5" stroke="#ad650e" stroke-width="2"/>
+<rect x="91" y="695" width="46" height="26" rx="6" fill="#ad650e" stroke="#ad650e" stroke-width="2"/>
+<text x="114" y="714" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">L1</text>
+<text x="93" y="750" font-family="Arial, sans-serif" font-size="23" fill="#ad650e" font-weight="700" text-anchor="start">Frontend / Vite</text>
+<text x="93" y="778" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Container de desenvolvimento</text>
+<text x="93" y="813" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Porta publicada: 5173</text>
+<text x="93" y="838" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">VITE_API_URL → localhost:3000</text>
+<rect x="565" y="680" width="360" height="200" rx="14" fill="#fff5e5" stroke="#ad650e" stroke-width="2"/>
+<rect x="581" y="695" width="46" height="26" rx="6" fill="#ad650e" stroke="#ad650e" stroke-width="2"/>
+<text x="604" y="714" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">L2</text>
+<text x="583" y="750" font-family="Arial, sans-serif" font-size="23" fill="#ad650e" font-weight="700" text-anchor="start">Backend / NestJS</text>
+<text x="583" y="778" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Container de desenvolvimento</text>
+<text x="583" y="813" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Porta publicada: 3000</text>
+<text x="583" y="838" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Banco: postgres:5432</text>
+<rect x="1055" y="680" width="365" height="200" rx="14" fill="#eaf8f1" stroke="#148467" stroke-width="2"/>
+<rect x="1071" y="695" width="46" height="26" rx="6" fill="#148467" stroke="#148467" stroke-width="2"/>
+<text x="1094" y="714" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">L3</text>
+<text x="1073" y="750" font-family="Arial, sans-serif" font-size="23" fill="#148467" font-weight="700" text-anchor="start">PostgreSQL 15</text>
+<text x="1073" y="778" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Container postgres:15-alpine</text>
+<text x="1073" y="813" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Host 5433 → container 5432</text>
+<text x="1073" y="838" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Volume persistente: postgres_data</text>
+<polyline points="435,780 565,780" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="435.1" y="740" width="129.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="500" y="759" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Via navegador</text>
+<polyline points="925,780 1055,780" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="933.7" y="740" width="112.6" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="990" y="759" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Rede Docker</text>
+<text x="55" y="981" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Cloudinary, OpenStreetMap e OpenWeatherMap continuam externos, conforme a visão geral.</text>
+<line x1="40" y1="1004" x2="1460" y2="1004" stroke="#d5e0e9"/>
+<text x="40" y="1032" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Docker Compose usa alvos dev. Não foram encontrados pipeline CI/CD nem configuração versionada do deploy Render.</text>
+</svg>
