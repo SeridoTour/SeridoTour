@@ -1,0 +1,204 @@
+[
+  {
+    "n": 1,
+    "name": "Realizar cadastro",
+    "actor": "Visitante",
+    "goal": "Criar uma conta para utilizar os recursos do sistema.",
+    "pre": "Não estar autenticado e informar nome, e-mail e senha na opção de cadastro.",
+    "steps": [
+      "Informar nome, e-mail e senha; o código de guia é opcional.",
+      "O sistema valida os dados e verifica se nome ou e-mail já estão em uso.",
+      "A senha é protegida e a conta é salva como turista ou guia, conforme o código informado.",
+      "Após o cadastro, o sistema tenta realizar o login automaticamente."
+    ],
+    "alt": "Dados inválidos ou nome/e-mail já cadastrado impedem o cadastro. Sem código de guia válido, a conta recebe o perfil de turista.",
+    "result": "Conta criada e disponível para acesso ao sistema."
+  },
+  {
+    "n": 2,
+    "name": "Realizar login",
+    "actor": "Visitante com conta cadastrada",
+    "goal": "Entrar no sistema e acessar as funções do seu perfil.",
+    "pre": "Possuir uma conta e informar e-mail e senha.",
+    "steps": [
+      "Acessar a tela de entrada e informar as credenciais.",
+      "O sistema localiza a conta e confere a senha.",
+      "Se os dados estiverem corretos, o sistema inicia a sessão.",
+      "O usuário passa a acessar as funcionalidades permitidas para seu perfil."
+    ],
+    "alt": "E-mail inexistente ou senha incorreta impedem o acesso. Se a sessão expirar, pode ser necessário entrar novamente.",
+    "result": "Usuário autenticado como turista ou guia/administrador."
+  },
+  {
+    "n": 3,
+    "name": "Visualizar locais turísticos",
+    "actor": "Visitante, Turista ou Guia/Administrador",
+    "goal": "Conhecer os pontos turísticos cadastrados.",
+    "pre": "Acessar a página inicial do sistema.",
+    "steps": [
+      "O sistema carrega os locais cadastrados e suas coordenadas.",
+      "Os locais são apresentados em cartões e marcadores no mapa.",
+      "O usuário escolhe um cartão ou marcador.",
+      "O sistema exibe nome, descrição, cidade, categoria, localização e imagem, quando houver."
+    ],
+    "alt": "Se não existirem locais, o sistema informa a ausência de registros. Um local removido não pode ter seus detalhes consultados.",
+    "result": "Informações do local apresentadas ao usuário."
+  },
+  {
+    "n": 4,
+    "name": "Visualizar avaliações",
+    "actor": "Visitante, Turista ou Guia/Administrador",
+    "goal": "Consultar as experiências e notas de outras pessoas.",
+    "pre": "Selecionar um ponto turístico.",
+    "steps": [
+      "Abrir a página de detalhes do local.",
+      "O sistema busca as avaliações vinculadas a esse ponto turístico.",
+      "As avaliações são exibidas da mais recente para a mais antiga.",
+      "O usuário visualiza nota, comentário, autor e imagem, quando houver."
+    ],
+    "alt": "Se o local ainda não tiver avaliações, o sistema apresenta uma mensagem informativa.",
+    "result": "Avaliações consultadas sem alterar os registros."
+  },
+  {
+    "n": 5,
+    "name": "Visualizar comentários",
+    "actor": "Visitante, Turista ou Guia/Administrador",
+    "goal": "Ler o relato escrito por quem avaliou um local.",
+    "pre": "Abrir a seção de avaliações de um ponto turístico.",
+    "steps": [
+      "O usuário acessa os detalhes do local.",
+      "O sistema carrega as avaliações e os comentários associados.",
+      "O texto de cada comentário é apresentado junto à nota e ao autor."
+    ],
+    "alt": "Sem avaliações registradas, não há comentários para apresentar.",
+    "result": "Comentário lido pelo usuário.",
+    "note": "No projeto, o comentário faz parte da avaliação. Não existe uma publicação separada apenas para comentários."
+  },
+  {
+    "n": 6,
+    "name": "Criar roteiro turístico",
+    "actor": "Turista ou Guia/Administrador",
+    "goal": "Organizar locais turísticos em um roteiro de viagem.",
+    "pre": "Estar autenticado e ter pontos turísticos disponíveis.",
+    "steps": [
+      "Escolher a opção de criar roteiro.",
+      "Informar título, descrição e duração em dias.",
+      "Selecionar pelo menos um dos locais cadastrados.",
+      "O sistema valida os dados e salva o roteiro como rascunho, vinculado ao autor."
+    ],
+    "alt": "A tela impede o envio sem locais selecionados. Campos obrigatórios ausentes ou duração inválida impedem a criação.",
+    "result": "Roteiro criado como rascunho, ainda sem publicação pública."
+  },
+  {
+    "n": 7,
+    "name": "Adicionar locais existentes ao roteiro",
+    "actor": "Turista autor do roteiro ou Guia/Administrador",
+    "goal": "Definir os pontos turísticos que compõem o roteiro.",
+    "pre": "Estar autenticado e selecionar locais já cadastrados.",
+    "steps": [
+      "O sistema apresenta os locais disponíveis no formulário de criação.",
+      "O usuário marca os pontos que deseja visitar.",
+      "A seleção é enviada junto aos dados do roteiro.",
+      "O sistema associa os locais escolhidos ao roteiro."
+    ],
+    "alt": "Se um local deixar de existir antes de salvar, a associação pode falhar. Um roteiro em análise não pode ser alterado.",
+    "result": "Locais existentes vinculados ao roteiro.",
+    "note": "A seleção está disponível na criação. A alteração posterior dos locais existe na API, mas ainda não possui uma tela própria."
+  },
+  {
+    "n": 8,
+    "name": "Visualizar seus roteiros",
+    "actor": "Turista ou Guia/Administrador",
+    "goal": "Consultar os roteiros criados e acompanhar sua situação.",
+    "pre": "Estar autenticado no sistema.",
+    "steps": [
+      "Acessar a página de roteiros.",
+      "Para o turista, o sistema lista os roteiros de sua autoria.",
+      "A lista apresenta título, duração, locais e situação do roteiro.",
+      "Ao abrir um roteiro, o usuário consulta os detalhes e o motivo de rejeição, se houver."
+    ],
+    "alt": "Se não houver roteiros, o sistema informa a ausência de registros. O turista não pode consultar roteiros privados de outro autor.",
+    "result": "Roteiros e suas situações apresentados ao usuário.",
+    "note": "A tela do guia apresenta todos os roteiros para gestão e revisão. A consulta exclusiva dos roteiros de sua autoria também está disponível pela API."
+  },
+  {
+    "n": 9,
+    "name": "Criar avaliações",
+    "actor": "Turista ou Guia/Administrador",
+    "goal": "Registrar sua experiência em um ponto turístico.",
+    "pre": "Estar autenticado e selecionar um local existente.",
+    "steps": [
+      "Abrir os detalhes do local e preencher o formulário de avaliação.",
+      "Escolher uma nota de 1 a 5 e escrever um comentário.",
+      "Anexar uma imagem, se desejar, e enviar a avaliação.",
+      "O sistema valida os dados, armazena a imagem quando enviada e salva a avaliação com o autor."
+    ],
+    "alt": "Nota inválida, comentário vazio ou imagem não permitida impedem o registro. A imagem pode ser JPEG, PNG ou WEBP, com até 5 MB.",
+    "result": "Avaliação registrada e disponível para consulta pública."
+  },
+  {
+    "n": 10,
+    "name": "Criar comentários",
+    "actor": "Turista ou Guia/Administrador",
+    "goal": "Descrever a experiência vivida no local avaliado.",
+    "pre": "Estar autenticado e preencher uma avaliação do local.",
+    "steps": [
+      "Escrever o relato no campo de comentário da avaliação.",
+      "Informar também a nota do local.",
+      "Enviar o formulário de avaliação.",
+      "O sistema salva o comentário junto à nota e à identificação do autor."
+    ],
+    "alt": "A interface não permite comentário vazio ou composto somente por espaços. Sem nota válida, o registro também não é salvo.",
+    "result": "Comentário publicado como parte de uma avaliação.",
+    "note": "Este caso e \"Criar avaliações\" são executados no mesmo formulário."
+  },
+  {
+    "n": 11,
+    "name": "Gerenciar locais turísticos",
+    "actor": "Guia/Administrador",
+    "goal": "Manter o cadastro dos pontos turísticos.",
+    "pre": "Estar autenticado com o perfil de guia.",
+    "steps": [
+      "Escolher a opção de cadastrar ou abrir um local existente.",
+      "Para cadastrar, informar nome, descrição, cidade e categoria e marcar a posição no mapa; a imagem é opcional.",
+      "Para editar, alterar os dados e salvar; para excluir, confirmar a operação.",
+      "O sistema verifica a permissão, valida os dados e realiza a operação."
+    ],
+    "alt": "Turistas não podem executar essas ações. Dados ou imagens inválidos impedem a gravação; a exclusão pode falhar se existirem vínculos no banco.",
+    "result": "Local cadastrado, atualizado ou excluído."
+  },
+  {
+    "n": 12,
+    "name": "Gerenciar usuários",
+    "actor": "Guia/Administrador",
+    "goal": "Consultar as contas cadastradas no sistema.",
+    "pre": "Estar autenticado com o perfil de guia.",
+    "steps": [
+      "Acessar a página de usuários cadastrados.",
+      "O sistema verifica a permissão do guia.",
+      "A lista apresenta nome, e-mail, perfil e data de cadastro.",
+      "O guia consulta as informações necessárias."
+    ],
+    "alt": "Usuários sem o perfil de guia não podem acessar a listagem. Se ocorrer uma falha, o sistema informa o erro.",
+    "result": "Usuários consultados, sem alteração dos cadastros.",
+    "note": "Na versão atual, este gerenciamento permite somente listar usuários. Editar ou excluir contas ainda não está disponível."
+  },
+  {
+    "n": 13,
+    "name": "Gerenciar roteiros turísticos",
+    "actor": "Guia/Administrador",
+    "goal": "Acompanhar os roteiros e controlar sua publicação.",
+    "pre": "Estar autenticado com o perfil de guia.",
+    "steps": [
+      "Acessar a página de roteiros e consultar os registros de todos os autores.",
+      "Abrir um roteiro para verificar descrição, locais, duração, autor e situação.",
+      "Aguardar o envio para análise pelo próprio autor: um roteiro novo começa como rascunho e só o autor pode solicitar sua revisão.",
+      "Se estiver em análise, decidir entre publicar e rejeitar. Na rejeição, o guia pode informar um motivo.",
+      "O sistema salva a decisão. Somente os roteiros publicados ficam disponíveis para consulta pública.",
+      "Se necessário, despublicar um roteiro publicado. Ele volta a ser rascunho e sai da consulta pública."
+    ],
+    "alt": "Somente roteiros em análise podem ser publicados ou rejeitados. A edição fica bloqueada enquanto o roteiro está em análise, tanto para o autor quanto para o guia. Um roteiro rejeitado pode ser corrigido e reenviado pelo próprio autor. Cancelar uma confirmação ou o diálogo de rejeição não altera o roteiro.",
+    "result": "Situação do roteiro atualizada conforme a decisão do guia, preservando seu autor e os locais associados.",
+    "note": "Editar e excluir roteiros também são operações disponíveis pela API para o guia, mas ainda não têm controles próprios nessa tela. O guia pode editar roteiros de qualquer autor; o turista pode editar os seus, respeitando o bloqueio durante a análise."
+  }
+]

@@ -2,6 +2,10 @@
 
 O **SeridóTour** é uma aplicação web *full-stack* desenvolvida para o planejamento, compartilhamento e descoberta de roteiros turísticos no Nordeste brasileiro. O projeto foi iniciado como requisito prático da disciplina de **Desenvolvimento Web Back-end** e atualmente encontra-se em evolução na disciplina de **Projeto Integrador I** do curso de Tecnologia em Sistemas para Internet do IFRN Campus Currais Novos.
 
+#### Documentação do Projeto Integrador
+
+O [índice da documentação](docs/README.md) reúne os 13 casos de uso detalhados, a arquitetura com deploy e o DER atualizado. A [entrega completa em PDF](docs/Documentacao-Projeto-Integrador.pdf) contém os três itens da atividade.
+
 #### 👥 Equipe e Responsabilidades
 
 A equipe atua de forma paralela em frentes específicas para garantir a entrega de ponta a ponta (E2E):
