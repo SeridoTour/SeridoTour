@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1120" viewBox="0 0 1500 1120">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#73899d" stroke-width="1.4"/></marker></defs>
+<rect width="1500" height="1120" fill="white"/>
+<text x="40" y="38" font-family="Arial, sans-serif" font-size="16" fill="#1376ba" font-weight="700" text-anchor="start">SERIDÓTOUR / PROJETO INTEGRADOR</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="34" fill="#17334e" font-weight="700" text-anchor="start">Estrutura de dados</text>
+<text x="40" y="115" font-family="Arial, sans-serif" font-size="18" fill="#586f83" font-weight="400" text-anchor="start">DER lógico atualizado | nomes e campos do schema Prisma</text>
+<rect x="40" y="200" width="340" height="248" rx="14" fill="white" stroke="#1376ba" stroke-width="2"/>
+<rect x="40" y="200" width="340" height="47" rx="10" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="58" y="232" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="start">User</text>
+<text x="58" y="280" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">PK  id: String (UUID)</text>
+<text x="58" y="311" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">name: String</text>
+<text x="58" y="342" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">UK  email: String</text>
+<text x="58" y="373" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">password: String</text>
+<text x="58" y="404" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">role: Role = USER</text>
+<text x="58" y="435" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">createdAt: DateTime</text>
+<rect x="565" y="165" width="365" height="155" rx="14" fill="white" stroke="#647789" stroke-width="2"/>
+<rect x="565" y="165" width="365" height="47" rx="10" fill="#647789" stroke="#647789" stroke-width="2"/>
+<text x="583" y="197" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="start">Token</text>
+<text x="583" y="245" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">PK  id: String (UUID)</text>
+<text x="583" y="276" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">hash: String</text>
+<text x="583" y="307" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">FK  userId: String</text>
+<rect x="565" y="425" width="365" height="279" rx="14" fill="white" stroke="#1376ba" stroke-width="2"/>
+<rect x="565" y="425" width="365" height="47" rx="10" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="583" y="457" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="start">Itinerary</text>
+<text x="583" y="505" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">PK  id: String (UUID)</text>
+<text x="583" y="536" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">title: String</text>
+<text x="583" y="567" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">description: String?</text>
+<text x="583" y="598" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">duracaoDias: Int</text>
+<text x="583" y="629" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">status: ItineraryStatus</text>
+<text x="583" y="660" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">rejectionReason: String?</text>
+<text x="583" y="691" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">FK  userId: String</text>
+<rect x="1100" y="425" width="360" height="310" rx="14" fill="white" stroke="#148467" stroke-width="2"/>
+<rect x="1100" y="425" width="360" height="47" rx="10" fill="#148467" stroke="#148467" stroke-width="2"/>
+<text x="1118" y="457" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="start">Place</text>
+<text x="1118" y="505" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">PK  id: String (UUID)</text>
+<text x="1118" y="536" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">name: String</text>
+<text x="1118" y="567" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">description: String</text>
+<text x="1118" y="598" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">city: String</text>
+<text x="1118" y="629" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">category: String</text>
+<text x="1118" y="660" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">latitude: Float</text>
+<text x="1118" y="691" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">longitude: Float</text>
+<text x="1118" y="722" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">imageUrl: String?</text>
+<rect x="565" y="790" width="365" height="217" rx="14" fill="white" stroke="#7350a2" stroke-width="2"/>
+<rect x="565" y="790" width="365" height="47" rx="10" fill="#7350a2" stroke="#7350a2" stroke-width="2"/>
+<text x="583" y="822" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="start">Review</text>
+<text x="583" y="870" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">PK  id: String (UUID)</text>
+<text x="583" y="901" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">rating: Int / comment: String?</text>
+<text x="583" y="932" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">imageUrl: String?</text>
+<text x="583" y="963" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">FK  userId / FK  placeId</text>
+<text x="583" y="994" font-family="Arial, sans-serif" font-size="19" fill="#17334e" font-weight="400" text-anchor="start">createdAt: DateTime</text>
+<polyline points="380,250 465,250 465,245 565,245" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="431.6" y="207" width="86.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="475" y="226" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">1 : 0..N</text>
+<polyline points="380,350 475,350 475,550 565,550" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="431.6" y="499" width="86.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="475" y="518" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">1 : 0..N</text>
+<polyline points="380,415 435,415 435,900 565,900" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="391.6" y="848" width="86.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="435" y="867" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">1 : 0..N</text>
+<polyline points="1100,665 1015,665 1015,900 930,900" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="971.6" y="845" width="86.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1015" y="864" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">1 : 0..N</text>
+<line x1="930" y1="540" x2="1100" y2="540" stroke="#73899d" stroke-width="2.3"/>
+<text x="1015" y="522" font-family="Arial, sans-serif" font-size="18" fill="#586f83" font-weight="400" text-anchor="middle">0..N : 0..N</text>
+<text x="1015" y="569" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">N:M implícita</text>
+<rect x="40" y="725" width="345" height="290" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<text x="60" y="760" font-family="Arial, sans-serif" font-size="18" fill="#1376ba" font-weight="700" text-anchor="start">LEGENDA E ENUMERAÇÕES</text>
+<text x="60" y="800" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">PK: chave primária</text>
+<text x="60" y="829" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">FK: chave estrangeira</text>
+<text x="60" y="858" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">UK: valor único / ?: opcional</text>
+<text x="60" y="887" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Role: USER | GUIA</text>
+<text x="60" y="916" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">ItineraryStatus:</text>
+<text x="60" y="945" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">RASCUNHO | EM_ANALISE</text>
+<text x="60" y="974" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">PUBLICADO | REJEITADO</text>
+<line x1="40" y1="1054" x2="1460" y2="1054" stroke="#d5e0e9"/>
+<text x="40" y="1082" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">A junção entre Itinerary e Place é gerenciada pelo Prisma; não foi criada uma entidade associativa fictícia.</text>
+</svg>

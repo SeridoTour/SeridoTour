@@ -1,0 +1,27 @@
+{
+  "data_verificacao": "2026-11-09",
+  "fuso_horario": "America/Sao_Paulo",
+  "fonte_repositorio": "https://github.com/SeridoTour/SeridoTour",
+  "frontend": {
+    "url": "https://northeas-tour-frontend.vercel.app",
+    "provedor": "Vercel",
+    "bundle_publico": "https://northeas-tour-frontend.vercel.app/assets/index-oY6IIv2g.js"
+  },
+  "backend": {
+    "base_url_configurada_no_bundle": "https://northeastour.onrender.com",
+    "provedor": "Render",
+    "consulta_publica_verificada": {
+      "metodo": "GET",
+      "url": "https://northeastour.onrender.com/places?limit=1",
+      "status_http": 200,
+      "formato_resposta": "JSON"
+    }
+  },
+  "banco_de_dados": {
+    "tecnologia_no_schema_do_repositorio": "PostgreSQL",
+    "provedor_de_hospedagem": "NeonDB",
+    "fonte_da_hospedagem": "Informado pelo responsável pelo projeto em 2026-11-09"
+  },
+  "commit_implantado": "Não identificado",
+  "observacao": "Vercel e Render identificados por leitura pública. A hospedagem do PostgreSQL no NeonDB foi informada pelo responsável pelo projeto. A revisão de código implantada não foi identificada."
+}

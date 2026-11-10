@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1020" viewBox="0 0 1500 1020">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#73899d" stroke-width="1.4"/></marker></defs>
+<rect width="1500" height="1020" fill="white"/>
+<text x="40" y="38" font-family="Arial, sans-serif" font-size="16" fill="#1376ba" font-weight="700" text-anchor="start">SERIDÓTOUR / PROJETO INTEGRADOR</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="34" fill="#17334e" font-weight="700" text-anchor="start">Por dentro da API</text>
+<text x="40" y="115" font-family="Arial, sans-serif" font-size="18" fill="#586f83" font-weight="400" text-anchor="start">Visão de componentes | um único backend NestJS, organizado em módulos</text>
+<rect x="40" y="150" width="1420" height="785" rx="18" fill="white" stroke="#1376ba" stroke-width="2"/>
+<text x="60" y="179" font-family="Arial, sans-serif" font-size="17" fill="#1376ba" font-weight="700" text-anchor="start">PROCESSO NESTJS / MONÓLITO MODULAR</text>
+<rect x="75" y="210" width="340" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="91" y="225" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="114" y="244" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B1</text>
+<text x="93" y="280" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Entrada e segurança</text>
+<text x="93" y="308" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Controllers / DTOs / Guards</text>
+<text x="93" y="343" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Recebe requisições da web</text>
+<text x="93" y="368" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Valida dados, JWT e papel</text>
+<rect x="500" y="210" width="420" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="516" y="225" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="539" y="244" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B2</text>
+<text x="518" y="280" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Identidade e sessão</text>
+<text x="518" y="308" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Auth / Users / Token</text>
+<text x="518" y="343" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Cadastro e login de usuários</text>
+<text x="518" y="368" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Papéis USER e GUIA</text>
+<rect x="1000" y="210" width="420" height="190" rx="14" fill="#f1f5f8" stroke="#647789" stroke-width="2"/>
+<rect x="1016" y="225" width="46" height="26" rx="6" fill="#647789" stroke="#647789" stroke-width="2"/>
+<text x="1039" y="244" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B3</text>
+<text x="1018" y="280" font-family="Arial, sans-serif" font-size="23" fill="#647789" font-weight="700" text-anchor="start">Serviços de apoio</text>
+<text x="1018" y="308" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Config / Cache / Logs / Health</text>
+<text x="1018" y="343" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Configuração e cache em memória</text>
+<text x="1018" y="368" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Erros, logs e diagnóstico</text>
+<rect x="75" y="500" width="340" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="91" y="515" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="114" y="534" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B4</text>
+<text x="93" y="570" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Roteiros</text>
+<text x="93" y="598" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">ItinerariesModule</text>
+<text x="93" y="633" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Autoria e seleção de locais</text>
+<text x="93" y="658" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Análise, publicação e rejeição</text>
+<rect x="500" y="500" width="420" height="190" rx="14" fill="#edf7ff" stroke="#1376ba" stroke-width="2"/>
+<rect x="516" y="515" width="46" height="26" rx="6" fill="#1376ba" stroke="#1376ba" stroke-width="2"/>
+<text x="539" y="534" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B5</text>
+<text x="518" y="570" font-family="Arial, sans-serif" font-size="23" fill="#1376ba" font-weight="700" text-anchor="start">Locais e avaliações</text>
+<text x="518" y="598" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">PlacesModule / ReviewsModule</text>
+<text x="518" y="633" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Cadastro e consulta de locais</text>
+<text x="518" y="658" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Nota, comentário e imagem</text>
+<rect x="1000" y="500" width="420" height="190" rx="14" fill="#f5effb" stroke="#7350a2" stroke-width="2"/>
+<rect x="1016" y="515" width="46" height="26" rx="6" fill="#7350a2" stroke="#7350a2" stroke-width="2"/>
+<text x="1039" y="534" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B6</text>
+<text x="1018" y="570" font-family="Arial, sans-serif" font-size="23" fill="#7350a2" font-weight="700" text-anchor="start">Integrações externas</text>
+<text x="1018" y="598" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">CloudinaryModule / WeatherModule</text>
+<text x="1018" y="633" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Upload de imagens e clima</text>
+<text x="1018" y="658" font-family="Arial, sans-serif" font-size="18" fill="#17334e" font-weight="400" text-anchor="start">Chamadas aos provedores</text>
+<rect x="500" y="770" width="420" height="135" rx="14" fill="#eaf8f1" stroke="#148467" stroke-width="2"/>
+<rect x="516" y="785" width="46" height="26" rx="6" fill="#148467" stroke="#148467" stroke-width="2"/>
+<text x="539" y="804" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="700" text-anchor="middle">B7</text>
+<text x="518" y="840" font-family="Arial, sans-serif" font-size="23" fill="#148467" font-weight="700" text-anchor="start">Persistência</text>
+<text x="518" y="868" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">PrismaModule / PrismaService</text>
+<polyline points="415,300 500,300" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="407.3" y="261" width="95.39999999999999" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="455" y="280" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Autentica</text>
+<polyline points="245,400 245,500" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="201.6" y="441" width="86.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="245" y="460" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Roteiros</text>
+<polyline points="415,350 455,350 455,460 710,460 710,500" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="512.3" y="435" width="181.4" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="603" y="454" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Locais / avaliações</text>
+<polyline points="245,690 245,835 500,835" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="299.5" y="811" width="61.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="330" y="830" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Dados</text>
+<polyline points="710,690 710,770" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="679.5" y="721" width="61.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="710" y="740" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Dados</text>
+<polyline points="920,300 960,300 960,850 920,850" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="886.5" y="716" width="147.0" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="960" y="735" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Dados de sessão</text>
+<polyline points="920,595 1000,595" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="920.9" y="555" width="78.19999999999999" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="960" y="574" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Imagens</text>
+<polyline points="415,370 435,370 435,430 1210,430 1210,500" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect x="997.9" y="405" width="164.2" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1080" y="424" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Consulta de clima</text>
+<polyline points="1210,400 1210,455 1385,455 1385,500" fill="none" stroke="#73899d" stroke-width="2.3" marker-end="url(#arrow)" stroke-dasharray="8 6"/>
+<rect x="1250.1" y="432" width="129.8" height="25" rx="4" fill="white" stroke="white" stroke-width="2"/>
+<text x="1315" y="451" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="middle">Apoia módulos</text>
+<text x="980" y="840" font-family="Arial, sans-serif" font-size="20" fill="#148467" font-weight="700" text-anchor="start">B7 conecta ao PostgreSQL.</text>
+<text x="980" y="870" font-family="Arial, sans-serif" font-size="17" fill="#17334e" font-weight="400" text-anchor="start">B6 conecta ao Cloudinary e ao OpenWeatherMap.</text>
+<line x1="40" y1="954" x2="1460" y2="954" stroke="#d5e0e9"/>
+<text x="40" y="982" font-family="Arial, sans-serif" font-size="16" fill="#586f83" font-weight="400" text-anchor="start">Blocos agrupam responsabilidades. Não representam microsserviços ou servidores separados.</text>
+</svg>
