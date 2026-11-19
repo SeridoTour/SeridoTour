@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { useAuthStore } from '../stores/auth';
+import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,105 +9,130 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
-      meta: { title: 'Explorar locais' },
+      meta: { title: 'Explorar destinos', section: 'places' },
     },
     {
-      path: '/manutencao',
-      name: 'manutencao',
-      component: () => import('../views/TelaManutencaoView.vue'),
-      meta: { title: 'Em breve' },
+      path: '/mapa',
+      name: 'map',
+      component: () => import('../views/HomeView.vue'),
+      meta: { title: 'Mapa do Seridó', section: 'map' },
+    },
+    {
+      path: '/favoritos',
+      name: 'favorites',
+      component: () => import('../views/FavoritesView.vue'),
+      meta: { title: 'Favoritos', section: 'favorites' },
     },
     {
       path: '/places/new',
       name: 'place-new',
       component: () => import('../views/PlaceFormView.vue'),
-      meta: { requiresAuth: true, requiresGuia: true },
+      meta: { title: 'Cadastrar local', requiresAuth: true, requiresGuia: true, section: 'places' },
     },
     {
       path: '/places/:id',
       name: 'place-details',
       component: () => import('../views/PlaceDetailsView.vue'),
+      meta: { title: 'Detalhes do destino', section: 'places' },
     },
     {
       path: '/places/:id/edit',
       name: 'place-edit',
       component: () => import('../views/PlaceFormView.vue'),
-      meta: { requiresAuth: true, requiresGuia: true },
+      meta: { title: 'Editar local', requiresAuth: true, requiresGuia: true, section: 'places' },
     },
     {
       path: '/roteiros',
-      name: 'roteiros',
-      component: () => import('../views/RoteirosView.vue'),
-      meta: { requiresAuth: true },
+      name: 'itineraries',
+      component: () => import('../views/ItinerariesView.vue'),
+      meta: { title: 'Meus roteiros', requiresAuth: true, section: 'itineraries' },
     },
     {
       path: '/roteiros/new',
-      name: 'roteiros-new',
-      component: () => import('../views/RoteiroFormView.vue'),
-      meta: { requiresAuth: true },
+      name: 'itinerary-new',
+      component: () => import('../views/ItineraryFormView.vue'),
+      meta: { title: 'Criar roteiro', requiresAuth: true, section: 'itineraries' },
     },
     {
       path: '/roteiros/:id',
-      name: 'roteiro-details',
-      component: () => import('../views/RoteiroDetailsView.vue'),
-      meta: { requiresAuth: true },
+      name: 'itinerary-details',
+      component: () => import('../views/ItineraryDetailsView.vue'),
+      meta: { title: 'Detalhes do roteiro', requiresAuth: true, section: 'itineraries' },
+    },
+    {
+      path: '/roteiros/:id/edit',
+      name: 'itinerary-edit',
+      component: () => import('../views/ItineraryFormView.vue'),
+      meta: { title: 'Editar roteiro', requiresAuth: true, section: 'itineraries' },
     },
     {
       path: '/roteiros-publicos',
-      name: 'roteiros-publicos',
-      component: () => import('../views/RoteirosPublicosView.vue'),
-      meta: { title: 'Roteiros publicados' },
+      name: 'public-itineraries',
+      component: () => import('../views/ItinerariesView.vue'),
+      meta: { title: 'Roteiros publicados', section: 'public-itineraries' },
     },
     {
       path: '/roteiros-publicos/:id',
-      name: 'roteiro-publico-details',
-      component: () => import('../views/RoteiroDetailsView.vue'),
-      meta: { title: 'Roteiro publicado' },
+      name: 'public-itinerary-details',
+      component: () => import('../views/ItineraryDetailsView.vue'),
+      meta: { title: 'Roteiro publicado', section: 'public-itineraries' },
+    },
+    {
+      path: '/moderacao',
+      name: 'moderation',
+      component: () => import('../views/ModerationView.vue'),
+      meta: {
+        title: 'Moderação de roteiros',
+        requiresAuth: true,
+        requiresGuia: true,
+        section: 'moderation',
+      },
     },
     {
       path: '/users',
       name: 'users',
       component: () => import('../views/UsersListView.vue'),
-      meta: { requiresAuth: true, requiresGuia: true },
+      meta: { title: 'Usuários', requiresAuth: true, requiresGuia: true, section: 'users' },
+    },
+    {
+      path: '/perfil',
+      name: 'profile',
+      component: () => import('../views/ProfileView.vue'),
+      meta: { title: 'Meu perfil', requiresAuth: true, section: 'profile' },
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
-      meta: { requiresGuest: true, title: 'Entrar' },
+      meta: { title: 'Entrar', requiresGuest: true, standalone: true },
     },
     {
-      // Qualquer rota desconhecida cai na tela de manutenção/em breve
+      path: '/manutencao',
+      name: 'maintenance',
+      component: () => import('../views/MaintenanceView.vue'),
+      meta: { title: 'Em breve', standalone: true },
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('../views/TelaManutencaoView.vue'),
-      meta: { title: 'Em breve' },
+      component: () => import('../views/MaintenanceView.vue'),
+      meta: { title: 'Página indisponível', standalone: true },
     },
   ],
-});
+})
 
 router.beforeEach(async (to) => {
-  const authStore = useAuthStore();
-
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    await authStore.refreshSession();
-    if (!authStore.isAuthenticated) {
-      return { name: 'login', query: { redirect: to.fullPath } };
-    }
+  const auth = useAuthStore()
+  if (to.meta.requiresAuth && !auth.isAuthenticated) {
+    await auth.refreshSession()
+    if (!auth.isAuthenticated) return { name: 'login', query: { redirect: to.fullPath } }
   }
-
-  if (to.meta.requiresGuia && !authStore.isGuia) {
-    return { name: 'home' };
-  }
-
-  if (to.meta.requiresGuest && authStore.isAuthenticated) {
-    return { name: 'home' };
-  }
-});
+  if (to.meta.requiresGuia && !auth.isGuia) return { name: 'home' }
+  if (to.meta.requiresGuest && auth.isAuthenticated) return { name: 'home' }
+})
 
 router.afterEach((to) => {
-  const title = typeof to.meta.title === 'string' ? to.meta.title : '';
-  document.title = title ? `${title} · NortheasTour` : 'NortheasTour - Roteiros';
-});
+  document.title = `${typeof to.meta.title === 'string' ? to.meta.title : 'Roteiros do Seridó'} · SeridóTour`
+})
 
-export default router;
+export default router

@@ -1,265 +1,246 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { api } from '../services/api';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { computed, onMounted, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import AppIcon from '../components/AppIcon.vue'
+import ImageUpload from '../components/ImageUpload.vue'
+import PlaceMap from '../components/PlaceMap.vue'
+import { PLACE_CATEGORIES } from '../constants/categories'
+import { placesService } from '../services/places'
+import { getErrorMessage } from '../utils/format'
 
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-});
-
-const mapContainer = ref<HTMLElement | null>(null);
-const route = useRoute();
-const router = useRouter();
-const isEditing = computed(() => typeof route.params.id === 'string');
-let mapInstance: L.Map | null = null;
-let marker: L.Marker | null = null;
-
-const isLoading = ref(false);
-const message = ref('');
-
-const form = ref({
+const route = useRoute()
+const router = useRouter()
+const id = typeof route.params.id === 'string' ? route.params.id : undefined
+const form = reactive({
   name: '',
   description: '',
   city: '',
   category: '',
   latitude: null as number | null,
-  longitude: null as number | null
-});
+  longitude: null as number | null,
+})
+const loading = ref(Boolean(id))
+const loadFailed = ref(false)
+const saving = ref(false)
+const error = ref('')
+const image = ref<File | null>(null)
+const existingImage = ref<string | null>(null)
+const map = ref<InstanceType<typeof PlaceMap> | null>(null)
+const coordinates = computed(() =>
+  form.latitude !== null &&
+  form.longitude !== null &&
+  Number.isFinite(form.latitude) &&
+  Number.isFinite(form.longitude)
+    ? { latitude: form.latitude, longitude: form.longitude }
+    : null,
+)
 
-// Upload de imagem do place
-const selectedFile = ref<File | null>(null);
-const fileError = ref<string>('');
-const previewUrl = ref<string | null>(null);
-
-const handleFileChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  fileError.value = '';
-  previewUrl.value = null;
-
-  if (target.files && target.files.length > 0) {
-    const file = target.files[0];
-
-    if (file.size > 5 * 1024 * 1024) {
-      fileError.value = 'A imagem é muito grande. O limite é 5MB.';
-      target.value = '';
-      selectedFile.value = null;
-      return;
-    }
-
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-      fileError.value = 'Formato inválido. Use JPEG, PNG ou WEBP.';
-      target.value = '';
-      selectedFile.value = null;
-      return;
-    }
-
-    selectedFile.value = file;
-    // Pré-visualização local (object URL)
-    previewUrl.value = URL.createObjectURL(file);
-  } else {
-    selectedFile.value = null;
-  }
-};
-
-onMounted(async () => {
-  initMap();
-  if (!isEditing.value) return;
-
+async function loadPlace() {
+  if (!id) return
+  loading.value = true
+  loadFailed.value = false
+  error.value = ''
   try {
-    const { data } = await api.get(`/places/${route.params.id}`);
-    const { name, description, city, category, latitude, longitude } = data;
-    form.value = { name, description, city, category, latitude, longitude };
-    await nextTick();
-    const { latitude: selectedLatitude, longitude: selectedLongitude } = form.value;
-    if (selectedLatitude != null && selectedLongitude != null && mapInstance) {
-      marker = L.marker([selectedLatitude, selectedLongitude]).addTo(mapInstance);
-      mapInstance.setView([selectedLatitude, selectedLongitude], 13);
-    }
-  } catch (error) {
-    console.error('Erro ao carregar local:', error);
-    message.value = 'Não foi possível carregar os dados do local.';
+    const place = await placesService.getById(id)
+    Object.assign(form, {
+      name: place.name,
+      description: place.description,
+      city: place.city,
+      category: place.category,
+      latitude: place.latitude,
+      longitude: place.longitude,
+    })
+    existingImage.value = place.imageUrl || null
+  } catch (cause) {
+    loadFailed.value = true
+    error.value = getErrorMessage(cause, 'Não foi possível carregar o local. Tente novamente.')
+  } finally {
+    loading.value = false
   }
-});
-
-onBeforeUnmount(() => {
-  if (mapInstance) {
-    mapInstance.remove();
-  }
-});
-
-const initMap = () => {
-  if (!mapContainer.value) return;
-
-  // Limites aproximados do Rio Grande do Norte
-  const bounds = L.latLngBounds(L.latLng(-6.9, -38.6), L.latLng(-4.8, -34.9)); 
-
-  mapInstance = L.map(mapContainer.value, {
-    maxBounds: bounds,
-    maxBoundsViscosity: 1.0,
-    minZoom: 7
-  }).setView([-5.7944, -36.5], 8); // Foco em Natal/RN
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapInstance);
-
-  mapInstance.on('click', (e: L.LeafletMouseEvent) => {
-    const { lat, lng } = e.latlng;
-    form.value.latitude = lat;
-    form.value.longitude = lng;
-
-    if (marker) {
-      marker.setLatLng([lat, lng]);
-    } else {
-      marker = L.marker([lat, lng]).addTo(mapInstance!);
-    }
-  });
-};
-
-const submitPlace = async () => {
-  if (!form.value.latitude || !form.value.longitude) {
-    message.value = 'Por favor, selecione as coordenadas clicando no mapa.'
+}
+async function savePlace() {
+  if (!coordinates.value) {
+    error.value = 'Escolha a localização no mapa ou informe latitude e longitude.'
     return
   }
-
-  isLoading.value = true
-  message.value = ''
-
+  saving.value = true
+  error.value = ''
   try {
-    // FormData: envia campos de texto + arquivo em multipart/form-data
-    const formData = new FormData()
-    formData.append('name', form.value.name)
-    formData.append('description', form.value.description)
-    formData.append('city', form.value.city)
-    formData.append('category', form.value.category)
-    formData.append('latitude', String(form.value.latitude))
-    formData.append('longitude', String(form.value.longitude))
-
-    // Se escolheu arquivo novo, envia; se editando e não escolheu, NÃO envia "image"
-    if (selectedFile.value) {
-      formData.append('image', selectedFile.value)
-    }
-
-    if (isEditing.value) {
-      await api.patch(`/places/${route.params.id}`, formData)
-      message.value = 'Ponto turístico atualizado com sucesso!'
-      setTimeout(() => router.push(`/places/${route.params.id}`), 800)
-      return
-    }
-
-    await api.post('/places', formData)
-    message.value = 'Ponto turístico cadastrado com sucesso!'
-
-    // Reseta o formulário
-    form.value = { name: '', description: '', city: '', category: '', latitude: null, longitude: null }
-    selectedFile.value = null
-    previewUrl.value = null
-    if (marker && mapInstance) {
-      mapInstance.removeLayer(marker)
-      marker = null
-    }
-  } catch (error) {
-    message.value = 'Erro ao cadastrar local. Verifique os dados e tente novamente.'
-    console.error(error)
+    const body = new FormData()
+    Object.entries(form).forEach(([key, value]) =>
+      body.append(key, String(typeof value === 'string' ? value.trim() : value)),
+    )
+    if (image.value) body.append('image', image.value)
+    const saved = await placesService.save(body, id)
+    await router.push({ name: 'place-details', params: { id: saved.id }, query: { saved: '1' } })
+  } catch (cause) {
+    error.value = getErrorMessage(
+      cause,
+      'Não foi possível salvar o local. Confira os dados e tente novamente.',
+    )
   } finally {
-    isLoading.value = false
+    saving.value = false
   }
-};
+}
+onMounted(loadPlace)
 </script>
 
 <template>
-  <div class="p-8 max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">{{ isEditing ? 'Editar Ponto Turístico' : 'Registrar Novo Ponto Turístico' }}</h1>
-    
-    <form @submit.prevent="submitPlace" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      
-      <div class="space-y-4">
+  <div class="page-shell">
+    <header class="page-heading">
+      <div>
+        <h1 class="heading-icon">
+          <AppIcon name="pin" :size="30" />{{
+            id ? 'Editar local turístico' : 'Cadastrar local turístico'
+          }}
+        </h1>
+        <p>Compartilhe os lugares que fazem do Seridó um destino especial.</p>
+      </div>
+      <RouterLink to="/" class="btn-secondary"
+        ><AppIcon name="back" :size="16" />Voltar aos locais</RouterLink
+      >
+    </header>
+    <div v-if="error" class="notice notice-error" role="alert">
+      {{ error
+      }}<button v-if="loadFailed" class="btn-secondary btn-small" @click="loadPlace">
+        Tentar novamente
+      </button>
+    </div>
+    <p v-if="loading" class="loading-state" role="status">Carregando local...</p>
+    <form v-else class="place-form-layout" @submit.prevent="savePlace">
+      <section class="panel form-stack">
         <div>
-          <label class="block font-semibold mb-1">Nome do Local</label>
-          <input v-model="form.name" type="text" required class="w-full border p-2 rounded" placeholder="Ex: Forte dos Reis Magos" />
+          <h2>Informações do local</h2>
+          <p class="panel-description">Os campos marcados com * são obrigatórios.</p>
         </div>
-        
         <div>
-          <label class="block font-semibold mb-1">Descrição</label>
-          <textarea v-model="form.description" required rows="3" class="w-full border p-2 rounded" placeholder="Descrição detalhada do local..."></textarea>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block font-semibold mb-1">Cidade</label>
-            <input v-model="form.city" type="text" required class="w-full border p-2 rounded" placeholder="Ex: Natal" />
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">Categoria</label>
-            <select v-model="form.category" required class="w-full border p-2 rounded bg-white">
-              <option value="" disabled>Selecione...</option>
-              <option value="Natureza">Natureza</option>
-              <option value="Histórico">Histórico</option>
-              <option value="Culinária">Culinária</option>
-              <option value="Lazer">Lazer</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Upload de imagem do place -->
-        <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Imagem do Local (Opcional)
-          </label>
-          <input
-            type="file"
-            accept="image/jpeg,image/png,image/webp"
-            @change="handleFileChange"
-            class="block w-full text-sm text-gray-500
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-md file:border-0
-              file:text-sm file:font-semibold
-              file:bg-blue-50 file:text-blue-700
-              hover:file:bg-blue-100"
-          />
-          <p v-if="fileError" class="text-red-500 text-xs mt-1">{{ fileError }}</p>
-          <!-- Pré-visualização -->
-          <img
-            v-if="previewUrl"
-            :src="previewUrl"
-            class="mt-3 max-w-xs h-auto rounded shadow border"
-            alt="Pré-visualização da imagem"
+          <label for="place-name" class="field-label">Nome do local <span>*</span></label
+          ><input
+            id="place-name"
+            v-model.trim="form.name"
+            class="field-control"
+            required
+            maxlength="160"
+            placeholder="Ex.: Serra de São José"
           />
         </div>
-
-        <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="place-category" class="field-label">Categoria <span>*</span></label
+          ><select id="place-category" v-model="form.category" class="field-control" required>
+            <option disabled value="">Selecione uma categoria</option>
+            <option
+              v-if="form.category && !PLACE_CATEGORIES.includes(form.category)"
+              :value="form.category"
+            >
+              {{ form.category }}
+            </option>
+            <option v-for="category in PLACE_CATEGORIES" :key="category">{{ category }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="place-description" class="field-label">Descrição <span>*</span></label
+          ><textarea
+            id="place-description"
+            v-model.trim="form.description"
+            class="field-control"
+            required
+            rows="6"
+            placeholder="Conte a história e o que torna esse lugar especial."
+          />
+        </div>
+        <div>
+          <label for="place-city" class="field-label">Cidade <span>*</span></label
+          ><input
+            id="place-city"
+            v-model.trim="form.city"
+            class="field-control"
+            required
+            placeholder="Ex.: Currais Novos - RN"
+          />
+        </div>
+        <div class="form-grid">
           <div>
-            <label class="block font-semibold mb-1 text-gray-500">Latitude</label>
-            <input :value="form.latitude" type="text" readonly class="w-full border p-2 rounded bg-gray-100 cursor-not-allowed" placeholder="Clique no mapa" />
+            <label for="latitude" class="field-label">Latitude <span>*</span></label
+            ><input
+              id="latitude"
+              v-model.number="form.latitude"
+              class="field-control"
+              type="number"
+              step="any"
+              min="-90"
+              max="90"
+              required
+              placeholder="-6.26"
+            />
           </div>
           <div>
-            <label class="block font-semibold mb-1 text-gray-500">Longitude</label>
-            <input :value="form.longitude" type="text" readonly class="w-full border p-2 rounded bg-gray-100 cursor-not-allowed" placeholder="Clique no mapa" />
+            <label for="longitude" class="field-label">Longitude <span>*</span></label
+            ><input
+              id="longitude"
+              v-model.number="form.longitude"
+              class="field-control"
+              type="number"
+              step="any"
+              min="-180"
+              max="180"
+              required
+              placeholder="-36.51"
+            />
           </div>
         </div>
-
-        <button type="submit" :disabled="isLoading" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded transition mt-4">
-          {{ isLoading ? 'A Guardar...' : (isEditing ? 'Salvar Alterações' : 'Guardar Ponto Turístico') }}
-        </button>
-
-        <p v-if="message" class="mt-4 font-semibold" :class="message.includes('sucesso') ? 'text-green-600' : 'text-red-600'">
-          {{ message }}
-        </p>
-      </div>
-
-      <div class="flex flex-col">
-        <label class="block font-semibold mb-2">Selecione a localização exata (RN)</label>
-        <div ref="mapContainer" class="w-full h-96 rounded shadow-inner border z-0 bg-gray-50 min-h-[400px]"></div>
-      </div>
-
+      </section>
+      <section class="panel form-map">
+        <div class="section-heading">
+          <h2>Localização no mapa</h2>
+          <button class="btn-secondary btn-small" type="button" @click="map?.center()">
+            <AppIcon name="target" :size="14" />Centralizar
+          </button>
+        </div>
+        <p class="panel-description">Clique no mapa para marcar a localização exata do destino.</p>
+        <PlaceMap
+          ref="map"
+          selectable
+          :coordinates="coordinates"
+          @pick="Object.assign(form, $event)"
+        />
+        <div class="coordinate-summary">
+          <AppIcon name="pin" />
+          <div>
+            <small>Coordenadas selecionadas</small
+            >{{
+              coordinates
+                ? `${coordinates.latitude.toFixed(5)}, ${coordinates.longitude.toFixed(5)}`
+                : 'Selecione um ponto no mapa'
+            }}
+          </div>
+        </div>
+      </section>
+      <aside class="form-aside">
+        <section class="panel">
+          <h2>Imagem do local</h2>
+          <p class="panel-description">Escolha uma foto que apresente o destino.</p>
+          <ImageUpload v-model="image" :existing-image="existingImage" />
+        </section>
+        <div>
+          <section class="panel">
+            <h2>Pronto para descobrir</h2>
+            <p class="panel-description">
+              Ao salvar, o local ficará disponível para consulta e poderá fazer parte de novos
+              roteiros.
+            </p>
+          </section>
+          <button type="submit" class="btn-primary full-width" :disabled="saving || loadFailed">
+            <AppIcon name="save" :size="17" />{{
+              saving ? 'Salvando...' : 'Salvar local turístico'
+            }}</button
+          ><RouterLink
+            :to="id ? `/places/${id}` : '/'"
+            class="btn-secondary full-width"
+            style="margin-top: 12px"
+            >Cancelar</RouterLink
+          >
+        </div>
+      </aside>
     </form>
   </div>
 </template>
