@@ -9,8 +9,9 @@ const props = withDefaults(
     selectedId?: string
     coordinates?: { latitude: number; longitude: number } | null
     selectable?: boolean
+    scrollWheelZoom?: boolean
   }>(),
-  { places: () => [], selectable: false },
+  { places: () => [], selectable: false, scrollWheelZoom: false },
 )
 const emit = defineEmits<{
   select: [id: string]
@@ -56,7 +57,7 @@ function renderMarkers(fitView = true) {
 
 onMounted(() => {
   if (!container.value) return
-  map = L.map(container.value, { scrollWheelZoom: false }).setView([-6.3, -36.8], 9)
+  map = L.map(container.value, { scrollWheelZoom: props.scrollWheelZoom }).setView([-6.3, -36.8], 9)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19,

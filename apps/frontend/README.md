@@ -1,5 +1,20 @@
 # Frontend do SeridóTour
 
+## Hotfix do mapa e favicon
+
+**Branch:** `hotfix/mapa-zoom-favicon`
+
+**Data:** 19/11/2026
+
+- A tela `/mapa` ocupa a altura disponível da janela, sem rolagem vertical da página.
+- A rodinha do mouse aproxima e afasta o mapa. O cartão do destino fica sobre o mapa,
+  sem aumentar a altura da tela.
+- Ao navegar para outra tela, a rolagem normal da página continua disponível. Os mapas
+  incorporados às outras telas mantêm seu comportamento anterior.
+- O ícone da aba usa a marca do SeridóTour em SVG e ICO, com versões de 16, 32 e 48 pixels.
+- Verificados no navegador: zoom nos dois sentidos, altura do mapa, navegação e favicons
+  em 1440 × 900, 1366 × 768, 390 × 844, 844 × 390 e 320 × 568, com dados simulados.
+
 ## Relatório da refatoração visual
 
 **Branch:** `feature/frontend-refactor`

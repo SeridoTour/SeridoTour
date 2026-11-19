@@ -56,14 +56,20 @@ onMounted(loadPlaces)
 </script>
 
 <template>
-  <div class="page-shell">
+  <div class="page-shell" :class="{ 'map-page': isMapOnly }">
     <header class="page-heading">
       <div>
-        <p class="eyebrow">Caminhos, histórias e encontros</p>
-        <h1>{{ isMapOnly ? 'Explore o Seridó pelo mapa' : 'Destinos para descobrir' }}</h1>
-        <p>Encontre sua próxima experiência no coração do Seridó.</p>
+        <p v-if="!isMapOnly" class="eyebrow">Caminhos, histórias e encontros</p>
+        <h1>{{ isMapOnly ? 'Mapa do Seridó' : 'Destinos para descobrir' }}</h1>
+        <p>
+          {{
+            isMapOnly
+              ? 'Use a rodinha do mouse para aproximar ou afastar o mapa.'
+              : 'Encontre sua próxima experiência no coração do Seridó.'
+          }}
+        </p>
       </div>
-      <RouterLink v-if="auth.isGuia" to="/places/new" class="btn-primary"
+      <RouterLink v-if="auth.isGuia && !isMapOnly" to="/places/new" class="btn-primary"
         ><AppIcon name="plus" :size="17" />Cadastrar local</RouterLink
       >
       <button
@@ -158,6 +164,7 @@ onMounted(loadPlaces)
         <PlaceMap
           :places="filteredPlaces"
           :selected-id="selectedPlace?.id"
+          :scroll-wheel-zoom="isMapOnly"
           @select="selectedId = $event"
         />
         <div v-if="selectedPlace" class="map-selection">
