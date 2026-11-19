@@ -24,13 +24,18 @@ watch(
     </header>
     <RouterView />
   </template>
-  <div v-else class="app-layout" @keydown.esc="menuOpen = false">
+  <div
+    v-else
+    class="app-layout"
+    :class="{ 'is-map-page': route.name === 'map' }"
+    @keydown.esc="menuOpen = false"
+  >
     <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
     <AppSidebar :open="menuOpen" @close="menuOpen = false" />
     <div class="app-workspace">
       <AppHeader :menu-open="menuOpen" @toggle-menu="menuOpen = !menuOpen" />
       <main id="main-content" tabindex="-1"><RouterView :key="route.path" /></main>
-      <footer class="app-footer">
+      <footer v-if="route.name !== 'map'" class="app-footer">
         <span
           ><strong>Seridó<span>Tour</span></strong> Feito para descobrir o que é nosso.</span
         ><span class="footer-caption">Seridó · Natureza · Cultura · Aventura</span
