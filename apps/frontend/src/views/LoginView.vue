@@ -211,7 +211,7 @@ function toggleMode() {
 
 function openMaintenance(feature: string) {
   router.push({
-    name: 'manutencao',
+    name: 'maintenance',
     query: { feature, from: 'login' }
   })
 }
@@ -227,7 +227,7 @@ async function handleSubmit() {
         password: form.value.password
       })
     } else {
-      const payload: Record<string, string> = {
+      const payload: { name: string; email: string; password: string; codigoguia?: string } = {
         name: form.value.name,
         email: form.value.email,
         password: form.value.password
