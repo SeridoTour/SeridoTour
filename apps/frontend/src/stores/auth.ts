@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import axios from 'axios'
-import { api } from '../services/api'
+import { api, refreshAccessToken } from '../services/api'
 
 export interface UserPayload {
   id: string
@@ -11,8 +10,8 @@ export interface UserPayload {
 }
 
 export const useAuthStore = defineStore('auth', () => {
+  localStorage.removeItem('refresh_token')
   const accessToken = ref<string | null>(localStorage.getItem('access_token'))
-  const refreshToken = ref<string | null>(localStorage.getItem('refresh_token'))
   const sessionEmail = ref(localStorage.getItem('seridotour:session-email') || '')
   let refreshTimer: number | undefined
 
@@ -50,10 +49,8 @@ export const useAuthStore = defineStore('auth', () => {
   const clearSession = () => {
     if (refreshTimer) window.clearTimeout(refreshTimer)
     accessToken.value = null
-    refreshToken.value = null
     sessionEmail.value = ''
     localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token')
     localStorage.removeItem('seridotour:session-email')
   }
 
@@ -69,14 +66,11 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const refreshSession = async () => {
-    if (!refreshToken.value) return false
+    if (!accessToken.value) return false
 
     try {
-      const { data } = await axios.put(`${api.defaults.baseURL}/token/refresh`, {
-        tokenAnterior: refreshToken.value,
-      })
-      if (!data.access_token || !data.refresh_token) throw new Error('Resposta de token inválida.')
-      setTokens(data.access_token, data.refresh_token)
+      const access = await refreshAccessToken()
+      setTokens(access)
       return true
     } catch {
       clearSession()
@@ -89,15 +83,14 @@ export const useAuthStore = defineStore('auth', () => {
     const expiresAt = getExpiration(access)
     if (!expiresAt) return
 
-    const delay = Math.max(0, expiresAt - Date.now() - 30_000)
+    const delay = Math.max(0, expiresAt - Date.now())
     refreshTimer = window.setTimeout(() => void refreshSession(), delay)
   }
 
-  const setTokens = (access: string, refresh: string) => {
+  const setTokens = (access: string) => {
     accessToken.value = access
-    refreshToken.value = refresh
     localStorage.setItem('access_token', access)
-    localStorage.setItem('refresh_token', refresh)
+    localStorage.removeItem('refresh_token')
     scheduleRefresh(access)
   }
 
@@ -109,7 +102,7 @@ export const useAuthStore = defineStore('auth', () => {
     const { data } = await api.post('/auth/login', credentials)
     sessionEmail.value = credentials.email
     localStorage.setItem('seridotour:session-email', credentials.email)
-    setTokens(data.access_token, data.refresh_token)
+    setTokens(data.access_token)
   }
 
   const register = async (payload: {
@@ -126,7 +119,6 @@ export const useAuthStore = defineStore('auth', () => {
 
   return {
     accessToken,
-    refreshToken,
     user,
     isAuthenticated,
     isGuia,
