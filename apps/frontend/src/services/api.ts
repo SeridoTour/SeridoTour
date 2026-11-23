@@ -6,6 +6,33 @@ export const api = axios.create({
 
 let isRefreshing = false;
 let failedQueue: any[] = [];
+let refreshPromise: Promise<string> | null = null;
+
+export const refreshAccessToken = async (): Promise<string> => {
+  if (refreshPromise) return refreshPromise;
+
+  refreshPromise = (async () => {
+    const tokenAnterior = localStorage.getItem('access_token');
+    if (!tokenAnterior) throw new Error('Access token não encontrado.');
+
+    const { data } = await axios.put(`${api.defaults.baseURL}/token/refresh`, {
+      tokenAnterior,
+    });
+
+    if (!data.access_token) {
+      throw new Error('Resposta de token inválida.');
+    }
+
+    localStorage.setItem('access_token', data.access_token);
+    localStorage.removeItem('refresh_token');
+    api.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
+    return data.access_token;
+  })().finally(() => {
+    refreshPromise = null;
+  });
+
+  return refreshPromise;
+};
 
 const processQueue = (error: any, token: string | null = null) => {
   failedQueue.forEach(prom => {
@@ -52,21 +79,12 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
 
-      const tokenAnterior = localStorage.getItem('refresh_token');
-
       try {
-        const { data } = await axios.put(`${api.defaults.baseURL}/token/refresh`, {
-          tokenAnterior,
-        });
-
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('refresh_token', data.refresh_token);
-
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
+        const accessToken = await refreshAccessToken();
         originalRequest.headers = originalRequest.headers ?? {};
-        originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
-        processQueue(null, data.access_token);
+        processQueue(null, accessToken);
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
