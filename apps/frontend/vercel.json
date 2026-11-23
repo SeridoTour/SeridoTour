@@ -1,4 +1,5 @@
 {
+  "installCommand": "cd ../.. && npm ci --include=dev --workspace=apps/frontend --include-workspace-root=false",
   "rewrites": [
     {
       "source": "/(.*)",
