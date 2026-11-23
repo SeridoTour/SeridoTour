@@ -189,7 +189,8 @@ async function main() {
       const asset = receipt.assets.find(a => a.id === place.id);
       const { id, sourceKey, name, sourceFile, ...credit } = photo;
       place.image = { ...credit, url: asset.url, publicId: asset.publicId };
-      if (place.imageCandidate) place.imageCandidate.status = 'reviewed_and_published_in_preview';
+      if (place.imageCandidate) place.imageCandidate.status = place.imageCandidate.originalUrl === photo.originalUrl
+        ? 'reviewed_and_published_in_preview' : 'replaced_by_reviewed_alternative';
     }
     await fs.writeFile(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
     receipt.databaseApplied = apply || Boolean(receipt.databaseApplied);
