@@ -1,5 +1,58 @@
 # Deploy, preview e dados do SeridóTour
 
+## Configuração efetiva do preview — 23/11/2026
+
+A infraestrutura de preview foi criada e validada após autenticação nos painéis. O acesso administrativo foi feito pelo navegador; as tentativas anteriores sem acesso, registradas abaixo, foram superadas. A aplicação permanece **em preparação para a revisão dos dados**, com as rotas de dados bloqueadas. A configuração de hospedagem não representa conclusão da limpeza, da carga ou dos critérios funcionais do sistema.
+
+| Camada | Configuração desta retomada |
+| --- | --- |
+| Git | Branch publicada `codex/preview-geoparque`, base `afbe08d`. Commit `d5b632b` prepara o isolamento; `b2d2042` fixa a instalação do frontend pelo lockfile. `main` não recebeu commits. |
+| API | [seridotour-api-preview.onrender.com](https://seridotour-api-preview.onrender.com/health), serviço Render `srv-dc26ci7f3r2c73c90b9g`, Node 22, Free, Virginia, repositório `SeridoTour/SeridoTour`, branch de preview. Serviço novo, fora do ambiente Production do projeto existente. Commit `b2d2042` confirmado como Live no [deployment dep-dc26f76q1p3s738sqh5g](https://dashboard.render.com/web/srv-dc26ci7f3r2c73c90b9g/deploys/dep-dc26f76q1p3s738sqh5g). |
+| Frontend | [Preview estável da branch](https://seridotour-git-codex-preview-d143e9-serafims-projects-395240b2.vercel.app/). Deployment validado `4tteGzDBRiZ1zcetiNHtRHweVB1M`, commit `b2d2042`, ambiente Preview, status Ready. |
+| Vercel | Projeto `seridotour`, ID `prj_3eAUthkNvjqD29J4uuAQ5zWQ12bO`, equipe `serafims-projects-395240b2`. Root `apps/frontend`, Vite, build `npm run build`, saída `dist`, Node 24 do projeto preservado. |
+| Banco | Projeto Neon `sweet-dew-14074573`, branch **development-seridotour** `br-quiet-sea-atieyvt5`, endpoint `ep-tiny-bonus-at29rygs`, base `northeastour`. Conexão exclusiva configurada no serviço novo. |
+| Mídia | O responsável autorizou reutilizar as credenciais Cloudinary de produção. Elas foram copiadas somente para o serviço novo, sem alterar as originais. Novos uploads usam `seridotour/development-seridotour/places` e `/reviews`; a conta Cloudinary é compartilhada, portanto o prefixo é organização de arquivos, não uma separação de permissões. Nenhum upload ou remoção foi realizado. |
+
+### Isolamento aplicado
+
+- `DATABASE_URL` é validada antes do startup por `scripts/verify-preview-env.cjs`: apenas o hostname direto ou pooled de `ep-tiny-bonus-at29rygs`, base `northeastour` e SSL são aceitos. O comando também confere o nome do serviço/branch quando o Render os informa, origem CORS e pasta Cloudinary. Nenhum valor secreto é impresso pela validação.
+- O Render usa build `npm ci --include=dev && npm run prisma:generate --workspace=apps/backend && npm run build:backend`; start `node scripts/verify-preview-env.cjs && npm run start:prod --workspace=apps/backend`; health check `/health`. Não há migração, seed ou `db push` nesses comandos. Prisma Client 6.19.3 e o artefato `dist/src/main.js` foram confirmados no build remoto.
+- `DEPLOYMENT_ENV=preview` e `PREVIEW_DATA_REVIEWED=false` mantêm todas as rotas de dados em `503 PREVIEW_NOT_READY`; apenas GET/HEAD de `/health` passam. O middleware também envia `X-Robots-Tag: noindex, nofollow, noarchive` e `Cache-Control: no-store`.
+- JWT e código de guia foram gerados para este serviço. `NODE_ENV=production`, Swagger desabilitado, access token `15m`, refresh configurado como `7d`. Isso não corrige o fluxo de refresh descrito na análise inicial.
+- Na Vercel foi criada outra `VITE_API_URL`, tipo Config, apenas no escopo **Preview / codex/preview-geoparque**, com valor `https://seridotour-api-preview.onrender.com`. A variável original Production and Preview foi preservada; a regra específica da branch a sobrescreve neste preview, conforme a [precedência documentada pela Vercel](https://vercel.com/docs/environment-variables#preview-environment-variables).
+- O build Vite de Preview exige URL explícita HTTPS e recusa `northeastour.onrender.com` e localhost. O primeiro deployment automático foi bloqueado por essa trava enquanto a variável ainda era herdada; após salvar o override, os builds passaram. O HTML de Preview contém meta robots `noindex, nofollow, noarchive`.
+- A instalação da Vercel foi fixada somente no `vercel.json` desta branch: `cd ../.. && npm ci --include=dev --workspace=apps/frontend --include-workspace-root=false`. Os overrides globais do projeto foram apenas consultados. O rewrite SPA foi mantido.
+- A proteção de acesso já existente foi confirmada: Vercel Authentication / Standard Protection, sem links compartilháveis ou exceção adicionada. O acesso sem sessão recebe redirecionamento; o usuário autenticado consegue abrir a página.
+- `CORS_ORIGIN` permite somente a origem estável da branch acima. Utilizar esse endereço para validar a integração; os endereços individuais de cada deployment não foram acrescentados à lista de CORS.
+
+### Validação desta configuração
+
+| Verificação | Resultado |
+| --- | --- |
+| API `/health` | 200, banco/memória/disco `up`; header de não indexação presente. |
+| API `/places` e `/users` | 503 com `PREVIEW_NOT_READY`; nenhum dado da cópia retornado. |
+| CORS | Origem estável do preview recebe `Access-Control-Allow-Origin` exato; `https://seridotour.vercel.app` não recebe permissão na API de preview. |
+| Interface real | Home e acesso direto a `/mapa` carregaram e exibiram “Preview em preparação. A revisão dos dados ainda não foi concluída.”, proveniente da API de desenvolvimento. Sem mocks. A validação do mapa com catálogo aguarda a liberação dos dados. |
+| Banco antes/depois | Mesmas contagens: 12 usuários, 11 tokens, seis locais, oito roteiros, quatro avaliações. Somente SELECTs foram executados no Neon nesta retomada. |
+| Local | Dois testes do comando de startup e três testes do middleware passaram; builds backend e frontend passaram. Builds negativos de Preview sem URL e com API de produção foram bloqueados; build positivo incluiu robots. Instalação isolada do workspace frontend pelo lockfile passou. |
+| Produção | Frontend continuou no deployment `SMS22w41shzMYjXU35wfTpLTUyHo`, commit `afbe08d`; API de produção consultada continuou no commit `994ceac`, serviço `srv-d98ekffavr4c739dma50`. Nenhuma configuração, senha, dado, implantação ou arquivo existente de mídia de produção foi alterado. |
+
+### Operação e pendências
+
+O serviço Render foi criado pelo formulário de repositório Git público, com os comandos do YAML. **Não foi associado a um Blueprint.** O formulário avisa que auto-deploy para essa modalidade depende de Blueprint; o push posterior gerou frontend na Vercel, mas não gerou um segundo deploy automático no Render. Usar `Manual Deploy → Deploy latest commit` somente em `seridotour-api-preview`, conferindo branch e SHA. A configuração `render.preview.yaml` permanece como referência para uma futura associação controlada; não aplicá-la ao serviço de produção.
+
+Manter `PREVIEW_DATA_REVIEWED=false` até revisar e executar a limpeza exclusivamente na branch Neon de desenvolvimento, validar as duas contas e corrigir os problemas de segurança pertinentes. Só então mudar essa variável no serviço **de preview** e realizar novo deploy. Não foi solicitada nem executada a etapa destrutiva nesta retomada; o plano detalhado abaixo continua pendente. O catálogo proposto também não foi importado.
+
+OpenWeather continua sem chave de desenvolvimento. O upload real com Cloudinary não foi exercitado enquanto a API está bloqueada. Os logs de instalação reportaram alertas de dependências (Render: 51, incluindo dois críticos; frontend: 16); a revisão/atualização dessas dependências, os problemas de cache/autenticação e a reconciliação de migrações continuam no diagnóstico e não foram tratados como resolvidos por este deploy. Nenhum `npm audit fix --force` foi executado.
+
+O arquivo temporário usado para transferir a conexão Neon foi removido. Nenhuma credencial foi adicionada ao Git ou a este relatório.
+
+Capturas da API Live, do frontend Ready e da rota do mapa foram salvas localmente em `C:/Users/Karas/Documents/ChatGPT/Atividade/output/seridotour-preview/`. Os dois provedores ficaram no commit de código `b2d2042`; a atualização posterior deste relatório não modifica os artefatos implantados.
+
+## Registro da análise e do plano anteriores
+
+As seções seguintes preservam o diagnóstico e a preparação anteriores a esta configuração. Menções a falta de acesso aos painéis, ausência de push ou inexistência de preview refletem aquele momento; o estado atual está descrito acima.
+
 Verificação em 23/11/2026. Base: `main` em `afbe08da5a87e0b8c1fbc9eaea7cf15cb8111258`. Preparação local em `codex/preview-geoparque`.
 
 ## Resultado e limite da análise
