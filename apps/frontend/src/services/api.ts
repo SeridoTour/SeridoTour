@@ -62,6 +62,7 @@ api.interceptors.response.use(
       error.response?.status === 401 &&
       originalRequest &&
       originalRequest.url !== '/auth/login' &&
+      originalRequest.url !== '/auth/logout' &&
       !originalRequest._retry
     ) {
       if (isRefreshing) {

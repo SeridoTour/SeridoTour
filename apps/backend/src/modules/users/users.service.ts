@@ -17,7 +17,9 @@ export class UsersService {
   ) {}
 
   async listUsers(): Promise<RespostaDto[]> {
-    const users = await this.prisma.user.findMany();
+    const users = await this.prisma.user.findMany({
+      select: { id: true, name: true, email: true, role: true, createdAt: true },
+    });
 
     return users;
   }

@@ -1,5 +1,25 @@
 # Deploy, preview e dados do SeridóTour
 
+## Correções no preview após atualização da main — 23/11/2026
+
+A `main` remota recebeu os commits `6fe9e27`, `9b23d4a` e `d726c3c`, informados pelo responsável, com o hotfix de refresh no frontend. Essas alterações foram incorporadas à branch `codex/preview-geoparque` por merge, sem modificar `main` nesta execução. As configurações e travas de preview foram preservadas.
+
+Correções preparadas nesta etapa:
+
+- Cache de locais e avaliações usa a URL completa, incluindo paginação/filtros ou ID do local; as chaves fixas compartilhadas foram removidas. A invalidação existente nas mutações foi preservada e testada.
+- A listagem de usuários seleciona explicitamente ID, nome, e-mail, papel e data de criação. Senhas/hashes não são consultados para essa resposta.
+- A autenticação exige sessão existente no banco, guarda somente SHA-256 do token e consulta os dados/permissões atuais do usuário. Remover os tokens revoga também JWTs ainda não expirados. Logins geram identificadores JWT únicos, inclusive no mesmo segundo.
+- O contrato do hotfix da `main` foi mantido: o cliente renova usando o access token. O servidor confere assinatura e limita a janela de renovação a `JWT_REFRESH_EXPIRES_IN` (fallback `7d`), consome o token anterior condicionalmente e recusa reutilização. Uma falha ao criar a sessão nova depois do consumo exige novo login. A separação futura entre access e refresh tokens continua como evolução do protocolo, não foi declarada concluída.
+- `POST /auth/logout` revoga a sessão; o frontend chama esse endpoint e limpa a sessão local também em falhas de rede. Falha de comunicação impede garantir a revogação remota naquele logout; a expiração do JWT continua aplicável.
+
+Validação: a suíte existente e os novos testes totalizam 31 casos aprovados, incluindo integração HTTP com módulos reais de autenticação, assinatura JWT, cache, campos públicos, usuário ausente, papéis atuais, janela de refresh, rejeição de replay e logout. Os dados dos testes são simulados em memória; nenhum teste mutou o Neon. Builds backend e frontend passaram.
+
+`scripts/review-preview-data.cjs` foi criado e executado no modo padrão **dry-run** contra `development-seridotour`, sem escritas. A prévia confirmou: remover dez usuários, 11 tokens, oito roteiros e três avaliações; manter `Turistateste@gmail.com` (USER), `GuiaTeste@gmail.com` (GUIA), seis locais e uma avaliação. A rotina só aceita o endpoint direto `ep-tiny-bonus-at29rygs`/base `northeastour` com SSL; aborta se o inventário mudar; aplica exclusões e hashes bcrypt com salts independentes em transação serializável; confere contagens finais e preservação integral de locais/avaliação mantida.
+
+Para aplicar, a rotina exige `--apply`, API ainda em `PREVIEW_NOT_READY`, referência de backup verificada pelo operador e senhas locais com pelo menos 12 caracteres em `TEST_PASSWORD_USER` e `TEST_PASSWORD_GUIA`. A referência é uma condição operacional: o script não verifica por si só a integridade/restauração do backup. Nenhuma senha deve ser gravada neste documento ou no Git. O arquivo temporário de conexão usado na prévia foi removido.
+
+A execução destrutiva aguarda a resposta à revisão exata enviada nesta etapa e a definição das senhas. A API permanece bloqueada; catálogo e imagens não foram importados. O restante das pendências de migração, infraestrutura e catálogo segue registrado abaixo.
+
 ## Configuração efetiva do preview — 23/11/2026
 
 A infraestrutura de preview foi criada e validada após autenticação nos painéis. O acesso administrativo foi feito pelo navegador; as tentativas anteriores sem acesso, registradas abaixo, foram superadas. A aplicação permanece **em preparação para a revisão dos dados**, com as rotas de dados bloqueadas. A configuração de hospedagem não representa conclusão da limpeza, da carga ou dos critérios funcionais do sistema.

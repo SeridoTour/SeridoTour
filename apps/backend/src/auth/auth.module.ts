@@ -8,9 +8,11 @@ import { ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { TokenModule } from '../token/token.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   imports: [
+    PrismaModule,
     UsersModule,
     PassportModule,
     JwtModule.registerAsync({

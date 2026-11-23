@@ -12,7 +12,7 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 // Cache para listagem de reviews
-import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 // Multer: FileInterceptor para receber arquivo único no multipart/form-data
 import { FileInterceptor } from '@nestjs/platform-express';
 // Guard de autenticação
@@ -34,9 +34,8 @@ export class ReviewsController {
   @Get('place/:placeId')
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(600000) // 10 minutos (reviews mudam pouco)
-  @CacheKey('reviews_place')
   findByPlace(@Param('placeId') placeId: string) {
-    // Cache por placeId: chave será 'reviews_place::placeId_<uuid>'
+    // A URL inclui o placeId e separa o cache de cada local.
     return this.reviewsService.findByPlace(placeId);
   }
 

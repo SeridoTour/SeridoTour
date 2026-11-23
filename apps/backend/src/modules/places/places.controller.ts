@@ -14,7 +14,7 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 // Cache para listagem de places
-import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 // Multer: FileInterceptor para receber arquivo único no multipart/form-data
 import { FileInterceptor } from '@nestjs/platform-express';
 // Guards de autenticação e roles
@@ -62,11 +62,8 @@ export class PlacesController {
   @Get()
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(300000) // 5 minutos
-  @CacheKey('places_list')
   findAll(@Query() query: FindAllPlacesQueryDto) {
-    // A chave de cache inclui os parâmetros de query para evitar colisões
-    // entre diferentes filtros/paginações. O CacheInterceptor usa o
-    // CacheKey como prefixo e adiciona automaticamente os query params.
+    // Sem chave fixa, o interceptor usa a URL completa, incluindo a query.
     return this.placesService.findAll(query);
   }
 

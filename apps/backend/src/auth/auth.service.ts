@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { TokenService } from '../token/token.service';
 import { ConfigService } from '@nestjs/config';
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { name: user.name, sub: user.id, role: user.role };
+    const payload = { name: user.name, sub: user.id, role: user.role, jti: randomUUID() };
     const accessToken = this.jwtService.sign(payload);
     // const refreshToken = this.jwtService.sign(payload, {
     //   expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES_IN') as never,
@@ -34,5 +35,9 @@ export class AuthService {
       access_token: accessToken,
       // refresh_token: refreshToken,
     };
+  }
+
+  logout(token: string) {
+    return this.tokenService.revokeToken(token);
   }
 }

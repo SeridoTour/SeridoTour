@@ -94,8 +94,15 @@ export const useAuthStore = defineStore('auth', () => {
     scheduleRefresh(access)
   }
 
-  const logout = () => {
-    clearSession()
+  const logout = async () => {
+    try {
+      await api.post('/auth/logout')
+    } catch {
+      // A sessão local também deve ser encerrada se a API estiver indisponível.
+    } finally {
+      clearSession()
+      delete api.defaults.headers.common['Authorization']
+    }
   }
 
   const login = async (credentials: { email: string; password: string }) => {
