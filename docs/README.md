@@ -15,6 +15,7 @@ Entrega de Projeto Integrador, organizada conforme os três itens da atividade.
 - Na raiz de docs ficam os PDFs de entrega, os textos em Markdown e os [integrantes do grupo](Integrantes%20do%20Grupo.txt).
 - Em diagramas ficam as imagens PNG, os desenhos vetoriais SVG e os dados de apoio das versões atuais.
 - O PDF completo reúne os três PDFs individuais. Os arquivos Markdown e SVG permitem consultar e editar a documentação.
+- Em `operacao` ficam o [relatório de deploy e preparação do preview](operacao/RELATORIO-DEPLOY-E-DADOS.md) e a [proposta de catálogo do Geoparque](operacao/geossitios-proposta.json), ainda pendente de revisão e importação.
 
 ## Imagens da arquitetura
 

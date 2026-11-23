@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: seridotour-api-preview
+    runtime: node
+    plan: free
+    region: virginia
+    repo: https://github.com/SeridoTour/SeridoTour
+    branch: codex/preview-geoparque
+    autoDeployTrigger: commit
+    buildCommand: npm ci --include=dev && npm run prisma:generate --workspace=apps/backend && npm run build:backend
+    startCommand: node scripts/verify-preview-env.cjs && npm run start:prod --workspace=apps/backend
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: DEPLOYMENT_ENV
+        value: preview
+      - key: PREVIEW_DATA_REVIEWED
+        value: "false"
+      - key: ENABLE_SWAGGER
+        value: "false"
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 15m
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 7d
+      - key: CODIGO_GUIA
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: CLOUDINARY_FOLDER_PREFIX
+        value: seridotour/development-seridotour

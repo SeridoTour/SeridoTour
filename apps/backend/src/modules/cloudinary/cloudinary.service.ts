@@ -28,13 +28,16 @@ export class CloudinaryService {
     file: Express.Multer.File,
     folder: 'places' | 'reviews',
   ): Promise<string> {
+    const prefix = this.config.get<string>('CLOUDINARY_FOLDER_PREFIX');
+    const uploadFolder = prefix ? `${prefix}/${folder}` : folder;
+
     // Usamos Promise + stream porque o Cloudinary aceita upload via stream
     // (não precisa salvar arquivo temporário em disco)
     return new Promise((resolve, reject) => {
       // Abre um stream de upload para o Cloudinary
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          folder, // pasta no Cloudinary (ex.: "places" ou "reviews")
+          folder: uploadFolder,
           resource_type: 'image', // tipo do recurso: imagem
         },
         // Callback quando o upload termina (sucesso ou erro)

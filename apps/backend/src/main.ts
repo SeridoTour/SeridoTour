@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { previewMiddleware } from './config/preview.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,8 @@ async function bootstrap() {
     origin: corsOrigins,
     credentials: true,
   });
+
+  app.use(previewMiddleware);
 
   app.useGlobalPipes(
     new ValidationPipe({

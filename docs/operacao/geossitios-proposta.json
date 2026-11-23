@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-23",
+  "status": "draft_not_approved_for_import",
+  "targetEnvironment": "preview",
+  "inventorySources": [
+    "https://geoparqueserido.com.br/",
+    "https://portal.uern.br/eduern/wp-content/uploads/2024/08/Uern_55_anos.pdf"
+  ],
+  "notes": [
+    "sourceKey é uma proposta de identificação externa; não existe ainda no schema Prisma.",
+    "Campos nulos precisam ser pesquisados e revisados, nunca preenchidos com coordenadas do centro do município.",
+    "Nenhum item está aprovado para importação. Confirmar descrições, categoria, coordenadas, imagem e crédito antes do ensaio.",
+    "Nomes e municípios são uma proposta de padronização; divergências ficam registradas para revisão."
+  ],
+  "places": [
+    {
+      "sourceKey": "geoparque-serido:serra-verde",
+      "name": "Serra Verde",
+      "city": "Cerro Corá",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:cruzeiro-de-cerro-cora",
+      "name": "Cruzeiro de Cerro Corá",
+      "city": "Cerro Corá",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:nascente-do-rio-potengi",
+      "name": "Nascente do Rio Potengi",
+      "city": "Cerro Corá",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:vale-vulcanico",
+      "name": "Vale Vulcânico",
+      "city": "Cerro Corá",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:mirante-de-santa-rita",
+      "name": "Mirante de Santa Rita",
+      "city": "Lagoa Nova",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:tanque-dos-poscianos",
+      "name": "Tanque dos Poscianos",
+      "city": "Lagoa Nova",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:lagoa-do-santo",
+      "name": "Lagoa do Santo",
+      "city": "Currais Novos",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:pico-do-totoro",
+      "name": "Pico do Totoró",
+      "city": "Currais Novos",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null,
+      "reviewNote": "O site oficial consultado usa Pico do Tororó e Lagoa Nova; confrontar com inventário técnico antes de publicar."
+    },
+    {
+      "sourceKey": "geoparque-serido:morro-do-cruzeiro",
+      "name": "Morro do Cruzeiro",
+      "city": "Currais Novos",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null,
+      "reviewNote": "Comparar com o local existente chamado Cruzeiro; não assumir equivalência apenas pelo nome."
+    },
+    {
+      "sourceKey": "geoparque-serido:mina-brejui",
+      "name": "Mina Brejuí",
+      "city": "Currais Novos",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:canions-dos-apertados",
+      "name": "Cânions dos Apertados",
+      "city": "Currais Novos",
+      "category": "Natureza",
+      "description": "Cânions associados ao rio Picuí, com paredões rochosos que integram o patrimônio geológico do Seridó.",
+      "coordinates": {
+        "latitude": -6.341944218,
+        "longitude": -36.501945496,
+        "datum": "WGS84",
+        "sourceUrl": "https://www.sgb.gov.br/geossit/geossitios/ver/1917",
+        "status": "pending_source_revalidation",
+        "note": "Coordenadas do índice público GEOSSIT. A abertura direta retornou 404 na checagem; revalidar antes de importar. Não representam necessariamente o ponto de acesso."
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:acude-gargalheiras",
+      "name": "Açude Gargalheiras",
+      "city": "Acari",
+      "category": "Natureza",
+      "description": "Paisagem do açude Marechal Dutra, conhecido como Gargalheiras, cercada por serras e formações rochosas em Acari.",
+      "coordinates": {
+        "latitude": -6.4255555555555555,
+        "longitude": -36.602222222222224,
+        "datum": null,
+        "sourceUrl": "https://rigeo.sgb.gov.br/jspui/bitstream/doc/17155/1/serido.pdf",
+        "sourceDms": "6°25′32″S, 36°36′08″W",
+        "status": "pending_datum_and_map_review",
+        "note": "Conversão de graus/minutos/segundos; confirmar datum e ponto no mapa."
+      },
+      "image": {
+        "status": "licensed_candidate_not_uploaded",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Acude_gargalheiras_-_acari_-_rn.jpg",
+        "author": "Fabiobarros",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "attribution": "Açude Gargalheiras, Acari — Fabiobarros / Wikimedia Commons, CC BY-SA 4.0",
+        "changes": null,
+        "cloudinaryPublicId": null,
+        "imageUrl": null,
+        "note": "Exibir crédito, link de licença e alterações efetuadas; respeitar compartilhamento de adaptações."
+      }
+    },
+    {
+      "sourceKey": "geoparque-serido:poco-do-arroz",
+      "name": "Poço do Arroz",
+      "city": "Acari",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:cruzeiro-de-acari",
+      "name": "Cruzeiro de Acari",
+      "city": "Acari",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:marmitas-do-rio-carnauba",
+      "name": "Marmitas do Rio Carnaúba",
+      "city": "Acari",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null,
+      "reviewNote": "O site oficial consultado usa Marmitas do Rio Caraúba; confirmar a grafia e o cadastro técnico antes de publicar."
+    },
+    {
+      "sourceKey": "geoparque-serido:serra-da-rajada",
+      "name": "Serra da Rajada",
+      "city": "Carnaúba dos Dantas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:monte-do-galo",
+      "name": "Monte do Galo",
+      "city": "Carnaúba dos Dantas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:xiquexique",
+      "name": "Xiquexique",
+      "city": "Carnaúba dos Dantas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:cachoeira-dos-fundoes",
+      "name": "Cachoeira dos Fundões",
+      "city": "Carnaúba dos Dantas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:acude-boqueirao",
+      "name": "Açude Boqueirão",
+      "city": "Parelhas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:mirador",
+      "name": "Mirador",
+      "city": "Parelhas",
+      "category": null,
+      "description": null,
+      "coordinates": null,
+      "image": null
+    }
+  ]
+}
