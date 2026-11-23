@@ -4,7 +4,7 @@
 
 A `main` remota recebeu os commits `6fe9e27`, `9b23d4a` e `d726c3c`, informados pelo responsável, com o hotfix de refresh no frontend. Essas alterações foram incorporadas à branch `codex/preview-geoparque` por merge, sem modificar `main` nesta execução. As configurações e travas de preview foram preservadas.
 
-Correções preparadas nesta etapa:
+Correções publicadas somente no preview, commit de código `8a9a962`:
 
 - Cache de locais e avaliações usa a URL completa, incluindo paginação/filtros ou ID do local; as chaves fixas compartilhadas foram removidas. A invalidação existente nas mutações foi preservada e testada.
 - A listagem de usuários seleciona explicitamente ID, nome, e-mail, papel e data de criação. Senhas/hashes não são consultados para essa resposta.
@@ -18,11 +18,19 @@ Validação: a suíte existente e os novos testes totalizam 31 casos aprovados, 
 
 Para aplicar, a rotina exige `--apply`, API ainda em `PREVIEW_NOT_READY`, referência de backup verificada pelo operador e senhas locais com pelo menos 12 caracteres em `TEST_PASSWORD_USER` e `TEST_PASSWORD_GUIA`. A referência é uma condição operacional: o script não verifica por si só a integridade/restauração do backup. Nenhuma senha deve ser gravada neste documento ou no Git. O arquivo temporário de conexão usado na prévia foi removido.
 
-A execução destrutiva aguarda a resposta à revisão exata enviada nesta etapa e a definição das senhas. A API permanece bloqueada; catálogo e imagens não foram importados. O restante das pendências de migração, infraestrutura e catálogo segue registrado abaixo.
+A execução foi autorizada pelo responsável com a opção “Aplicar no preview e gerar senhas de teste”. A limpeza foi executada em `development-seridotour` após verificar o backup e o bloqueio da API. Resultado confirmado: **dois usuários, zero tokens, zero roteiros, zero vínculos roteiro/local, uma avaliação e seis locais**. IDs das contas, todos os campos dos seis locais e a avaliação mantida foram preservados por asserções dentro da transação. As novas senhas são exclusivas do preview, geradas aleatoriamente e armazenadas em arquivo local privado fora do Git. Não foram redefinidas senhas na branch de produção.
 
-## Configuração efetiva do preview — 23/11/2026
+O Neon recusou snapshot direto da branch filha (`not allowed to snapshot non-root branch`). Foi feito backup PostgreSQL custom **somente do banco de desenvolvimento**, salvo em pasta local com acesso exclusivo do usuário Windows. `scripts/backup-preview.cjs` restaurou esse arquivo em um cluster PostgreSQL 18 local descartável, protegido por SCRAM e escutando apenas em localhost; confirmou 12 usuários, 11 tokens, oito roteiros, quatro avaliações, seis locais e 16 vínculos antes da limpeza. O servidor temporário foi encerrado e o cluster/senha temporários foram removidos. O dump e `verification.json` foram preservados em pasta privada; nenhum backup foi enviado ao Git.
 
-A infraestrutura de preview foi criada e validada após autenticação nos painéis. O acesso administrativo foi feito pelo navegador; as tentativas anteriores sem acesso, registradas abaixo, foram superadas. A aplicação permanece **em preparação para a revisão dos dados**, com as rotas de dados bloqueadas. A configuração de hospedagem não representa conclusão da limpeza, da carga ou dos critérios funcionais do sistema.
+Depois da limpeza, `PREVIEW_DATA_REVIEWED=true` foi salvo **somente em seridotour-api-preview** e o Render confirmou Live no [deployment dep-dc28bqbm8hqs73b3jmhg](https://dashboard.render.com/web/srv-dc26ci7f3r2c73c90b9g/deploys/dep-dc28bqbm8hqs73b3jmhg). O frontend foi validado Ready no [deployment 3xeybu5Q2ZnPGvTCDwAiAghwWJyD](https://vercel.com/serafims-projects-395240b2/seridotour/3xeybu5Q2ZnPGvTCDwAiAghwWJyD), também com código `8a9a962`.
+
+`scripts/smoke-preview.cjs` validou na API real os dois logins e papéis, USER recebendo 403 em operação de GUIA, listagem de exatamente duas contas sem senha/hash, renovação com token diferente, rejeição do token antigo e de replay, logout com revogação, paginação com limites diferentes e avaliações separadas por local. O ensaio encerrou todas as sessões emitidas por ele; a nova consulta ao Neon confirmou novamente zero tokens e as contagens finais acima. O frontend real carregou os seis cartões e os seis marcadores, sem mocks e sem erros no console.
+
+O [preview estável](https://seridotour-git-codex-preview-d143e9-serafims-projects-395240b2.vercel.app/) está liberado para revisão com login Vercel e proibição de indexação. O prefixo Cloudinary de desenvolvimento foi mantido; nenhum upload, exclusão de mídia ou importação dos 21 geossítios foi realizado nesta etapa. Os dados incompletos do catálogo, imagens/licenças e demais pendências de migração/infraestrutura continuam em revisão. A `main` foi apenas consultada e incorporada ao preview; nenhum push ou ajuste de produção foi feito nesta execução.
+
+## Configuração inicial do preview — 23/11/2026
+
+A infraestrutura de preview foi criada e validada após autenticação nos painéis. Este bloco preserva o registro da primeira publicação, quando a aplicação permanecia **em preparação para a revisão dos dados**, com rotas bloqueadas. O estado posterior da limpeza e da liberação está registrado na seção acima. As tentativas anteriores sem acesso foram superadas pelo navegador.
 
 | Camada | Configuração desta retomada |
 | --- | --- |
