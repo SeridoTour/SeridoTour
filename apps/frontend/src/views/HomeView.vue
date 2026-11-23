@@ -170,11 +170,12 @@ onMounted(loadPlaces)
         <div v-if="selectedPlace" class="map-selection">
           <img
             :src="imageUrl(selectedPlace.imageUrl)"
-            :alt="selectedPlace.imageUrl ? selectedPlace.name : 'Paisagem do Seridó'"
+            :alt="selectedPlace.imageUrl ? selectedPlace.name : 'Paisagem ilustrativa do Seridó'"
           />
           <div>
             <h3>{{ selectedPlace.name }}</h3>
             <p>{{ selectedPlace.city }} · {{ selectedPlace.category }}</p>
+            <p v-if="!selectedPlace.imageUrl">Imagem ilustrativa</p>
             <RouterLink :to="`/places/${selectedPlace.id}`" class="btn-primary"
               >Ver detalhes <AppIcon name="arrow" :size="13"
             /></RouterLink>
