@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PhotoCredit from '../components/PhotoCredit.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppIcon from '../components/AppIcon.vue'
@@ -176,6 +177,7 @@ onMounted(loadPlaces)
             <h3>{{ selectedPlace.name }}</h3>
             <p>{{ selectedPlace.city }} · {{ selectedPlace.category }}</p>
             <p v-if="!selectedPlace.imageUrl">Imagem ilustrativa</p>
+            <PhotoCredit v-else :place="selectedPlace" compact />
             <RouterLink :to="`/places/${selectedPlace.id}`" class="btn-primary"
               >Ver detalhes <AppIcon name="arrow" :size="13"
             /></RouterLink>

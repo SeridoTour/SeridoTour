@@ -541,6 +541,21 @@ textarea {
   border-color: #cbad90;
   box-shadow: 0 5px 17px #6a432213;
 }
+.photo-credit {
+  margin: 12px 0;
+  color: var(--text-muted, #52665b);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.photo-credit > span,
+.photo-credit > strong { display: block; }
+.photo-credit a { text-decoration: underline; text-underline-offset: 2px; }
+.photo-credit-caption { margin-bottom: 3px; }
+.photo-credit--compact { font-size: 11px; margin: 7px 0; }
+.destination-card > .photo-credit { padding: 0 16px; }
+.photo-credit-changes { font-size: 10px; margin-top: 3px; }
+.photo-permission-pending { color: #8b3b13; margin-top: 4px; }
 .photo-placeholder-label {
   position: absolute;
   bottom: 10px;

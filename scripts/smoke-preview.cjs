@@ -62,6 +62,7 @@ async function main() {
       assert.equal(published.latitude, item.coordinates.latitude);
       assert.equal(published.longitude, item.coordinates.longitude);
       assert.equal(published.name, item.name);
+      assert.equal(published.imageUrl, item.image?.url || null, 'Foto publicada diverge do manifesto de créditos.');
     }
     assert.deepEqual(second.data.map(place => place.id), all.data.slice(2, 4).map(place => place.id));
     let reviews = 0;

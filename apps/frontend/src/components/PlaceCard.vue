@@ -5,6 +5,7 @@ import { useFavoritesStore } from '../stores/favorites'
 import { imageUrl } from '../utils/format'
 import { categoryClass } from '../constants/categories'
 import AppIcon from './AppIcon.vue'
+import PhotoCredit from './PhotoCredit.vue'
 
 defineProps<{ place: Place; selected?: boolean }>()
 defineEmits<{ select: [id: string] }>()
@@ -41,6 +42,7 @@ const imageFailed = ref(false)
       </button>
       <span v-if="!place.imageUrl || imageFailed" class="photo-placeholder-label">Imagem ilustrativa</span>
     </div>
+    <PhotoCredit v-if="!imageFailed" :place="place" compact />
     <div class="card-body">
       <h2>
         <RouterLink :to="`/places/${place.id}`">{{ place.name }}</RouterLink>

@@ -8,7 +8,7 @@
     "from": "EPSG:4674",
     "to": "EPSG:4326",
     "operation": "SIRGAS 2000 to WGS 84 (1) (with axis order normalized for visualization)",
-    "operationAccuracyMeters": 1.0
+    "operationAccuracyMeters": 1
   },
   "notes": [
     "Somente os pontos PONTO_SITE 01 a 21; atrativos adicionais 22/23 não importados.",
@@ -41,7 +41,30 @@
         "sourceCity": "Cerro Corá",
         "point": "01"
       },
-      "image": null
+      "image": {
+        "caption": "Serra Verde — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.50",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=39",
+        "documentPage": 39,
+        "printedPage": 37,
+        "figure": "4.50",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "53ab216a122234963a75469f1dd5757aaa82d1cfb6ff1cebae1e3d1058c2c871",
+        "bytes": 699592,
+        "width": 1778,
+        "height": 969,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461254/seridotour/development-seridotour/places/geoparque-serido/serra-verde-53ab216a1222.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/serra-verde-53ab216a1222"
+      }
     },
     {
       "sourceKey": "geoparque-serido:cruzeiro-de-cerro-cora",
@@ -67,7 +90,30 @@
         "sourceCity": "Cerro Corá",
         "point": "02"
       },
-      "image": null
+      "image": {
+        "caption": "Cruzeiro de Cerro Corá — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.51",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=39",
+        "documentPage": 39,
+        "printedPage": 37,
+        "figure": "4.51",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "97a270e81efaa597932c6c50349297cf7c5d99b13f8562d700ef2cd1aa723fb9",
+        "bytes": 1512945,
+        "width": 2138,
+        "height": 1358,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461256/seridotour/development-seridotour/places/geoparque-serido/cruzeiro-de-cerro-cora-97a270e81efa.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/cruzeiro-de-cerro-cora-97a270e81efa"
+      }
     },
     {
       "sourceKey": "geoparque-serido:nascente-do-rio-potengi",
@@ -93,7 +139,30 @@
         "sourceCity": "Cerro Corá",
         "point": "03"
       },
-      "image": null
+      "image": {
+        "caption": "Nascente do Rio Potengi — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.39",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=36",
+        "documentPage": 36,
+        "printedPage": 34,
+        "figure": "4.39",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "bdd438f659358e8170c0aadc19e82760abeab78c39fcc334281426bd4d58ec2a",
+        "bytes": 518924,
+        "width": 780,
+        "height": 1028,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461257/seridotour/development-seridotour/places/geoparque-serido/nascente-do-rio-potengi-bdd438f65935.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/nascente-do-rio-potengi-bdd438f65935"
+      }
     },
     {
       "sourceKey": "geoparque-serido:vale-vulcanico",
@@ -119,7 +188,30 @@
         "sourceCity": "Cerro Corá",
         "point": "04"
       },
-      "image": null
+      "image": {
+        "caption": "Vale Vulcânico — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.53",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=40",
+        "documentPage": 40,
+        "printedPage": 38,
+        "figure": "4.53",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "4086c7bd90ebbe050cd9b479223b4fb68428fdd507a686a983ea5f07c72ab0ae",
+        "bytes": 1088403,
+        "width": 1713,
+        "height": 1300,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461259/seridotour/development-seridotour/places/geoparque-serido/vale-vulcanico-4086c7bd90eb.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/vale-vulcanico-4086c7bd90eb"
+      }
     },
     {
       "sourceKey": "geoparque-serido:mirante-de-santa-rita",
@@ -145,7 +237,30 @@
         "sourceCity": "Lagoa Nova",
         "point": "05"
       },
-      "image": null
+      "image": {
+        "caption": "Mirante de Santa Rita — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.40",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=36",
+        "documentPage": 36,
+        "printedPage": 34,
+        "figure": "4.40",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "9b9b4850629096c675b4ddea8420c5a80627c27d12118f76108dd1b521d35bf9",
+        "bytes": 412252,
+        "width": 1472,
+        "height": 785,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461260/seridotour/development-seridotour/places/geoparque-serido/mirante-de-santa-rita-9b9b48506290.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/mirante-de-santa-rita-9b9b48506290"
+      }
     },
     {
       "sourceKey": "geoparque-serido:tanque-dos-poscianos",
@@ -171,7 +286,30 @@
         "sourceCity": "Lagoa Nova",
         "point": "06"
       },
-      "image": null
+      "image": {
+        "caption": "Tanque dos Poscianos — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.52",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=39",
+        "documentPage": 39,
+        "printedPage": 37,
+        "figure": "4.52",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "909747e6e316e6c608c10a55ae8b86b9cfe47cd07c9ffc781a5242a6a20ec9fa",
+        "bytes": 1025488,
+        "width": 1041,
+        "height": 1700,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461261/seridotour/development-seridotour/places/geoparque-serido/tanque-dos-poscianos-909747e6e316.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/tanque-dos-poscianos-909747e6e316"
+      }
     },
     {
       "sourceKey": "geoparque-serido:lagoa-do-santo",
@@ -197,7 +335,30 @@
         "sourceCity": "Currais Novos",
         "point": "07"
       },
-      "image": null
+      "image": {
+        "caption": "Lagoa do Santo — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.42",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=36",
+        "documentPage": 36,
+        "printedPage": 34,
+        "figure": "4.42",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "7cab566778c9f0b782f57ef1e56fe770e1e8ba1f1032551b48420e4cfa3c9f70",
+        "bytes": 1232415,
+        "width": 2020,
+        "height": 1162,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461262/seridotour/development-seridotour/places/geoparque-serido/lagoa-do-santo-7cab566778c9.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/lagoa-do-santo-7cab566778c9"
+      }
     },
     {
       "sourceKey": "geoparque-serido:pico-do-totoro",
@@ -223,14 +384,32 @@
         "sourceCity": "Currais Novos",
         "point": "08"
       },
-      "image": null,
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pico_do_totor%C3%B3.JPG",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Pico_do_totor%C3%B3.JPG",
+        "author": "JEBA 17",
+        "license": "Domínio público",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "caption": "Pico do Totoró — fotografia do local.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "public_domain",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "c8bc2aba2862b062aa7a52954524ee4a27aa371f19c98ec38d2a65fe8c362cfc",
+        "bytes": 37488,
+        "width": 640,
+        "height": 480,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461264/seridotour/development-seridotour/places/geoparque-serido/pico-do-totoro-c8bc2aba2862.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/pico-do-totoro-c8bc2aba2862"
+      },
       "imageCandidate": {
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pico_do_totor%C3%B3.JPG",
         "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Pico_do_totor%C3%B3.JPG",
         "author": "JEBA 17",
         "license": "Domínio público",
         "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
-        "status": "license_verified_download_blocked_429",
+        "status": "reviewed_and_published_in_preview",
         "publicId": null,
         "url": null
       }
@@ -259,7 +438,30 @@
         "sourceCity": "Currais Novos",
         "point": "09"
       },
-      "image": null
+      "image": {
+        "caption": "Morro do Cruzeiro — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.48",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=38",
+        "documentPage": 38,
+        "printedPage": 36,
+        "figure": "4.48",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "7320a083705e2f4463dd4894806ec79df55de385b1634135c11b936295964d1d",
+        "bytes": 686806,
+        "width": 1764,
+        "height": 1339,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461265/seridotour/development-seridotour/places/geoparque-serido/morro-do-cruzeiro-7320a083705e.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/morro-do-cruzeiro-7320a083705e"
+      }
     },
     {
       "sourceKey": "geoparque-serido:mina-brejui",
@@ -285,7 +487,25 @@
         "sourceCity": "Currais Novos",
         "point": "10"
       },
-      "image": null
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Igreja_Mina_Breju%C3%AD.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Igreja_Mina_Breju%C3%AD.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "author": "Vivaldo Jr",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "caption": "Igreja do complexo da Mina Brejuí.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "licensed",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "e7e71195669f971daf0def465f905da71bc031f2be9b6e6ba915d44bf11adce7",
+        "bytes": 669382,
+        "width": 1209,
+        "height": 691,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461266/seridotour/development-seridotour/places/geoparque-serido/mina-brejui-e7e71195669f.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/mina-brejui-e7e71195669f"
+      }
     },
     {
       "sourceKey": "geoparque-serido:canions-dos-apertados",
@@ -311,7 +531,30 @@
         "sourceCity": "Currais Novos",
         "point": "11"
       },
-      "image": null
+      "image": {
+        "caption": "Cânions dos Apertados — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.58",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=42",
+        "documentPage": 42,
+        "printedPage": 40,
+        "figure": "4.58",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "312f53635f2b57f7ff299a35b96f6c079aaec77d3730a7e5c50fa3ec74ea1459",
+        "bytes": 3314911,
+        "width": 2362,
+        "height": 1503,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461268/seridotour/development-seridotour/places/geoparque-serido/canions-dos-apertados-312f53635f2b.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/canions-dos-apertados-312f53635f2b"
+      }
     },
     {
       "sourceKey": "geoparque-serido:acude-gargalheiras",
@@ -337,14 +580,32 @@
         "sourceCity": "Acari",
         "point": "12"
       },
-      "image": null,
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acude_gargalheiras_-_acari_-_rn.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Acude_gargalheiras_-_acari_-_rn.jpg",
+        "author": "Fabiobarros",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "caption": "Açude Gargalheiras — fotografia do local.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "licensed",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "f8b2d23937329f61445c730c3bebac779f1a7c79fa535494da18a96a25f66cc1",
+        "bytes": 3941433,
+        "width": 3264,
+        "height": 2448,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461270/seridotour/development-seridotour/places/geoparque-serido/acude-gargalheiras-f8b2d2393732.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/acude-gargalheiras-f8b2d2393732"
+      },
       "imageCandidate": {
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acude_gargalheiras_-_acari_-_rn.jpg",
         "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Acude_gargalheiras_-_acari_-_rn.jpg",
         "author": "Fabiobarros",
         "license": "CC BY-SA 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "status": "license_verified_download_blocked_429",
+        "status": "reviewed_and_published_in_preview",
         "publicId": null,
         "url": null
       }
@@ -373,7 +634,30 @@
         "sourceCity": "Acari",
         "point": "13"
       },
-      "image": null
+      "image": {
+        "caption": "Poço do Arroz — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.45",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=37",
+        "documentPage": 37,
+        "printedPage": 35,
+        "figure": "4.45",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "774caf1648fb7ed90dc2d15c4a04d2d04d8a306ef8ee0e3935fc491a0d4787bd",
+        "bytes": 606462,
+        "width": 1214,
+        "height": 992,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461272/seridotour/development-seridotour/places/geoparque-serido/poco-do-arroz-774caf1648fb.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/poco-do-arroz-774caf1648fb"
+      }
     },
     {
       "sourceKey": "geoparque-serido:cruzeiro-de-acari",
@@ -399,7 +683,30 @@
         "sourceCity": "Acari",
         "point": "14"
       },
-      "image": null
+      "image": {
+        "caption": "Cruzeiro de Acari — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.43",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=37",
+        "documentPage": 37,
+        "printedPage": 35,
+        "figure": "4.43",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "4448f231b16b72bb43f60895e82aae0216ccefdb4e1aa9ea71b0035a22a48427",
+        "bytes": 538524,
+        "width": 1215,
+        "height": 992,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461273/seridotour/development-seridotour/places/geoparque-serido/cruzeiro-de-acari-4448f231b16b.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/cruzeiro-de-acari-4448f231b16b"
+      }
     },
     {
       "sourceKey": "geoparque-serido:marmitas-do-rio-carnauba",
@@ -425,7 +732,30 @@
         "sourceCity": "Acari",
         "point": "15"
       },
-      "image": null
+      "image": {
+        "caption": "Marmitas do Rio Carnaúba — fotografia identificada no Atlas SGB.",
+        "author": "Modesto e Oliveira Filho (2024)",
+        "sourceCredit": "Modesto e Oliveira Filho (2024)",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.46",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=37",
+        "documentPage": 37,
+        "printedPage": 35,
+        "figure": "4.46",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Modesto e Oliveira Filho (2024). A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "bf845324238a42057fd933bad74dd5e9da25cb7b67a9f5635140aa9184dd917c",
+        "bytes": 857250,
+        "width": 2126,
+        "height": 1096,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461274/seridotour/development-seridotour/places/geoparque-serido/marmitas-do-rio-carnauba-bf845324238a.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/marmitas-do-rio-carnauba-bf845324238a"
+      }
     },
     {
       "sourceKey": "geoparque-serido:serra-da-rajada",
@@ -451,7 +781,30 @@
         "sourceCity": "Carnaúba dos Dantas",
         "point": "16"
       },
-      "image": null
+      "image": {
+        "caption": "Serra da Rajada — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.49",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=38",
+        "documentPage": 38,
+        "printedPage": 36,
+        "figure": "4.49",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "f0d6c37ce2cca405ae20684ad962f34f40f6e7f5dce3fbafa9e0b73256ce05f5",
+        "bytes": 594335,
+        "width": 2835,
+        "height": 944,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461276/seridotour/development-seridotour/places/geoparque-serido/serra-da-rajada-f0d6c37ce2cc.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/serra-da-rajada-f0d6c37ce2cc"
+      }
     },
     {
       "sourceKey": "geoparque-serido:monte-do-galo",
@@ -477,7 +830,30 @@
         "sourceCity": "Carnaúba dos Dantas",
         "point": "17"
       },
-      "image": null
+      "image": {
+        "caption": "Monte do Galo — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.47",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=38",
+        "documentPage": 38,
+        "printedPage": 36,
+        "figure": "4.47",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "04e13bc98582aec36cc60525b93f40582dd3e40530f7779638fa2d57e31a9ca2",
+        "bytes": 1009372,
+        "width": 1764,
+        "height": 1345,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461277/seridotour/development-seridotour/places/geoparque-serido/monte-do-galo-04e13bc98582.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/monte-do-galo-04e13bc98582"
+      }
     },
     {
       "sourceKey": "geoparque-serido:xiquexique",
@@ -503,14 +879,32 @@
         "sourceCity": "Carnaúba dos Dantas",
         "point": "18"
       },
-      "image": null,
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
+        "author": "Diogo Sergio",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "caption": "Xiquexique — fotografia do local.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "licensed",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "9a6752e51f24f811b782b7c40a83f2ae61b8fa519983d654f6504511237d4955",
+        "bytes": 466279,
+        "width": 1024,
+        "height": 768,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461279/seridotour/development-seridotour/places/geoparque-serido/xiquexique-9a6752e51f24.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/xiquexique-9a6752e51f24"
+      },
       "imageCandidate": {
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
         "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
         "author": "Diogo Sergio",
         "license": "CC BY-SA 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "status": "license_verified_download_blocked_429",
+        "status": "reviewed_and_published_in_preview",
         "publicId": null,
         "url": null
       }
@@ -539,7 +933,30 @@
         "sourceCity": "Carnaúba dos Dantas",
         "point": "19"
       },
-      "image": null
+      "image": {
+        "caption": "Cachoeira dos Fundões — fotografia identificada no Atlas SGB.",
+        "author": "Equipe do Atlas SGB (2025)",
+        "sourceCredit": "Autores",
+        "sourceLabel": "SGB · Atlas 2025, fig. 4.55",
+        "sourceUrl": "https://rigeo.sgb.gov.br/handle/doc/25829",
+        "documentUrl": "https://rigeo.sgb.gov.br/bitstreams/5866cec7-d4c7-462c-80af-79fb2ddc2068/download#page=40",
+        "documentPage": 40,
+        "printedPage": 38,
+        "figure": "4.55",
+        "license": null,
+        "licenseUrl": null,
+        "permissionStatus": "pending",
+        "creditNote": "Crédito conforme o atlas: Autores. A autoria individual não é discriminada quando o documento usa “Autores”.",
+        "changes": "Fotografia extraída integralmente do PDF, sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "e8715bdd858119ae18f8d386f4f87ac316ac4762dc80b305dd8bef48160e427f",
+        "bytes": 1361120,
+        "width": 1476,
+        "height": 1595,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461280/seridotour/development-seridotour/places/geoparque-serido/cachoeira-dos-fundoes-e8715bdd8581.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/cachoeira-dos-fundoes-e8715bdd8581"
+      }
     },
     {
       "sourceKey": "geoparque-serido:acude-boqueirao",
@@ -565,14 +982,32 @@
         "sourceCity": "Parelhas",
         "point": "20"
       },
-      "image": null,
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barragem_boqueir%C3%A3o_de_Parelhas_-_panoramio.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Barragem_boqueir%C3%A3o_de_Parelhas_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "author": "MirandaNego",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "caption": "Açude Boqueirão — fotografia do local.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "licensed",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "c51a15a539e528615367028646b5c8786106ab5fa6e70189f1c9852826e95449",
+        "bytes": 4591785,
+        "width": 2538,
+        "height": 1898,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461283/seridotour/development-seridotour/places/geoparque-serido/acude-boqueirao-c51a15a539e5.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/acude-boqueirao-c51a15a539e5"
+      },
       "imageCandidate": {
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:A%C3%A7ude_Boqueir%C3%A3o_em_Parelhas_-_panoramio.jpg",
         "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/A%C3%A7ude_Boqueir%C3%A3o_em_Parelhas_-_panoramio.jpg",
         "author": "MirandaNego",
         "license": "CC BY-SA 3.0",
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "status": "license_verified_download_blocked_429",
+        "status": "reviewed_and_published_in_preview",
         "publicId": null,
         "url": null
       }
@@ -601,14 +1036,32 @@
         "sourceCity": "Parelhas",
         "point": "21"
       },
-      "image": null,
+      "image": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
+        "author": "Wilde Reusa de Azevedo Nascimento Silva",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "caption": "Mirador — fotografia do local.",
+        "sourceLabel": "Wikimedia Commons",
+        "permissionStatus": "licensed",
+        "changes": "Arquivo original sem edição adicional. O layout pode recortar a exibição.",
+        "sha256": "04bbbaad703f0c2ded0e6ae654b3ca675eb60104a15a54066d1d5bb716307ff1",
+        "bytes": 1168192,
+        "width": 2592,
+        "height": 1944,
+        "reviewedAt": "2026-11-23",
+        "visuallyReviewed": true,
+        "url": "https://res.cloudinary.com/kp5pi6dg/image/upload/v1795461284/seridotour/development-seridotour/places/geoparque-serido/mirador-04bbbaad703f.jpg",
+        "publicId": "seridotour/development-seridotour/places/geoparque-serido/mirador-04bbbaad703f"
+      },
       "imageCandidate": {
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
         "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
         "author": "Wilde Reusa de Azevedo Nascimento Silva",
         "license": "CC BY-SA 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "status": "license_verified_download_blocked_429",
+        "status": "reviewed_and_published_in_preview",
         "publicId": null,
         "url": null
       }

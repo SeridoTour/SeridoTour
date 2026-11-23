@@ -5,6 +5,7 @@ import AppIcon from '../components/AppIcon.vue'
 import ConfirmDialog from '../components/ConfirmDialog.vue'
 import ImageUpload from '../components/ImageUpload.vue'
 import PlaceMap from '../components/PlaceMap.vue'
+import PhotoCredit from '../components/PhotoCredit.vue'
 import RatingStars from '../components/RatingStars.vue'
 import ReviewList from '../components/ReviewList.vue'
 import { categoryClass } from '../constants/categories'
@@ -191,6 +192,7 @@ onMounted(loadPlace)
               </div>
             </div>
           </section>
+          <PhotoCredit :place="place" />
           <p v-if="!place.imageUrl" class="media-credit">Imagem ilustrativa do Seridó. Ainda não há foto deste destino.</p>
           <nav class="tabs" aria-label="Seções do destino">
             <button
@@ -231,6 +233,7 @@ onMounted(loadPlace)
                 <figcaption v-if="!place.imageUrl" class="field-help">
                   Paisagem ilustrativa do Seridó. Este destino ainda não possui uma foto.
                 </figcaption>
+                <PhotoCredit v-else :place="place" compact />
               </figure>
             </div>
             <div v-if="auth.isGuia" class="form-actions">
@@ -251,6 +254,7 @@ onMounted(loadPlace)
               :alt="place.name"
               style="width: 100%; border-radius: 10px"
             />
+            <PhotoCredit v-if="place.imageUrl" :place="place" />
             <p v-else class="panel-description">Este destino ainda não tem uma foto cadastrada.</p>
             <div
               v-if="reviews.some((review) => review.imageUrl)"

@@ -39,10 +39,17 @@ function rowsFromCatalog() {
     assert.equal(p.source.url, 'https://rigeo.sgb.gov.br/handle/doc/25001');
     assert.ok(['Natureza', 'Histórico'].includes(p.category));
     assert.ok(p.description.length >= 30);
-    // Fotos candidatas não foram baixadas/inspecionadas: não importar URLs externas como foto final.
-    assert.equal(p.image, null);
+    if (p.image) {
+      assert.equal(p.image.visuallyReviewed, true);
+      assert.ok(p.image.publicId.startsWith('seridotour/development-seridotour/places/geoparque-serido/'));
+      const imageUrl = new URL(p.image.url);
+      assert.equal(imageUrl.protocol, 'https:');
+      assert.equal(imageUrl.hostname, 'res.cloudinary.com');
+      assert.ok(imageUrl.pathname.includes('/' + p.image.publicId + '.'));
+      assert.ok(['licensed', 'public_domain', 'pending'].includes(p.image.permissionStatus));
+    }
     return { id: p.id, name: p.name, city: p.city, description: p.description,
-      category: p.category, latitude: p.coordinates.latitude, longitude: p.coordinates.longitude, imageUrl: null };
+      category: p.category, latitude: p.coordinates.latitude, longitude: p.coordinates.longitude, imageUrl: p.image?.url || null };
   });
 }
 
