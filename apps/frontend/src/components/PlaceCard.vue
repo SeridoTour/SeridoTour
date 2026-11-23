@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { Place } from '../types/tourism'
 import { useFavoritesStore } from '../stores/favorites'
 import { imageUrl } from '../utils/format'
@@ -8,6 +9,7 @@ import AppIcon from './AppIcon.vue'
 defineProps<{ place: Place; selected?: boolean }>()
 defineEmits<{ select: [id: string] }>()
 const favorites = useFavoritesStore()
+const imageFailed = ref(false)
 </script>
 
 <template>
@@ -21,9 +23,9 @@ const favorites = useFavoritesStore()
       <RouterLink :to="`/places/${place.id}`" tabindex="-1" aria-hidden="true"
         ><img
           :src="imageUrl(place.imageUrl)"
-          :alt="place.name"
+          :alt="place.imageUrl && !imageFailed ? place.name : 'Paisagem ilustrativa do Seridó'"
           loading="lazy"
-          @error="($event.target as HTMLImageElement).src = '/serido-sunset.png'" /></RouterLink
+          @error="imageFailed = true; ($event.target as HTMLImageElement).src = '/serido-sunset.png'" /></RouterLink
       ><span class="category-badge" :class="categoryClass(place.category)"
         ><AppIcon :name="place.category === 'Histórico' ? 'building' : 'leaf'" :size="13" />{{
           place.category
@@ -37,6 +39,7 @@ const favorites = useFavoritesStore()
       >
         <AppIcon name="heart" />
       </button>
+      <span v-if="!place.imageUrl || imageFailed" class="photo-placeholder-label">Imagem ilustrativa</span>
     </div>
     <div class="card-body">
       <h2>

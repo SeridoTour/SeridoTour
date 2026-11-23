@@ -8,6 +8,7 @@ import PlaceMap from '../components/PlaceMap.vue'
 import RatingStars from '../components/RatingStars.vue'
 import ReviewList from '../components/ReviewList.vue'
 import { categoryClass } from '../constants/categories'
+import geosites from '../data/geossitios-preview.json'
 import { api } from '../services/api'
 import { placesService } from '../services/places'
 import { useAuthStore } from '../stores/auth'
@@ -21,6 +22,7 @@ const auth = useAuthStore()
 const favorites = useFavoritesStore()
 const id = String(route.params.id)
 const place = ref<Place | null>(null)
+const catalogEntry = computed(() => geosites.places.find(item => item.id === place.value?.id))
 const reviews = ref<Review[]>([])
 const loading = ref(true)
 const error = ref('')
@@ -189,6 +191,7 @@ onMounted(loadPlace)
               </div>
             </div>
           </section>
+          <p v-if="!place.imageUrl" class="media-credit">Imagem ilustrativa do Seridó. Ainda não há foto deste destino.</p>
           <nav class="tabs" aria-label="Seções do destino">
             <button
               v-for="item in tabs"
@@ -208,6 +211,11 @@ onMounted(loadPlace)
                   <h2><AppIcon name="mountain" />Sobre o destino</h2>
                 </div>
                 <p class="prose">{{ place.description }}</p>
+                <p v-if="catalogEntry" class="catalog-source">
+                  Fonte do cadastro e da localização:
+                  <a :href="catalogEntry.source.url" target="_blank" rel="noopener noreferrer">{{ catalogEntry.source.label }}</a>.
+                  {{ geosites.coordinateNote }}
+                </p>
                 <span
                   class="category-badge"
                   :class="categoryClass(place.category)"

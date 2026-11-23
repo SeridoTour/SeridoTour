@@ -1,0 +1,617 @@
+{
+  "schemaVersion": 1,
+  "targetEnvironment": "preview",
+  "reviewedAt": "2026-11-23",
+  "status": "reviewed_for_preview",
+  "coordinateNote": "Pontos cartográficos de referência do geossítio; não representam necessariamente a entrada ou uma rota de acesso.",
+  "coordinateTransformation": {
+    "from": "EPSG:4674",
+    "to": "EPSG:4326",
+    "operation": "SIRGAS 2000 to WGS 84 (1) (with axis order normalized for visualization)",
+    "operationAccuracyMeters": 1.0
+  },
+  "notes": [
+    "Somente os pontos PONTO_SITE 01 a 21; atrativos adicionais 22/23 não importados.",
+    "Os seis locais anteriores são preservados. Cruzeiro e Morro do Cruzeiro têm possível sobreposição editorial; não foram fundidos sem revisão.",
+    "Sem foto específica onde image é nulo. Nenhuma nota ou avaliação artificial.",
+    "Categorias e descrições são síntese editorial conservadora para revisão no preview."
+  ],
+  "places": [
+    {
+      "sourceKey": "geoparque-serido:serra-verde",
+      "name": "Serra Verde",
+      "city": "Cerro Corá",
+      "id": "203e3c56-2c37-5d3f-b5d9-98a6767af0ed",
+      "sourceOrder": 1,
+      "category": "Natureza",
+      "description": "Geossítio de Cerro Corá, com afloramentos graníticos e formas esculpidas pelo intemperismo. Integra o patrimônio geológico do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -5.9354247,
+        "longitude": -36.3608273,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -5.935424729999966,
+        "originalLongitude": -36.360827309999934
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Serra Verde",
+        "sourceCity": "Cerro Corá",
+        "point": "01"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:cruzeiro-de-cerro-cora",
+      "name": "Cruzeiro de Cerro Corá",
+      "city": "Cerro Corá",
+      "id": "6afe75df-ae94-5879-ad39-8ec05353f94e",
+      "sourceOrder": 2,
+      "category": "Histórico",
+      "description": "Afloramento granítico com cruzeiro e vista para Cerro Corá. O local reúne paisagem, geodiversidade e um marco cultural da cidade.",
+      "coordinates": {
+        "latitude": -6.0365947,
+        "longitude": -36.3453815,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.036594722999951,
+        "originalLongitude": -36.34538148499996
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Cruzeiro de Cerro Corá",
+        "sourceCity": "Cerro Corá",
+        "point": "02"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:nascente-do-rio-potengi",
+      "name": "Nascente do Rio Potengi",
+      "city": "Cerro Corá",
+      "id": "ec14156d-2d9e-55b9-9cd5-c9c75af882ca",
+      "sourceOrder": 3,
+      "category": "Natureza",
+      "description": "Geossítio de Cerro Corá associado à nascente do Rio Potengi, registrado no inventário de atrativos geoturísticos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.044722,
+        "longitude": -36.3902761,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.044721959999947,
+        "originalLongitude": -36.39027609999994
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Nascente do Rio Potengi",
+        "sourceCity": "Cerro Corá",
+        "point": "03"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:vale-vulcanico",
+      "name": "Vale Vulcânico",
+      "city": "Cerro Corá",
+      "id": "37d2519e-dbda-5b90-8de6-3bcdab06f73d",
+      "sourceOrder": 4,
+      "category": "Natureza",
+      "description": "Geossítio de Cerro Corá com rochas de origem vulcânica. Seus afloramentos ajudam a conhecer os episódios de magmatismo da região.",
+      "coordinates": {
+        "latitude": -6.0807792,
+        "longitude": -36.4017059,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.080779169999971,
+        "originalLongitude": -36.40170587999995
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Vale Vulcânico",
+        "sourceCity": "Cerro Corá",
+        "point": "04"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:mirante-de-santa-rita",
+      "name": "Mirante de Santa Rita",
+      "city": "Lagoa Nova",
+      "id": "f4bb051b-dd26-5e53-8397-b95d2ec489e9",
+      "sourceOrder": 5,
+      "category": "Natureza",
+      "description": "Mirante de Lagoa Nova na borda da Serra de Santana. A paisagem permite observar o relevo do Seridó e os afloramentos da região.",
+      "coordinates": {
+        "latitude": -6.105818,
+        "longitude": -36.4398122,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.10581800999995,
+        "originalLongitude": -36.43981223999998
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossitio Mirante de Santa Rita",
+        "sourceCity": "Lagoa Nova",
+        "point": "05"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:tanque-dos-poscianos",
+      "name": "Tanque dos Poscianos",
+      "city": "Lagoa Nova",
+      "id": "f31d2db7-e380-570f-be1a-6e3be874aa0c",
+      "sourceOrder": 6,
+      "category": "Natureza",
+      "description": "Geossítio de Lagoa Nova registrado no inventário do SGB como Tanque dos Poscianos. Compõe o conjunto de atrativos geoturísticos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.1353866,
+        "longitude": -36.5436801,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.135386602999972,
+        "originalLongitude": -36.54368014099998
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Tanque dos Poscianos",
+        "sourceCity": "Lagoa Nova",
+        "point": "06"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:lagoa-do-santo",
+      "name": "Lagoa do Santo",
+      "city": "Currais Novos",
+      "id": "79a7a260-1eee-576a-852f-a8b44afbe9f3",
+      "sourceOrder": 7,
+      "category": "Natureza",
+      "description": "Geossítio de Currais Novos incluído no inventário de atrativos geoturísticos do Geoparque Seridó. Seu nome no levantamento do SGB é Lagoa do Santo.",
+      "coordinates": {
+        "latitude": -6.178459,
+        "longitude": -36.5758433,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.178459029999942,
+        "originalLongitude": -36.57584330999998
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Lagoa do Santo",
+        "sourceCity": "Currais Novos",
+        "point": "07"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:pico-do-totoro",
+      "name": "Pico do Totoró",
+      "city": "Currais Novos",
+      "id": "05eb3369-0e8c-5253-91b9-b3bdef30cd56",
+      "sourceOrder": 8,
+      "category": "Natureza",
+      "description": "Pico rochoso de Currais Novos que marca a paisagem do Totoró. Integra o conjunto de formas de relevo e afloramentos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.2015268,
+        "longitude": -36.5669098,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.2015268069999365,
+        "originalLongitude": -36.56690975899994
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Pico do Totoró",
+        "sourceCity": "Currais Novos",
+        "point": "08"
+      },
+      "image": null,
+      "imageCandidate": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pico_do_totor%C3%B3.JPG",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Pico_do_totor%C3%B3.JPG",
+        "author": "JEBA 17",
+        "license": "Domínio público",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "status": "license_verified_download_blocked_429",
+        "publicId": null,
+        "url": null
+      }
+    },
+    {
+      "sourceKey": "geoparque-serido:morro-do-cruzeiro",
+      "name": "Morro do Cruzeiro",
+      "city": "Currais Novos",
+      "id": "65659fb8-b8b1-58f7-a235-54ae999c7c7b",
+      "sourceOrder": 9,
+      "category": "Natureza",
+      "description": "Elevação rochosa de Currais Novos incluída entre os geossítios do Geoparque Seridó. O Morro do Cruzeiro é um dos destaques do relevo granítico regional.",
+      "coordinates": {
+        "latitude": -6.2659335,
+        "longitude": -36.5058476,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.265933509999968,
+        "originalLongitude": -36.50584760999993
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Morro do Cruzeiro",
+        "sourceCity": "Currais Novos",
+        "point": "09"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:mina-brejui",
+      "name": "Mina Brejuí",
+      "city": "Currais Novos",
+      "id": "1f2bd5d2-69cc-5709-9984-f9d8a25dec9e",
+      "sourceOrder": 10,
+      "category": "Histórico",
+      "description": "Geossítio de Currais Novos ligado à extração de scheelita. A Mina Brejuí conecta o patrimônio geológico à história da mineração no Seridó.",
+      "coordinates": {
+        "latitude": -6.3230827,
+        "longitude": -36.5511791,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.32308267999997,
+        "originalLongitude": -36.55117906999993
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Mina Brejui",
+        "sourceCity": "Currais Novos",
+        "point": "10"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:canions-dos-apertados",
+      "name": "Cânions dos Apertados",
+      "city": "Currais Novos",
+      "id": "7e614b91-1ebf-53d4-8724-fb100e180130",
+      "sourceOrder": 11,
+      "category": "Natureza",
+      "description": "Geossítio de Currais Novos marcado pelos paredões dos Cânions dos Apertados. O conjunto integra os atrativos de relevo do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.3418012,
+        "longitude": -36.502228,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.3418011519999595,
+        "originalLongitude": -36.502228000999935
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Cânions dos Apertados",
+        "sourceCity": "Currais Novos",
+        "point": "11"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:acude-gargalheiras",
+      "name": "Açude Gargalheiras",
+      "city": "Acari",
+      "id": "e0d0b23e-772f-58a1-bc03-2e38983d2e71",
+      "sourceOrder": 12,
+      "category": "Natureza",
+      "description": "Açude de Acari que compõe a paisagem do Geoparque Seridó. Gargalheiras reúne patrimônio geológico, recursos hídricos e uma obra marcante da engenharia regional.",
+      "coordinates": {
+        "latitude": -6.425816,
+        "longitude": -36.6030399,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.425815999999941,
+        "originalLongitude": -36.60303991999996
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Açude Gargalheiras",
+        "sourceCity": "Acari",
+        "point": "12"
+      },
+      "image": null,
+      "imageCandidate": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acude_gargalheiras_-_acari_-_rn.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Acude_gargalheiras_-_acari_-_rn.jpg",
+        "author": "Fabiobarros",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "status": "license_verified_download_blocked_429",
+        "publicId": null,
+        "url": null
+      }
+    },
+    {
+      "sourceKey": "geoparque-serido:poco-do-arroz",
+      "name": "Poço do Arroz",
+      "city": "Acari",
+      "id": "26d2d380-bfd6-510d-852b-e3259652e45b",
+      "sourceOrder": 13,
+      "category": "Natureza",
+      "description": "Geossítio de Acari registrado pelo SGB como Poço do Arroz. Faz parte do inventário de atrativos geoturísticos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.439762,
+        "longitude": -36.6146785,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.439761999999973,
+        "originalLongitude": -36.614678469999944
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Poço do Arroz",
+        "sourceCity": "Acari",
+        "point": "13"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:cruzeiro-de-acari",
+      "name": "Cruzeiro de Acari",
+      "city": "Acari",
+      "id": "8c2c0c28-a528-59a4-b418-a772368c1193",
+      "sourceOrder": 14,
+      "category": "Histórico",
+      "description": "Geossítio de Acari identificado como Cruzeiro de Acari no levantamento do SGB. Integra o conjunto de referências naturais e culturais do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.4385435,
+        "longitude": -36.6407319,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.438543489999972,
+        "originalLongitude": -36.640731889999984
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Cruzeiro de Acari",
+        "sourceCity": "Acari",
+        "point": "14"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:marmitas-do-rio-carnauba",
+      "name": "Marmitas do Rio Carnaúba",
+      "city": "Acari",
+      "id": "3b508469-0a36-5c07-9b45-f5c73fecc36f",
+      "sourceOrder": 15,
+      "category": "Natureza",
+      "description": "Geossítio de Acari com formas de erosão conhecidas como marmitas, associadas ao Rio Carnaúba. O local integra o patrimônio geomorfológico do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.4950554,
+        "longitude": -36.6929112,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.4950554199999715,
+        "originalLongitude": -36.69291117999995
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Marmitas do Rio Carnauba",
+        "sourceCity": "Acari",
+        "point": "15"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:serra-da-rajada",
+      "name": "Serra da Rajada",
+      "city": "Carnaúba dos Dantas",
+      "id": "097659b7-60bd-5460-b6f6-cfe2c1bb4f81",
+      "sourceOrder": 16,
+      "category": "Natureza",
+      "description": "Geossítio de Carnaúba dos Dantas registrado como Serra da Rajada. Compõe o inventário de paisagens e atrativos geoturísticos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.5469645,
+        "longitude": -36.6492736,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.546964475999971,
+        "originalLongitude": -36.64927356299995
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Serra da Rajada",
+        "sourceCity": "Carnaúba dos Dantas",
+        "point": "16"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:monte-do-galo",
+      "name": "Monte do Galo",
+      "city": "Carnaúba dos Dantas",
+      "id": "2fba259f-2f19-5759-8cf8-5d8abd31f611",
+      "sourceOrder": 17,
+      "category": "Histórico",
+      "description": "Elevação rochosa de Carnaúba dos Dantas incluída entre os geossítios do Geoparque Seridó. O Monte do Galo é um destaque do relevo da região.",
+      "coordinates": {
+        "latitude": -6.5596209,
+        "longitude": -36.5854992,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.559620889999962,
+        "originalLongitude": -36.58549922999998
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Monte do Galo",
+        "sourceCity": "Carnaúba dos Dantas",
+        "point": "17"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:xiquexique",
+      "name": "Xiquexique",
+      "city": "Carnaúba dos Dantas",
+      "id": "3b8e1fbf-0611-55de-8bd4-77464e08dee8",
+      "sourceOrder": 18,
+      "category": "Histórico",
+      "description": "Sítio arqueológico de Carnaúba dos Dantas com pinturas rupestres. Xiquexique reúne registros da presença humana e a paisagem rochosa do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.5512489,
+        "longitude": -36.5594942,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.551248939999937,
+        "originalLongitude": -36.559494179999945
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Xiquexique",
+        "sourceCity": "Carnaúba dos Dantas",
+        "point": "18"
+      },
+      "image": null,
+      "imageCandidate": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/S%C3%ADtio_Arquel%C3%B3gico_do_Xique_Xique_RN_em_2009_%281%29.jpg",
+        "author": "Diogo Sergio",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "status": "license_verified_download_blocked_429",
+        "publicId": null,
+        "url": null
+      }
+    },
+    {
+      "sourceKey": "geoparque-serido:cachoeira-dos-fundoes",
+      "name": "Cachoeira dos Fundões",
+      "city": "Carnaúba dos Dantas",
+      "id": "250b40b3-319b-512e-82cf-88640b1f2bc9",
+      "sourceOrder": 19,
+      "category": "Natureza",
+      "description": "Geossítio de Carnaúba dos Dantas registrado como Cachoeira dos Fundões. Integra o inventário de atrativos geoturísticos do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.5246497,
+        "longitude": -36.5561091,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.524649669999974,
+        "originalLongitude": -36.55610908999995
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Cachoeira dos Fundões",
+        "sourceCity": "Carnaúba dos Dantas",
+        "point": "19"
+      },
+      "image": null
+    },
+    {
+      "sourceKey": "geoparque-serido:acude-boqueirao",
+      "name": "Açude Boqueirão",
+      "city": "Parelhas",
+      "id": "ae6b1558-ec48-52ff-9b7a-d5530018afd1",
+      "sourceOrder": 20,
+      "category": "Natureza",
+      "description": "Açude localizado em Parelhas, incluído entre os geossítios do Geoparque Seridó. Boqueirão faz parte do conjunto de reservatórios que marcam a paisagem regional.",
+      "coordinates": {
+        "latitude": -6.6928429,
+        "longitude": -36.6293916,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.692842909999968,
+        "originalLongitude": -36.62939162999993
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Açude Boqueirão",
+        "sourceCity": "Parelhas",
+        "point": "20"
+      },
+      "image": null,
+      "imageCandidate": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:A%C3%A7ude_Boqueir%C3%A3o_em_Parelhas_-_panoramio.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/A%C3%A7ude_Boqueir%C3%A3o_em_Parelhas_-_panoramio.jpg",
+        "author": "MirandaNego",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "status": "license_verified_download_blocked_429",
+        "publicId": null,
+        "url": null
+      }
+    },
+    {
+      "sourceKey": "geoparque-serido:mirador",
+      "name": "Mirador",
+      "city": "Parelhas",
+      "id": "0d957b22-07e5-55fb-b06f-86e4c4c594cc",
+      "sourceOrder": 21,
+      "category": "Histórico",
+      "description": "Sítio arqueológico de Parelhas com pinturas rupestres. Mirador integra o patrimônio cultural e a paisagem do Geoparque Seridó.",
+      "coordinates": {
+        "latitude": -6.7102718,
+        "longitude": -36.6341563,
+        "datum": "WGS84",
+        "originalDatum": "SIRGAS 2000",
+        "originalLatitude": -6.710271837999926,
+        "originalLongitude": -36.634156262999966
+      },
+      "source": {
+        "url": "https://rigeo.sgb.gov.br/handle/doc/25001",
+        "label": "SGB · Geodiversidade do Geoparque Seridó (2024)",
+        "layer": "AtrativosGeoturisticos/Atrativos_Geoturisticos",
+        "sourceName": "Geossítio Mirador",
+        "sourceCity": "Parelhas",
+        "point": "21"
+      },
+      "image": null,
+      "imageCandidate": {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Parelhas_s%C3%ADtio_Arqueol%C3%B3gico_Mirador_002.jpg",
+        "author": "Wilde Reusa de Azevedo Nascimento Silva",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "status": "license_verified_download_blocked_429",
+        "publicId": null,
+        "url": null
+      }
+    }
+  ]
+}

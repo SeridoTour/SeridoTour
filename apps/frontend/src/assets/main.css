@@ -541,6 +541,24 @@ textarea {
   border-color: #cbad90;
   box-shadow: 0 5px 17px #6a432213;
 }
+.photo-placeholder-label {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  border-radius: 5px;
+  padding: 4px 7px;
+  background: rgba(20, 35, 30, 0.82);
+  color: #fff;
+  font-size: 10px;
+}
+.media-credit,
+.catalog-source {
+  color: var(--text-muted, #52665b);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+.catalog-source a { text-decoration: underline; }
 .card-photo {
   height: 172px;
   position: relative;

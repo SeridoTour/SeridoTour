@@ -1,6 +1,7 @@
 const fs = require('node:fs/promises');
 const assert = require('node:assert/strict');
 const base = 'https://seridotour-api-preview.onrender.com';
+const catalog = require('../apps/frontend/src/data/geossitios-preview.json');
 
 async function main() {
   assert.ok(process.env.PREVIEW_TEST_ACCOUNTS_FILE);
@@ -54,7 +55,14 @@ async function main() {
     assert.equal(second.meta.page, 2);
     assert.equal(second.meta.limit, 2);
     assert.equal(second.data.length, 2);
-    assert.equal(all.data.length, 6);
+    assert.equal(all.data.length, 6 + catalog.places.length);
+    for (const item of catalog.places) {
+      const published = all.data.find(place => place.id === item.id);
+      assert.ok(published, 'Geossítio ausente na API.');
+      assert.equal(published.latitude, item.coordinates.latitude);
+      assert.equal(published.longitude, item.coordinates.longitude);
+      assert.equal(published.name, item.name);
+    }
     assert.deepEqual(second.data.map(place => place.id), all.data.slice(2, 4).map(place => place.id));
     let reviews = 0;
     for (const place of all.data) {
@@ -63,7 +71,7 @@ async function main() {
       reviews += entries.length;
     }
     assert.equal(reviews, 1);
-    console.log(JSON.stringify({ places: 6, reviews: 1, paginationIsolated: true, reviewsIsolated: true }));
+    console.log(JSON.stringify({ places: all.data.length, geosites: catalog.places.length, reviews: 1, paginationIsolated: true, reviewsIsolated: true }));
   } finally {
     // Somente tokens emitidos por este teste; não deixar sessões de ensaio ativas.
     for (const token of knownTokens) {
