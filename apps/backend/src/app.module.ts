@@ -30,9 +30,9 @@ import { WeatherModule } from './weather/weather.module';
         JWT_EXPIRES_IN: Joi.string() // ex.: "1m", "7d"
           .pattern(/^\d+[smhd]$/)
           .required(),
-        JWT_REFRESH_EXPIRES_IN: Joi.string()
-          .pattern(/^\d+[smhd]$/)
-          .required(),
+        // JWT_REFRESH_EXPIRES_IN: Joi.string()
+        //   .pattern(/^\d+[smhd]$/)
+        //   .required(),
         // Cloudinary (upload de imagens) — NOVO
         // Nome da nuvem (cloud name) no painel do Cloudinary
         CLOUDINARY_CLOUD_NAME: Joi.string().required(),
