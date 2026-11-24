@@ -18,6 +18,8 @@ Os testes HTTP com PostgreSQL real passaram a cobrir também cadastro sem privil
 
 **Validação local concluída:** 32 testes backend, 11 testes de scripts/proteção e 6 E2E HTTP (49 no total); builds e typecheck; histórico de migrações em PostgreSQL 18 descartável; seed idempotente; duas variantes backend executadas como usuário sem privilégios com `/health` 200 e dados inalterados após iniciar; imagem frontend respondendo tanto `/` quanto `/login` pelo fallback da SPA. Nenhum desses ensaios utilizou o banco de produção, credenciais de uploads ou Cloudinary real.
 
+No ensaio do CI foi corrigida uma condição de corrida de inicialização: `pg_isready` agora usa TCP em `127.0.0.1`, evitando considerar pronto o servidor temporário do entrypoint PostgreSQL, que aceita apenas socket Unix e ainda será reiniciado. A correção pertence somente ao runner descartável, sem alterar a API ou o banco remoto.
+
 **Pendências seguintes:** separar access/refresh com expiração própria; compensação/metadados no upload comum do aplicativo; concluir a revisão das ferramentas de desenvolvimento; liveness/readiness e memória; paginação além de 100; OpenWeather de desenvolvimento; revisão editorial dos seis locais antigos e direitos das quinze fotografias sinalizadas. Um fluxo de convites por pessoa pode ser acrescentado futuramente; a concessão administrativa já substitui o código compartilhado.
 
 ## Migrações e deploy reproduzível no preview — 23/11/2026

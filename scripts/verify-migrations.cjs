@@ -71,7 +71,9 @@ async function main() {
   started = true;
   for (let i = 0; i < 60; i++) {
     if (
-      docker(["exec", id, "pg_isready", "-U", "postgres"], {
+      // O servidor temporário do initdb aceita socket Unix antes do restart.
+      // TCP só fica disponível no servidor definitivo do entrypoint oficial.
+      docker(["exec", id, "pg_isready", "-h", "127.0.0.1", "-U", "postgres"], {
         allowFailure: true,
       }).status === 0
     )
