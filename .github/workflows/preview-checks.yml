@@ -1,0 +1,31 @@
+name: Preview checks
+on:
+  push:
+    branches: ["codex/preview-geoparque"]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --include=dev
+      - run: npm run prisma:generate
+      - run: npm run build:backend
+      - run: npm run build:frontend
+        env:
+          VERCEL_ENV: preview
+          VITE_API_URL: https://seridotour-api-preview.onrender.com
+      - run: npm run test:backend
+      - run: node --test scripts/local-database.test.cjs scripts/publish-preview-photos.test.cjs scripts/verify-preview-env.test.cjs
+      - run: docker build --target prod -f apps/backend/Dockerfile -t seridotour-backend:ci .
+      - run: npm run verify:migrations
+        env:
+          VERIFY_BACKEND_IMAGE: seridotour-backend:ci

@@ -1,5 +1,11 @@
 **/node_modules
 **/dist
 **/.env
+**/.env.*
+!**/.env.example
 **/.git
+**/coverage
+**/*.log
+output
+tmp
 README.md

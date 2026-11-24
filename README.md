@@ -53,7 +53,7 @@ O sistema implementa regras estritas de domínio, com destaque para a máquina d
 
 Antes de começar, certifique-se de ter instalado em sua máquina:
 
-* Node.js (versões 18 ou 20 recomendadas)
+* Node.js 22.12 ou superior, até a versão 24 (Render/CI usam 22)
 
 * Docker e Docker Desktop
 * Git
@@ -63,7 +63,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 O projeto usa arquivos de exemplo para facilitar a configuração local:
 
 1. Copie o arquivo `.env.example` para `.env` na raiz do monorepo.
-2. Certifique-se de que o arquivo `apps/backend/.env` possui a `DATABASE_URL` corretamente configurada para execução do backend.
+2. Substitua os placeholders por valores locais. Para executar o backend fora do Docker, configure `apps/backend/.env` e exporte a mesma `DATABASE_URL` no terminal que executará migrações. Os scripts de migração não carregam uma URL remota de um `.env` por suposição.
 3. No front-end (`apps/frontend/.env`), a variável `VITE_API_URL` deve apontar para o seu back-end local (padrão: `http://localhost:3000`).
 
 ---
@@ -79,21 +79,27 @@ cp .env.example .env
 ```
 
 
-2. Suba a stack completa:
+2. Crie o banco local e aplique as migrações explicitamente:
+```bash
+docker compose up -d postgres
+docker compose run --rm backend node /app/scripts/migrate-local.cjs
+```
+
+3. Suba a stack completa:
 ```bash
 npm run docker:up
 
 ```
 
 
-3. Acesse os serviços:
+4. Acesse os serviços:
 * **Frontend:** `http://localhost:5173`
 * **Backend:** `http://localhost:3000`
 * **Banco PostgreSQL:** `localhost:5433`
 
 
 
-Para parar e remover os volumes do ambiente:
+Para parar os serviços preservando os volumes:
 
 ```bash
 npm run docker:down
@@ -113,20 +119,22 @@ docker compose up -d postgres
 
 2. Confirme se o backend local está apontando para o banco do Docker. O arquivo `apps/backend/.env` deve conter:
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5433/northeasTour?schema=public"
+DATABASE_URL="postgresql://seridotour:SENHA_LOCAL@localhost:5433/seridotour_local?schema=public"
 
 ```
 
 
 3. Instale as dependências gerais do monorepo:
 ```bash
-npm install
+npm ci --include=dev
+npm run prisma:generate
 
 ```
 
 
-4. Inicie o backend em modo desenvolvimento:
+4. Exporte explicitamente essa `DATABASE_URL` no terminal, aplique as migrações e inicie o backend:
 ```bash
+npm run db:migrate:local
 npm run start:backend
 
 ```
@@ -143,7 +151,11 @@ npm run start:frontend
 
 * Se o Docker estiver em execução, mas algum serviço não subir, confira se as portas `3000`, `5173` e `5433` já não estão sendo utilizadas por outros processos.
 
-* Durante a inicialização via Docker Compose, o backend aguarda o banco de dados ficar saudável para aplicar os comandos `prisma generate` e rodar o seed inicial automaticamente.
+* A inicialização não executa migração, `db push` ou seed. O Compose usa PostgreSQL 18 em um projeto/volume novos (`seridotour-local-v2`), sem reutilizar o volume antigo do PostgreSQL 15.
+* O seed é opcional e restrito a `seridotour_demo` ou `seridotour_test_*` em servidor local. Exige `LOCAL_DEMO_PASSWORD` com pelo menos 12 caracteres e IDs fixos: repetir não duplica dados. Não cria avaliações fictícias. O banco normal `seridotour_local` recusa seed.
+* `npm run docker:reset-local` remove explicitamente os volumes do projeto local atual. `docker:down` apenas para os serviços.
+* `npm run verify:migrations` cria PostgreSQL descartável para testar banco vazio, cópia de schema, proteção de dados legados, seed idempotente e API com banco real. Não utiliza banco remoto nem credenciais de cloud no CI.
+* Procedimento de migração do preview: [operação e dados](docs/operacao/RELATORIO-DEPLOY-E-DADOS.md). A URL de produção é recusada pelo script de preview.
 
 * O frontend roda com *hot reload* no Vite, refletindo alterações de interface em tempo real.
 

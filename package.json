@@ -7,19 +7,22 @@
     "apps/*"
   ],
   "scripts": {
-    "start:backend": "npm exec --workspace=apps/backend -- prisma generate && npm exec --workspace=apps/backend -- prisma db push && npm exec --workspace=apps/backend -- prisma db seed && npm run start:dev --workspace=apps/backend",
+    "start:backend": "npm run start:dev --workspace=apps/backend",
     "start:frontend": "npm run dev --workspace=apps/frontend",
     "build:backend": "npm run build --workspace=apps/backend",
     "build:frontend": "npm run build --workspace=apps/frontend",
     "build:all": "npm run build --workspaces",
     "docker:up": "docker compose up --build",
-    "docker:down": "docker compose down -v"
+    "docker:down": "docker compose down",
+    "docker:reset-local": "docker compose down --volumes",
+    "prisma:generate": "npm run prisma:generate --workspace=apps/backend",
+    "db:migrate:local": "node scripts/migrate-local.cjs",
+    "db:migrate:preview": "node scripts/migrate-preview.cjs",
+    "db:seed:local": "npm run db:seed --workspace=apps/backend",
+    "test:backend": "npm run test --workspace=apps/backend -- --runInBand",
+    "verify:migrations": "node scripts/verify-migrations.cjs"
   },
   "author": "Grupo 9",
   "license": "ISC",
-  "dependencies": {
-    "@nestjs/mapped-types": "^2.1.1",
-    "@prisma/client": "^7.8.0",
-    "prisma": "^7.8.0"
-  }
+  "engines": { "node": ">=22.12.0 <25" }
 }

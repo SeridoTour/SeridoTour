@@ -1,2 +1,4 @@
-# Preserve PDF documents byte-for-byte across platforms.
-*.pdf binary
+* text=auto
+*.sql text eol=lf
+*.sh text eol=lf
+Dockerfile text eol=lf
