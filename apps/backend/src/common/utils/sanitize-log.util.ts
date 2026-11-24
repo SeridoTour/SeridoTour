@@ -9,6 +9,7 @@
 const SENSITIVE_KEYS = [
   'password',
   'senha',
+  'codigoguia',
   'token',
   'accesstoken',
   'refreshtoken',

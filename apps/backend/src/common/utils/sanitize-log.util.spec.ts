@@ -41,3 +41,11 @@ describe('sanitizeForLog', () => {
     expect(sanitizeForLog(undefined)).toBeUndefined();
   });
 });
+
+
+it('redige o código legado de guia mesmo em cadastros recusados', () => {
+  const input = { body: { codigoGuia: 'legacy-private-code', password: 'private-password' }, query: { CODIGO_GUIA: 'other-private-code' } };
+  const sanitized = sanitizeForLog(input);
+  expect(JSON.stringify(sanitized)).not.toMatch(/legacy-private-code|other-private-code|private-password/);
+  expect(input.body.codigoGuia).toBe('legacy-private-code');
+});
