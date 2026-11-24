@@ -19,6 +19,14 @@ async function main() {
   try {
     assert.equal((await call('/health')).status, 200);
     assert.equal((await call('/users')).status, 401);
+    // Usa e-mail já existente: mesmo uma regressão não deve criar conta de ensaio.
+    for (const extra of [{ codigoguia: 'validation-only' }, { role: 'GUIA' }]) {
+      assert.equal((await call('/users/cadastrar', null, {
+        name: 'Validação de permissões', email: accounts[0].email,
+        password: 'Validation-only-12!', ...extra,
+      }, 'POST')).status, 400, 'Cadastro público aceitou campo de privilégio.');
+    }
+    console.log(JSON.stringify({ publicSignupRejectsGuideCode: true, publicSignupRejectsRole: true }));
     for (const account of accounts) {
       const login = await call('/auth/login', null, { email: account.email, password: account.password }, 'POST');
       assert.equal(login.status, 201, 'Falha de login da conta de teste.');

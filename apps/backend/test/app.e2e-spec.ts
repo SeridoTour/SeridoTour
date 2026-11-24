@@ -6,6 +6,10 @@ import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { CloudinaryService } from '../src/modules/cloudinary/cloudinary.service';
 const { assertLocalDatabase } = require('../../../scripts/local-database.cjs');
+const {
+  planRole,
+  applyRole,
+} = require('../../../scripts/manage-preview-guide.cjs');
 
 describe('API com PostgreSQL descartável real', () => {
   let app: INestApplication;
@@ -90,6 +94,72 @@ describe('API com PostgreSQL descartável real', () => {
   }, 60000);
   afterAll(async () => {
     if (app) await app.close();
+  });
+  it('cadastro público recusa código/papel e concessão administrativa revoga sessões', async () => {
+    const s = app.getHttpServer();
+    const data = {
+      name: 'Cadastro local',
+      email: 'new-user@example.test',
+      password: 'Only-test-Secret12!',
+    };
+    for (const extra of [{ codigoguia: 'old-code' }, { role: 'GUIA' }]) {
+      await request(s)
+        .post('/users/cadastrar')
+        .send({ ...data, ...extra })
+        .expect(400);
+      expect(
+        await db.user.findUnique({ where: { email: data.email } }),
+      ).toBeNull();
+    }
+    const created = await request(s)
+      .post('/users/cadastrar')
+      .send(data)
+      .expect(201);
+    expect(created.body.role).toBe('USER');
+    expect(created.body.password).toBeUndefined();
+    const login = async () =>
+      (
+        await request(s)
+          .post('/auth/login')
+          .send({ email: data.email, password: data.password })
+          .expect(201)
+      ).body.access_token;
+    const oldToken = await login();
+    const change = { email: data.email, from: 'USER', to: 'GUIA' };
+    const plan = await planRole(db, change);
+    expect(plan.sessionsToRevoke).toBe(1);
+    expect(
+      (await db.user.findUniqueOrThrow({ where: { email: data.email } })).role,
+    ).toBe('USER');
+    await applyRole(db, change, plan);
+    expect(
+      (await db.user.findUniqueOrThrow({ where: { email: data.email } })).role,
+    ).toBe('GUIA');
+    await request(s)
+      .get('/users')
+      .auth(oldToken, { type: 'bearer' })
+      .expect(401);
+    const guideToken = await login();
+    await request(s)
+      .get('/users')
+      .auth(guideToken, { type: 'bearer' })
+      .expect(200);
+    const repeated = await planRole(db, change);
+    expect(repeated.alreadyApplied).toBe(true);
+    expect((await applyRole(db, change, repeated)).sessionsRevoked).toBe(0);
+    const revoke = { email: data.email, from: 'GUIA', to: 'USER' };
+    await applyRole(db, revoke, await planRole(db, revoke));
+    await request(s)
+      .get('/users')
+      .auth(guideToken, { type: 'bearer' })
+      .expect(401);
+    await request(s)
+      .get('/users')
+      .auth(await login(), { type: 'bearer' })
+      .expect(403);
+    await expect(
+      planRole(db, { email: 'GUIA@example.test', from: 'GUIA', to: 'USER' }),
+    ).rejects.toThrow('último guia');
   });
   it('protege papéis e separa páginas e filtros', async () => {
     const s = app.getHttpServer();

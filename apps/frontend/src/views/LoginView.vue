@@ -98,15 +98,9 @@
             required
           />
 
-          <template v-if="!isLogin">
-            <p class="register-label">Código de Guia (opcional)</p>
-            <input
-              v-model.trim="form.codigoguia"
-              class="extra-input"
-              type="text"
-              placeholder="Código de guia"
-            />
-          </template>
+          <p v-if="!isLogin" class="register-label">
+            Sua conta será de turista. O acesso de guia é liberado pela equipe responsável.
+          </p>
 
           <p v-if="errorMessage" class="error-message">
             {{ errorMessage }}
@@ -194,8 +188,7 @@ const errorMessage = ref('')
 const form = ref({
   name: '',
   email: '',
-  password: '',
-  codigoguia: ''
+  password: ''
 })
 
 function toggleMode() {
@@ -205,7 +198,6 @@ function toggleMode() {
 
   if (isLogin.value) {
     form.value.name = ''
-    form.value.codigoguia = ''
   }
 }
 
@@ -227,14 +219,10 @@ async function handleSubmit() {
         password: form.value.password
       })
     } else {
-      const payload: { name: string; email: string; password: string; codigoguia?: string } = {
+      const payload: { name: string; email: string; password: string } = {
         name: form.value.name,
         email: form.value.email,
         password: form.value.password
-      }
-
-      if (form.value.codigoguia) {
-        payload.codigoguia = form.value.codigoguia
       }
 
       await authStore.register(payload)

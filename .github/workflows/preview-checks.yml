@@ -18,14 +18,18 @@ jobs:
           cache: npm
       - run: npm ci --include=dev
       - run: npm run prisma:generate
+      - run: npm audit --omit=dev --omit=optional --audit-level=moderate
+      - run: npm audit --workspace=apps/frontend --audit-level=moderate
       - run: npm run build:backend
       - run: npm run build:frontend
         env:
           VERCEL_ENV: preview
           VITE_API_URL: https://seridotour-api-preview.onrender.com
       - run: npm run test:backend
-      - run: node --test scripts/local-database.test.cjs scripts/publish-preview-photos.test.cjs scripts/verify-preview-env.test.cjs
+      - run: node --test scripts/local-database.test.cjs scripts/publish-preview-photos.test.cjs scripts/verify-preview-env.test.cjs scripts/manage-preview-guide.test.cjs
       - run: docker build --target prod -f apps/backend/Dockerfile -t seridotour-backend:ci .
+      - run: docker build --target native-preview -f apps/backend/Dockerfile -t seridotour-backend-native:ci .
       - run: npm run verify:migrations
         env:
           VERIFY_BACKEND_IMAGE: seridotour-backend:ci
+          VERIFY_NATIVE_BACKEND_IMAGE: seridotour-backend-native:ci

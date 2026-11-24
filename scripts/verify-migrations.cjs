@@ -335,7 +335,10 @@ async function main() {
   console.log(
     "Seed local repetido sem duplicações: 1 usuário, 2 locais, 1 rascunho, zero avaliações.",
   );
-  if (process.env.VERIFY_BACKEND_IMAGE) {
+  for (const image of [
+    process.env.VERIFY_BACKEND_IMAGE,
+    process.env.VERIFY_NATIVE_BACKEND_IMAGE,
+  ].filter(Boolean)) {
     const state = await withDb(url("seridotour_test_fresh"), fingerprint);
     const apiEnv = path.join(work, "api.env");
     fs.writeFileSync(
@@ -354,7 +357,7 @@ async function main() {
       `container:${id}`,
       "--env-file",
       apiEnv,
-      process.env.VERIFY_BACKEND_IMAGE,
+      image,
     ]);
     apiStarted = true;
     let ready = false;
@@ -387,6 +390,8 @@ async function main() {
     console.log(
       "Imagem backend executada sem root, /health 200 e nenhum dado alterado na inicialização.",
     );
+    docker(["rm", "-f", "-v", id + "-api"]);
+    apiStarted = false;
   }
   if (sourceFile)
     fs.writeFileSync(

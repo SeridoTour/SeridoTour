@@ -7,7 +7,7 @@ services:
     repo: https://github.com/SeridoTour/SeridoTour
     branch: codex/preview-geoparque
     autoDeployTrigger: commit
-    buildCommand: npm ci --include=dev && npm run prisma:generate --workspace=apps/backend && npm run build:backend
+    buildCommand: npm run build:preview
     startCommand: node scripts/verify-preview-env.cjs && npm run start:prod --workspace=apps/backend
     healthCheckPath: /health
     envVars:
@@ -29,8 +29,6 @@ services:
         value: 15m
       - key: JWT_REFRESH_EXPIRES_IN
         value: 7d
-      - key: CODIGO_GUIA
-        generateValue: true
       - key: CORS_ORIGIN
         sync: false
       - key: CLOUDINARY_CLOUD_NAME

@@ -4,7 +4,6 @@ import {
   IsEmail,
   Matches,
   MinLength,
-  IsOptional,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -24,8 +23,4 @@ export class CreateUserDto {
       'A senha deve conter pelo menos uma letra maiúscula e um caractere especial',
   })
   password!: string;
-
-  @IsString()
-  @IsOptional()
-  codigoguia?: string;
 }

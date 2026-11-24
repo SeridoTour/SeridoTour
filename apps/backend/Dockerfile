@@ -33,6 +33,14 @@ WORKDIR /app/apps/backend
 
 RUN npm run prisma:generate && npm run build && mkdir -p /app/node_modules/.prisma /app/apps/backend/node_modules/.prisma
 
+# Ensaia o mesmo prune usado no serviço Node nativo do Render.
+FROM build AS native-preview
+WORKDIR /app
+RUN npm run prune:backend:runtime && npm run verify:runtime
+ENV NODE_ENV=production
+USER node
+CMD ["node", "apps/backend/dist/src/main.js"]
+
 FROM node:22-alpine AS prod
 
 WORKDIR /app
@@ -44,12 +52,14 @@ COPY apps/backend/package.json ./apps/backend/package.json
 COPY apps/frontend/package.json ./apps/frontend/package.json
 
 ENV NODE_ENV=production PRISMA_SKIP_POSTINSTALL_GENERATE=true
-RUN npm ci --omit=dev --workspace=apps/backend --include-workspace-root=false && npm cache clean --force
+RUN npm ci --omit=dev --omit=optional --workspace=apps/backend --include-workspace-root=false && npm cache clean --force
 
 COPY --from=build /app/apps/backend/dist ./apps/backend/dist
 COPY --from=build /app/apps/backend/prisma ./apps/backend/prisma
 COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
 COPY --from=build /app/apps/backend/node_modules/.prisma /app/apps/backend/node_modules/.prisma
+COPY scripts/verify-runtime.cjs ./scripts/verify-runtime.cjs
+RUN node scripts/verify-runtime.cjs
 
 WORKDIR /app/apps/backend
 

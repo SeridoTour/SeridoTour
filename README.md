@@ -156,6 +156,8 @@ npm run start:frontend
 * `npm run docker:reset-local` remove explicitamente os volumes do projeto local atual. `docker:down` apenas para os serviços.
 * `npm run verify:migrations` cria PostgreSQL descartável para testar banco vazio, cópia de schema, proteção de dados legados, seed idempotente e API com banco real. Não utiliza banco remoto nem credenciais de cloud no CI.
 * Procedimento de migração do preview: [operação e dados](docs/operacao/RELATORIO-DEPLOY-E-DADOS.md). A URL de produção é recusada pelo script de preview.
+* O cadastro público cria somente turistas. Concessão/revogação de GUIA no preview é uma operação do responsável pelo banco, fora da API pública, pelo comando `scripts/manage-preview-guide.cjs` descrito no relatório. O código compartilhado não é mais aceito.
+* `build:preview` instala, gera o client e compila antes de retirar ferramentas de build e dependências opcionais do runtime. Execute esse comando no ambiente de build descartável do preview; o desenvolvimento local continua usando `build:backend`/`build:frontend`.
 
 * O frontend roda com *hot reload* no Vite, refletindo alterações de interface em tempo real.
 

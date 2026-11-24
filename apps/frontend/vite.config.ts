@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    // Preserva o suporte de navegadores usado pelo build anterior (Vite 5).
+    build: { target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'] },
     plugins: [vue(), {
       name: 'preview-noindex',
       transformIndexHtml() {
