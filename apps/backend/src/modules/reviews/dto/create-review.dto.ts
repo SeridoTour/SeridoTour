@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 
 export class CreateReviewDto {
-  @IsUUID('4')
+  @IsUUID('all')
   placeId!: string;
 
   @IsInt()

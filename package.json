@@ -1,10 +1,11 @@
 {
   "name": "northeastour-monorepo",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "private": true,
   "description": "Monorepo do projeto NortheasTour - Planejamento de Roteiros Turísticos Regionais",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "tests"
   ],
   "scripts": {
     "start:backend": "npm run start:dev --workspace=apps/backend",
@@ -14,7 +15,7 @@
     "prune:backend:runtime": "npm prune --omit=dev --omit=optional --workspace=apps/backend --include-workspace-root=false --ignore-scripts",
     "verify:runtime": "node scripts/verify-runtime.cjs",
     "build:frontend": "npm run build --workspace=apps/frontend",
-    "build:all": "npm run build --workspaces",
+    "build:all": "npm run build --workspaces --if-present",
     "docker:up": "docker compose up --build",
     "docker:down": "docker compose down",
     "docker:reset-local": "docker compose down --volumes",
@@ -22,10 +23,15 @@
     "db:migrate:local": "node scripts/migrate-local.cjs",
     "db:migrate:preview": "node scripts/migrate-preview.cjs",
     "db:seed:local": "npm run db:seed --workspace=apps/backend",
-    "test:backend": "npm run test --workspace=apps/backend -- --runInBand",
-    "verify:migrations": "node scripts/verify-migrations.cjs"
+    "test:backend": "npm run test:backend --workspace=@northeastour/tests",
+    "verify:migrations": "node scripts/verify-migrations.cjs",
+    "test": "npm run test --workspace=@northeastour/tests",
+    "test:frontend": "npm run test:frontend --workspace=@northeastour/tests",
+    "test:e2e": "npm run test:e2e --workspace=@northeastour/tests"
   },
   "author": "Grupo 9",
   "license": "ISC",
-  "engines": { "node": ">=22.12.0 <25" }
+  "engines": {
+    "node": ">=22.12.0 <25"
+  }
 }

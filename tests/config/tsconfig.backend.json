@@ -1,0 +1,12 @@
+{
+  "extends": "../../apps/backend/tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolvePackageJsonExports": false,
+    "types": ["node", "jest", "express", "multer"],
+    "declaration": false,
+    "incremental": false,
+    "isolatedModules": true
+  }
+}

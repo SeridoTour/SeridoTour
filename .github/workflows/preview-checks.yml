@@ -9,7 +9,7 @@ permissions:
 jobs:
   checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,6 +26,8 @@ jobs:
           VERCEL_ENV: preview
           VITE_API_URL: https://seridotour-api-preview.onrender.com
       - run: npm run test:backend
+      - run: npm run test:frontend
+      - run: npm run test:e2e
       - run: node --test scripts/local-database.test.cjs scripts/publish-preview-photos.test.cjs scripts/verify-preview-env.test.cjs scripts/manage-preview-guide.test.cjs
       - run: docker build --target prod -f apps/backend/Dockerfile -t seridotour-backend:ci .
       - run: docker build --target native-preview -f apps/backend/Dockerfile -t seridotour-backend-native:ci .
@@ -33,3 +35,11 @@ jobs:
         env:
           VERIFY_BACKEND_IMAGE: seridotour-backend:ci
           VERIFY_NATIVE_BACKEND_IMAGE: seridotour-backend-native:ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            tests/reports/**/*.md
+            tests/reports/**/results.json
+            tests/reports/**/coverage-summary.json

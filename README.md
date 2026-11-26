@@ -1,5 +1,7 @@
 ### SeridóTour — Planejamento de Roteiros Turísticos Regionais
 
+Versão de homologação: **1.0.0-beta.1**. A [auditoria da integração](docs/operacao/AUDITORIA-1.0.0-beta.1.md) registra a mesclagem das suítes na preview, os resultados e as condições para promover à produção. Para executar os testes: `npm ci` e `npm test`; detalhes em [tests/README.md](tests/README.md).
+
 O **SeridóTour** é uma aplicação web *full-stack* desenvolvida para o planejamento, compartilhamento e descoberta de roteiros turísticos no Nordeste brasileiro. O projeto foi iniciado como requisito prático da disciplina de **Desenvolvimento Web Back-end** e atualmente encontra-se em evolução na disciplina de **Projeto Integrador I** do curso de Tecnologia em Sistemas para Internet do IFRN Campus Currais Novos.
 
 #### Documentação do Projeto Integrador
@@ -34,7 +36,7 @@ O projeto adota uma arquitetura **Monorepo** utilizando Workspaces nativos do np
 * **Infraestrutura:** Docker e Docker Compose.
 
 
-* **Segurança:** Autenticação JWT com Refresh Tokens e restrição baseada em papéis (USER vs. ADMIN/GUIA).
+* **Segurança:** Autenticação JWT com renovação e revogação de sessão, com papéis USER e GUIA. O cadastro público cria somente USER.
 
 
 #### 🏛️ Regras de Negócio e Fluxo de Estado

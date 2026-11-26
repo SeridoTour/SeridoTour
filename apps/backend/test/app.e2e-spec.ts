@@ -68,6 +68,7 @@ describe('API com PostgreSQL descartável real', () => {
     for (const category of ['A', 'B']) {
       const p = await db.place.create({
         data: {
+          ...(category === 'A' ? { id: '11111111-1111-5111-8111-111111111111' } : {}),
           name: category + ' Local',
           description: 'Teste',
           city: 'Local',

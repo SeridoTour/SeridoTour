@@ -2,6 +2,7 @@ import {
   IsString,
   IsNotEmpty,
   IsArray,
+  ArrayNotEmpty,
   IsUUID,
   IsInt,
   Min,
@@ -23,11 +24,11 @@ export class CreateItineraryDto {
   @IsArray({
     message: 'Os locais devem ser enviados em formato de lista (array).',
   })
-  @IsUUID('4', {
+  @IsUUID('all', {
     each: true,
     message: 'Cada ID de local deve ser um UUID válido.',
   })
-  @IsNotEmpty({
+  @ArrayNotEmpty({
     message: 'O roteiro precisa ter pelo menos um ponto turístico associado.',
   })
   placeIds!: string[];
