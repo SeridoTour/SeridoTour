@@ -1,6 +1,6 @@
 # Auditoria de integração — 1.0.0-beta.1
 
-Data: 26/11/2026, America/Sao_Paulo. Destino: `codex/preview-geoparque`, para revisão antes de promover código à `main`. Esta execução não publica em produção nem aplica mudanças nos bancos remotos.
+Data: 26/11/2026, America/Sao_Paulo. Destino: `codex/preview-geoparque`, para revisão antes de promover código à `main`. Esta execução não publica em produção nem altera dados de negócio nos bancos remotos. O smoke remoto usa e encerra uma sessão de teste somente no preview, conforme registrado abaixo.
 
 ## Resultado
 
@@ -52,6 +52,22 @@ Cobertura de linhas: **96,29% no conjunto backend selecionado** e **98,23% no co
 
 Relatórios reproduzíveis: [consolidado](../../tests/reports/RELATORIO-GERAL.md), [backend](../../tests/reports/backend/RELATORIO.md), [frontend](../../tests/reports/frontend/RELATORIO.md), [Cypress](../../tests/reports/cypress/RELATORIO.md). O plano detalhado está em [PLANO-DE-TESTES.md](../../tests/PLANO-DE-TESTES.md).
 
+## Confirmação depois da publicação
+
+O merge e as correções foram publicados no commit **`d7f93c0d7c0ede1ca24fe39defa81d0ad0f06aa6`**, com os dois commits de origem como pais. A `main` remota permaneceu em `d726c3c41a26c454a28597318a202b728b2dc07d`. O complemento desta auditoria modifica somente documentação; não muda o código validado abaixo.
+
+| Serviço | Evidência confirmada |
+| --- | --- |
+| GitHub Actions | [Execução 45850228537](https://github.com/SeridoTour/SeridoTour/actions/runs/45850228537), concluída com sucesso: auditorias, builds, backend/frontend/Cypress, proteções, duas imagens backend, migrações/HTTP e artefatos |
+| Vercel | [Deployment 8yQXQCTuR6ACy1KoHvz99FWbCccs](https://vercel.com/serafims-projects-395240b2/seridotour/8yQXQCTuR6ACy1KoHvz99FWbCccs), sucesso associado ao commit `d7f93c0` |
+| Render | [Deployment dep-dc453pt6e07s73e6rotg](https://dashboard.render.com/web/srv-dc26ci7f3r2c73c90b9g/deploys/dep-dc453pt6e07s73e6rotg), status Live e source `d7f93c0` conferidos no painel do serviço de preview |
+
+O serviço Render estava com publicação manual, ainda executando `0feaced`. A primeira checagem detectou a validação antiga de UUID; foi acionado **Deploy latest commit somente em seridotour-api-preview**. O build gerou Prisma 6.19.3, compilou a beta, removeu as ferramentas de desenvolvimento, validou o destino `development-seridotour / northeastour` e iniciou sem migração ou seed. Não foi alterada a configuração de deploy de produção.
+
+Após Live, o smoke da API confirmou `/health` 200, login da conta USER de teste, UUID v5 aceito até a verificação de destino inexistente (404, sem criar avaliação), roteiro com lista vazia recusado (400), catálogo com 27 locais e logout. Os testes remotos não criaram usuários, roteiros, avaliações ou uploads; apenas emitiram/revogaram a própria sessão de ensaio. As credenciais foram lidas do arquivo privado de testes, fora do Git, sem imprimi-las.
+
+No navegador autenticado da Vercel, a página estável mostrou cartões, créditos e os 27 marcadores; nenhum erro de console foi capturado nessa visita. O preview e o painel do deployment foram deixados disponíveis para revisão. A proteção Vercel e as origens de produção não foram alteradas.
+
 ## Auditoria de dependências
 
 Na instalação desta integração, `npm audit` completo informa **26 alertas: quatro altos, 22 moderados e nenhum crítico**. Estão na árvore de desenvolvimento/build/testes, incluindo Prisma CLI/config e ferramentas Jest/Vue Test Utils. A integração dos testes acrescentou dependências de desenvolvimento; não foi usado `npm audit fix --force`, nem feita mudança de major do Prisma para mascarar os alertas.
@@ -77,7 +93,7 @@ Consulta de leitura ao Neon nesta auditoria, após os ensaios locais:
 
 ## Condições para promover depois da revisão
 
-1. Conferir o [preview protegido](https://seridotour-git-codex-preview-d143e9-serafims-projects-395240b2.vercel.app/), o deployment vinculado ao commit final e o [CI da branch](https://github.com/SeridoTour/SeridoTour/actions). Os resultados locais acima foram obtidos antes do push; a confirmação dos serviços remotos deve acompanhar o fechamento da tarefa.
+1. Revisar funcionalmente o [preview protegido](https://seridotour-git-codex-preview-d143e9-serafims-projects-395240b2.vercel.app/). O código `d7f93c0` já foi confirmado no CI, Vercel e Render conforme a seção de publicação; ao incluir novos commits de código, exigir novamente esses checks.
 2. Resolver o destino das **15 fotografias com reutilização ainda pendente** antes de publicá-las fora do preview. Substituir/remover essas fotos ou obter autorização; o aviso no preview não equivale a permissão de uso em produção. As seis demais têm licença aberta/domínio público e exigem respeitar os créditos aplicáveis.
 3. Fazer backup e ensaio de restauração de produção, conferir o esquema/histórico real e testar a migração complementar em uma cópia atual antes do apply. Não aplicar scripts de preview em produção: eles recusam esse destino deliberadamente.
 4. Configurar explicitamente o serviço de produção com sua conexão, origem CORS e segredos. O start deve executar somente a API compilada. Não usar `verify-preview-env.cjs` ou o Blueprint exclusivo do preview no serviço de produção. Migração é uma etapa controlada, anterior ao startup; seed/reset não fazem parte do deploy.
@@ -85,4 +101,4 @@ Consulta de leitura ao Neon nesta auditoria, após os ensaios locais:
 6. Revisar separadamente o plano de limpeza/carga de produção. Mesclar código não transfere os 27 locais, fotos ou duas contas do desenvolvimento. Não copiar a branch de desenvolvimento inteira sobre produção nem executar a limpeza original sem a revisão combinada.
 7. Depois da aprovação funcional, promover a branch por PR para `main`, aplicar a sequência controlada de banco/API/frontend e executar smoke tests reais. Em falha, interromper a promoção e usar o plano de rollback compatível com banco e sessões.
 
-**Conclusão da auditoria:** candidata beta validada localmente para revisão no preview. A promoção para produção continua condicionada à revisão funcional, às pendências de mídia e ao plano operacional; esta execução não autoriza nem realiza essa promoção.
+**Conclusão da auditoria:** candidata beta validada localmente, aprovada no CI e publicada no preview com frontend/API verificados. A promoção para produção continua condicionada à revisão funcional, às pendências de mídia e ao plano operacional; esta execução não autoriza nem realiza essa promoção.
