@@ -1,0 +1,620 @@
+{
+  "executedAt": "2026-11-26 11:25:31",
+  "scope": "Testes unitários Jest com banco, cache, JWT, bcrypt e serviços externos substituídos por mocks. Não valida banco real ou endpoints HTTP.",
+  "success": false,
+  "tests": [
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-01 aceita cadastro com senha forte",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-02 recusa senha fora da política: abc",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-02 recusa senha fora da política: senha123",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-02 recusa senha fora da política: SENHA!",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-02 recusa senha fora da política: Senha123",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-03 recusa e-mail inválido",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-04 recusa nota inválida: 0",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-04 recusa nota inválida: 6",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-04 recusa nota inválida: 2.5",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-05 aceita limite de nota: 1",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-05 aceita limite de nota: 5",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-06 transforma parâmetros de paginação de texto para número",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-07 recusa paginação inválida: {\"page\":0}",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-07 recusa paginação inválida: {\"limit\":-1}",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-08 recusa coordenadas fora dos limites: {\"latitude\":91,\"longitude\":0}",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-08 recusa coordenadas fora dos limites: {\"latitude\":0,\"longitude\":-181}",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-09 recusa duração de roteiro menor que um dia",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-DTO | Validação de entradas reais BE-DTO-10 exige pelo menos um destino no roteiro",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "failed",
+      "durationMs": 3,
+      "error": "Error: expect(received).toContain(expected) // indexOf\n\nExpected value: \"placeIds\"\nReceived array: []\n    at Object.<anonymous> (C:\\Users\\Karas\\Documents\\Projetos\\Pessoais\\NortheasTour\\tests\\backend\\validation-upload.spec.ts:53:66)"
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-01 reconhece assinatura de JPEG",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-01 reconhece assinatura de PNG",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-01 reconhece assinatura de WEBP",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-02 recusa conteúdo inválido: vazio",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 10
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-02 recusa conteúdo inválido: truncado",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-02 recusa conteúdo inválido: texto disfarçado",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-03 permite não enviar a imagem opcional",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-04 aceita exatamente o tamanho máximo",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-UPLOAD | Conteúdo e tamanho de imagens BE-UPLOAD-05 bloqueia imagem acima de 5 MB",
+      "file": "tests/backend/validation-upload.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-01 cria destino sem imagem e invalida cache",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-02 salva a URL retornada pelo upload",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-03 não grava nem limpa cache quando o upload falha",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-04 pagina e filtra categoria ignorando maiúsculas",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-05 retorna página vazia com os padrões de paginação",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-06 informa destino inexistente",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-07 preserva a imagem anterior na edição sem arquivo",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-08 substitui imagem na edição com arquivo",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-09 remove destino e invalida cache",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-10 impede update de destino inexistente",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-PLACE | Destinos turísticos BE-PLACE-10 impede remove de destino inexistente",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-REVIEW | Avaliações BE-REVIEW-01 verifica o destino antes de enviar imagem",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-REVIEW | Avaliações BE-REVIEW-02 associa avaliação ao autor autenticado e limpa cache",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-REVIEW | Avaliações BE-REVIEW-03 associa imagem à avaliação",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-REVIEW | Avaliações BE-REVIEW-04 lista somente avaliações do destino em ordem recente",
+      "file": "tests/backend/places-reviews.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados listagens lista apenas roteiros publicados para turistas",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "ItinerariesService — máquina de estados listagens lista todos os roteiros para guias",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "ItinerariesService — máquina de estados listagens a listagem pública filtra somente publicados",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados edição retorna 409 ao tentar editar roteiro em análise",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "ItinerariesService — máquina de estados edição permite editar roteiro em rascunho do próprio autor",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados edição bloqueia edição de roteiro de outro autor",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições envia rascunho para análise",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições reenvia roteiro rejeitado para análise",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições impede envio para análise de roteiro já publicado",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições publica roteiro em análise",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições impede publicar roteiro que não está em análise",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições rejeita roteiro em análise com motivo",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "ItinerariesService — máquina de estados transições despublica roteiro publicado",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "WeatherService deve retornar dados normalizados em caso de sucesso",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 12
+    },
+    {
+      "name": "WeatherService não deve lançar exceção e deve retornar success:false em caso de timeout",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 82
+    },
+    {
+      "name": "WeatherService não deve lançar exceção e deve retornar success:false em caso de erro 404",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "name": "WeatherService não deve lançar exceção e deve retornar success:false em caso de falha de conexão",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "sanitizeForLog deve redigir campos sensíveis conhecidos",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "sanitizeForLog deve funcionar recursivamente em arrays e objetos aninhados",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "sanitizeForLog não deve quebrar com valores nulos ou undefined",
+      "file": "tests/backend/regressoes-existentes.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-AUTH | Autenticação BE-AUTH-01 aceita senha válida e remove a senha da resposta",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "BE-AUTH | Autenticação BE-AUTH-02 recusa senha incorreta",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-AUTH | Autenticação BE-AUTH-03 propaga usuário inexistente sem comparar senha",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-AUTH | Autenticação BE-AUTH-04 assina identidade e persiste o token antes de retornar",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-AUTH | Autenticação BE-AUTH-05 não entrega o token quando a persistência falha",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 11
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-01 impede e-mail duplicado antes de gravar",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-02 impede nome de usuário duplicado",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-03 cadastra USER com código undefined e guarda somente hash",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-03 cadastra USER com código codigo-incorreto e guarda somente hash",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-04 atribui GUIA somente com o código configurado",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-05 findOne informa usuário inexistente",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-05 findById informa usuário inexistente",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-06 findOne consulta pela chave correta",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 12
+    },
+    {
+      "name": "BE-USER | Cadastro e consulta de usuários BE-USER-06 findById consulta pela chave correta",
+      "file": "tests/backend/auth-users.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-TOKEN | Persistência e renovação BE-TOKEN-01 cria token quando o usuário ainda não tem sessão",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-TOKEN | Persistência e renovação BE-TOKEN-02 substitui o token da sessão existente",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-TOKEN | Persistência e renovação BE-TOKEN-03 renova a sessão do titular do token",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-TOKEN | Persistência e renovação BE-TOKEN-04 retorna 401 para token desconhecido",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ROLE | Autorização por perfil BE-ROLE-01 permite rota sem restrição de perfil",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ROLE | Autorização por perfil BE-ROLE-02 permite GUIA em rota de guia",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ROLE | Autorização por perfil BE-ROLE-03 bloqueia USER em rota de guia",
+      "file": "tests/backend/token-roles.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-01 cria rascunho com autor e destinos associados",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-02 recusa criação por usuário inexistente",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-03 lista somente os roteiros do autor na consulta pessoal",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-04 bloqueia leitura de rascunho alheio",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-05 permite leitura de roteiro publicado por outro turista",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-06 esconde roteiro RASCUNHO na consulta pública",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-06 esconde roteiro REJEITADO na consulta pública",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-06 esconde roteiro EM_ANALISE na consulta pública",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-07 retorna detalhe público de roteiro publicado",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-08 informa roteiro inexistente",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-09 substitui a seleção de locais na edição",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-10 impede guia de enviar roteiro de outro autor para análise",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-11 impede reenviar roteiro já em análise",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-12 impede transição reject a partir de rascunho",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-12 impede transição unpublish a partir de rascunho",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-13 normaliza motivo de rejeição   Ajustar descrição  ",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-13 normaliza motivo de rejeição    ",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-13 normaliza motivo de rejeição undefined",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "BE-ITIN | Roteiros, autoria e moderação BE-ITIN-14 remove roteiro existente e limpa cache",
+      "file": "tests/backend/itineraries.spec.ts",
+      "status": "passed",
+      "durationMs": 4
+    }
+  ]
+}

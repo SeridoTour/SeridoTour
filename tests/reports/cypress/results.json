@@ -1,0 +1,124 @@
+{
+  "executedAt": "2026-11-26 10:18:55",
+  "scope": "Fluxos de interface em Electron headless, com a aplicação Vue real servida pelo Vite. API interceptada com fixtures e tokens fictícios; não valida integração com NestJS, PostgreSQL ou provedores externos.",
+  "success": true,
+  "browser": "electron",
+  "browserVersion": "138.0.7204.251",
+  "cypressVersion": "15.21.2",
+  "tests": [
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-01 encaminha visitante ao login preservando destino",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 719
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-02 exibe erro de credenciais sem sair do login",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 1376
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-03 autentica usando a resposta atual do back-end e retorna ao destino",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 1262
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-04 impede turista de acessar cadastro exclusivo de guia",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 806
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-05 cadastra usuário antes de autenticar",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 1581
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-06 recusa sessão expirada em rota protegida",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 266
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-07 permite guia acessar cadastro de destino",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 296
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-01 apresenta os destinos retornados pela API",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 611
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-02 filtra por categoria e restaura todos",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 476
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-03 busca cidade sem exigir acentos",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 582
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-04 mostra estado vazio quando a busca não encontra destinos",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 273
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-05 informa falha de API e permite tentar novamente",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 392
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-06 mantém favorito após recarregar a página",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 832
+    },
+    {
+      "name": "CY-DEST | Exploração de destinos › CY-DEST-07 pagina destinos e redefine a página ao filtrar",
+      "file": "frontend/e2e/destinations.cy.js",
+      "status": "passed",
+      "durationMs": 591
+    },
+    {
+      "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-01 exige ao menos um destino antes de chamar a API",
+      "file": "frontend/e2e/itineraries.cy.js",
+      "status": "passed",
+      "durationMs": 1515
+    },
+    {
+      "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-02 envia dados do formulário e mostra o roteiro salvo",
+      "file": "frontend/e2e/itineraries.cy.js",
+      "status": "passed",
+      "durationMs": 1743
+    },
+    {
+      "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-03 bloqueia edição de roteiro em análise",
+      "file": "frontend/e2e/itineraries.cy.js",
+      "status": "passed",
+      "durationMs": 324
+    },
+    {
+      "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-04 bloqueia edição de roteiro de outro autor",
+      "file": "frontend/e2e/itineraries.cy.js",
+      "status": "passed",
+      "durationMs": 253
+    },
+    {
+      "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-05 apresenta falha ao salvar e mantém os dados preenchidos",
+      "file": "frontend/e2e/itineraries.cy.js",
+      "status": "passed",
+      "durationMs": 1463
+    }
+  ]
+}

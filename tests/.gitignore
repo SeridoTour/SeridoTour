@@ -1,0 +1,4 @@
+reports/**/coverage/
+reports/**/screenshots/
+reports/**/videos/
+reports/**/vite.log
