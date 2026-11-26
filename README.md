@@ -1,6 +1,6 @@
 ### SeridóTour — Planejamento de Roteiros Turísticos Regionais
 
-Versão de homologação: **1.0.0-beta.1**. A [auditoria da integração](docs/operacao/AUDITORIA-1.0.0-beta.1.md) registra a mesclagem das suítes na preview, os resultados e as condições para promover à produção. Para executar os testes: `npm ci` e `npm test`; detalhes em [tests/README.md](tests/README.md).
+Versão de homologação: **1.0.0-beta.2**. O [histórico de operação](docs/operacao/RELATORIO-DEPLOY-E-DADOS.md) registra cadastro de guia e catálogo do preview. A [auditoria beta.1](docs/operacao/AUDITORIA-1.0.0-beta.1.md) preserva a integração das suítes. Para executar os testes: `npm ci` e `npm test`; detalhes em [tests/README.md](tests/README.md).
 
 O **SeridóTour** é uma aplicação web *full-stack* desenvolvida para o planejamento, compartilhamento e descoberta de roteiros turísticos no Nordeste brasileiro. O projeto foi iniciado como requisito prático da disciplina de **Desenvolvimento Web Back-end** e atualmente encontra-se em evolução na disciplina de **Projeto Integrador I** do curso de Tecnologia em Sistemas para Internet do IFRN Campus Currais Novos.
 
@@ -36,7 +36,7 @@ O projeto adota uma arquitetura **Monorepo** utilizando Workspaces nativos do np
 * **Infraestrutura:** Docker e Docker Compose.
 
 
-* **Segurança:** Autenticação JWT com renovação e revogação de sessão, com papéis USER e GUIA. O cadastro público cria somente USER.
+* **Segurança:** Autenticação JWT com renovação e revogação de sessão, com papéis USER e GUIA. Cadastro de GUIA por código é exclusivo do preview; em produção, o cadastro público cria USER.
 
 
 #### 🏛️ Regras de Negócio e Fluxo de Estado
@@ -158,7 +158,7 @@ npm run start:frontend
 * `npm run docker:reset-local` remove explicitamente os volumes do projeto local atual. `docker:down` apenas para os serviços.
 * `npm run verify:migrations` cria PostgreSQL descartável para testar banco vazio, cópia de schema, proteção de dados legados, seed idempotente e API com banco real. Não utiliza banco remoto nem credenciais de cloud no CI.
 * Procedimento de migração do preview: [operação e dados](docs/operacao/RELATORIO-DEPLOY-E-DADOS.md). A URL de produção é recusada pelo script de preview.
-* O cadastro público cria somente turistas. Concessão/revogação de GUIA no preview é uma operação do responsável pelo banco, fora da API pública, pelo comando `scripts/manage-preview-guide.cjs` descrito no relatório. O código compartilhado não é mais aceito.
+* No preview, o cadastro oferece a opção GUIA com código validado pelo servidor em `CODIGO_GUIA`. Fora de `DEPLOYMENT_ENV=preview`, esse código é recusado. A concessão/revogação administrativa por `scripts/manage-preview-guide.cjs` continua disponível ao responsável pelo banco.
 * `build:preview` instala, gera o client e compila antes de retirar ferramentas de build e dependências opcionais do runtime. Execute esse comando no ambiente de build descartável do preview; o desenvolvimento local continua usando `build:backend`/`build:frontend`.
 
 * O frontend roda com *hot reload* no Vite, refletindo alterações de interface em tempo real.

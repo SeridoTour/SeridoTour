@@ -3,6 +3,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
 import * as bcrypt from 'bcrypt';
 import { randomUUID } from 'node:crypto';
+import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { CloudinaryService } from '../src/modules/cloudinary/cloudinary.service';
 const { assertLocalDatabase } = require('../../../scripts/local-database.cjs');
@@ -103,11 +104,11 @@ describe('API com PostgreSQL descartável real', () => {
       email: 'new-user@example.test',
       password: 'Only-test-Secret12!',
     };
-    for (const extra of [{ codigoguia: 'old-code' }, { role: 'GUIA' }]) {
+    for (const [extra, status] of [[{ codigoguia: 'old-code' }, 403], [{ role: 'GUIA' }, 400]] as const) {
       await request(s)
         .post('/users/cadastrar')
         .send({ ...data, ...extra })
-        .expect(400);
+        .expect(status);
       expect(
         await db.user.findUnique({ where: { email: data.email } }),
       ).toBeNull();
@@ -216,6 +217,22 @@ describe('API com PostgreSQL descartável real', () => {
     expect(r.body).toHaveLength(1);
     expect(JSON.stringify(r.body)).not.toContain('password');
     await request(s).get(`/reviews/place/${placeB}`).expect(200, []);
+  });
+  it('cadastra guia por código apenas no preview e sem expor senha', async () => {
+    const config = app.get(ConfigService);
+    const data = { name: 'Guia Preview', email: 'preview-guide@example.test', password: 'Only-preview-Test12!', codigoguia: 'codigo-exclusivo-preview-local' };
+    config.set('DEPLOYMENT_ENV', 'preview');
+    config.set('CODIGO_GUIA', data.codigoguia);
+    try {
+      await request(app.getHttpServer()).post('/users/cadastrar').send({ ...data, codigoguia: 'codigo-incorreto' }).expect(403);
+      const response = await request(app.getHttpServer()).post('/users/cadastrar').send(data).expect(201);
+      expect(response.body.role).toBe('GUIA');
+      expect(response.body.password).toBeUndefined();
+    } finally {
+      config.set('DEPLOYMENT_ENV', 'test');
+      config.set('CODIGO_GUIA', undefined);
+      await db.user.deleteMany({ where: { email: data.email } });
+    }
   });
   it('modera roteiro e impede publicação pelo turista', async () => {
     const s = app.getHttpServer();

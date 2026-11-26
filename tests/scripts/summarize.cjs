@@ -49,7 +49,7 @@ lines.push('', `**Total: ${total} casos; ${passed} aprovados; ${failed} reprovad
   ...(failures.length ? failures : ['Nenhuma reprovação registrada nos relatórios disponíveis.']), '',
   '## Observações da análise', '',
   '- A integração beta usa `ArrayNotEmpty` para recusar roteiros sem destinos na criação e na edição. UUIDs válidos v4/v5 são aceitos em roteiros e avaliações, incluindo os IDs do catálogo importado.',
-  '- A sessão mantém o contrato compatível de `access_token`, renovado com rotação e revogação. Os testes foram atualizados para esse contrato e para cadastro público exclusivamente USER. Access e refresh separados continuam como evolução pendente, sem reintroduzir o código compartilhado de guia.', '',
+  '- A sessão mantém access_token com rotação/revogação. Cadastro padrão cria USER; GUIA exige código válido e DEPLOYMENT_ENV=preview. Produção recusa o código e o papel forjado. Access e refresh separados continuam como evolução pendente.', '',
   '## Limites da execução', '',
   '- Jest do back-end usa mocks de Prisma, cache, bcrypt, JWT e provedores. Não mede comportamento do PostgreSQL, constraints, autenticação HTTP ou uploads reais.',
   '- Jest do front-end utiliza jsdom, Vue Test Utils e Pinia. A API de dialog é simulada no setup.',

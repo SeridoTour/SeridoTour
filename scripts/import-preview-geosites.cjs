@@ -55,10 +55,10 @@ function rowsFromCatalog() {
 
 async function inventory(db, rows) {
   const original = await db.place.findMany({ where: { id: { in: originalIds } }, orderBy: { id: 'asc' } });
-  assert.equal(original.length, 6, 'Os seis locais originais precisam existir.');
+  assert.ok([0, 6].includes(original.length), 'Limpeza parcial de locais antigos: revisar.');
   const existing = await db.place.findMany({ where: { id: { in: rows.map(p => p.id) } } });
   assert.ok(existing.length === 0 || existing.length === 21, 'Carga parcial inesperada: revisar antes de continuar.');
-  assert.equal(await db.place.count(), 6 + existing.length, 'Inventário de locais mudou.');
+  assert.equal(await db.place.count(), original.length + existing.length, 'Inventário de locais mudou.');
   for (const place of existing) assert.deepEqual(place, rows.find(p => p.id === place.id), 'Local importado foi editado; não sobrescrever.');
   const users = await db.user.findMany({ select: { id: true, email: true, role: true }, orderBy: { email: 'asc' } });
   assert.deepEqual(users.map(({ email, role }) => ({ email, role })), [
@@ -66,7 +66,7 @@ async function inventory(db, rows) {
   ]);
   assert.equal(await db.itinerary.count(), 0);
   const reviews = await db.review.findMany({ orderBy: { id: 'asc' } });
-  assert.equal(reviews.length, 1);
+  assert.equal(reviews.length, original.length ? 1 : 0);
   return { original, existing, users, reviews };
 }
 
@@ -107,7 +107,7 @@ async function main() {
     }
     console.log(JSON.stringify({ branch: 'development-seridotour', mode: apply ? 'apply' : 'dry-run',
       created: apply && !before.existing.length ? 21 : 0, wouldCreate: before.existing.length ? 0 : 21,
-      alreadyPresent: before.existing.length, originalPlacesPreserved: 6, reviewsPreserved: 1, mediaUploaded: 0 }));
+      alreadyPresent: before.existing.length, originalPlacesPreserved: before.original.length, reviewsPreserved: before.reviews.length, mediaUploaded: 0 }));
   } finally { await prisma.$disconnect(); }
 }
 if (require.main === module) main().catch(error => {

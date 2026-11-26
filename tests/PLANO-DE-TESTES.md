@@ -18,7 +18,7 @@ Os testes devem incluir cenários positivos, negativos e limites. Asserções ve
 - Prisma Client gerado automaticamente pelo executor do back-end, sem banco real.
 - Porta 4175 disponível para o Vite utilizado pelo Cypress.
 - Navegador Electron do Cypress instalado; sem necessidade de credenciais pessoais.
-- Dados fictícios: Ana (`ana@example.test`), perfis `USER` e `GUIA` e JWTs sem assinatura real nas suítes com mocks. Nenhum código público concede GUIA.
+- Dados fictícios: Ana (`ana@example.test`), perfis `USER` e `GUIA` e JWTs sem assinatura real nas suítes com mocks. Somente o preview permite código de guia; produção permanece bloqueada para esse fluxo.
 - Destinos: Açude do Seridó / Caicó / Natureza e Museu do Sertão / Currais Novos / Histórico. UUIDs v4 fixos nas fixtures.
 - Roteiros em `RASCUNHO`, `EM_ANALISE`, `PUBLICADO` e `REJEITADO`; notas 1 e 5 válidas; 0, 6 e 2,5 inválidas.
 - Cada caso começa com mocks ou localStorage reinicializados; a persistência só é preservada dentro de casos que a verificam.
@@ -29,6 +29,7 @@ Os testes devem incluir cenários positivos, negativos e limites. Asserções ve
 | --- | --- | --- |
 | BE-AUTH-01 a 05 — `backend/auth-users.spec.ts` | Senha correta, senha incorreta, usuário ausente, emissão e persistência de token, falha de persistência | Retirar senha da resposta; rejeitar credenciais inválidas; assinar identidade correta; não retornar sucesso se a gravação falhar |
 | BE-USER-01 a 06 — `backend/auth-users.spec.ts` | E-mail e nome duplicados, campos privilegiados forjados e consultas por ID/e-mail | Bloquear duplicidades; armazenar hash; criar somente USER; informar ausência do usuário |
+| BE-USER-07 — mesmo arquivo | Código correto/incorreto/ausente e ambiente preview/produção | Conceder GUIA somente com código válido no preview; recusar nos outros ambientes |
 | BE-TOKEN-01 a 04 — `backend/token-roles.spec.ts` | Primeiro token, substituição, renovação e token desconhecido | Criar ou atualizar sessão do titular; renovar via autenticação; retornar 401 para token desconhecido |
 | BE-ROLE-01 a 03 — `backend/token-roles.spec.ts` | Rota livre, GUIA autorizado e USER não autorizado | Liberar acesso permitido e negar acesso restrito |
 | BE-PLACE-01 a 03 — `backend/places-reviews.spec.ts` | Cadastro sem imagem, com imagem e upload indisponível | Persistir dados/URL e invalidar cache após sucesso; não gravar em falha de upload |

@@ -1,14 +1,14 @@
 # Relatório geral de testes
 
-Consolidado em 2026-11-26 12:29:15 (America/Sao_Paulo). Cada relatório conserva a data da sua execução.
+Consolidado em 2026-11-26 16:05:03 (America/Sao_Paulo). Cada relatório conserva a data da sua execução.
 
 | Suíte | Total | Aprovados | Reprovados | Pendentes | Linhas cobertas¹ | Relatório por caso |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| backend | 116 | 116 | 0 | 0 | 96.29% | [Abrir](backend/RELATORIO.md) |
+| backend | 121 | 121 | 0 | 0 | 96.41% | [Abrir](backend/RELATORIO.md) |
 | frontend | 58 | 58 | 0 | 0 | 98.23% | [Abrir](frontend/RELATORIO.md) |
-| cypress | 21 | 21 | 0 | 0 | não medida | [Abrir](cypress/RELATORIO.md) |
+| cypress | 23 | 23 | 0 | 0 | não medida | [Abrir](cypress/RELATORIO.md) |
 
-**Total: 195 casos; 195 aprovados; 0 reprovados; 0 pendentes.**
+**Total: 202 casos; 202 aprovados; 0 reprovados; 0 pendentes.**
 
 ¹ Cobertura somente dos arquivos selecionados em `config/jest.*.cjs`; não representa toda a aplicação. Resumos de cobertura versionados em cada suíte; HTML completo gerado localmente em `coverage/index.html`.
 
@@ -19,7 +19,7 @@ Nenhuma reprovação registrada nos relatórios disponíveis.
 ## Observações da análise
 
 - A integração beta usa `ArrayNotEmpty` para recusar roteiros sem destinos na criação e na edição. UUIDs válidos v4/v5 são aceitos em roteiros e avaliações, incluindo os IDs do catálogo importado.
-- A sessão mantém o contrato compatível de `access_token`, renovado com rotação e revogação. Os testes foram atualizados para esse contrato e para cadastro público exclusivamente USER. Access e refresh separados continuam como evolução pendente, sem reintroduzir o código compartilhado de guia.
+- A sessão mantém access_token com rotação/revogação. Cadastro padrão cria USER; GUIA exige código válido e DEPLOYMENT_ENV=preview. Produção recusa o código e o papel forjado. Access e refresh separados continuam como evolução pendente.
 
 ## Limites da execução
 

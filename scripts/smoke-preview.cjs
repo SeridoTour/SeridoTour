@@ -20,13 +20,13 @@ async function main() {
     assert.equal((await call('/health')).status, 200);
     assert.equal((await call('/users')).status, 401);
     // Usa e-mail já existente: mesmo uma regressão não deve criar conta de ensaio.
-    for (const extra of [{ codigoguia: 'validation-only' }, { role: 'GUIA' }]) {
+    for (const [extra, status] of [[{ codigoguia: 'validation-only' }, 403], [{ role: 'GUIA' }, 400]]) {
       assert.equal((await call('/users/cadastrar', null, {
         name: 'Validação de permissões', email: accounts[0].email,
         password: 'Validation-only-12!', ...extra,
-      }, 'POST')).status, 400, 'Cadastro público aceitou campo de privilégio.');
+      }, 'POST')).status, status, 'Cadastro público aceitou código inválido ou papel forjado.');
     }
-    console.log(JSON.stringify({ publicSignupRejectsGuideCode: true, publicSignupRejectsRole: true }));
+    console.log(JSON.stringify({ invalidGuideCodeRejected: true, publicSignupRejectsRole: true }));
     for (const account of accounts) {
       const login = await call('/auth/login', null, { email: account.email, password: account.password }, 'POST');
       assert.equal(login.status, 201, 'Falha de login da conta de teste.');
@@ -63,7 +63,7 @@ async function main() {
     assert.equal(second.meta.page, 2);
     assert.equal(second.meta.limit, 2);
     assert.equal(second.data.length, 2);
-    assert.equal(all.data.length, 6 + catalog.places.length);
+    assert.equal(all.data.length, catalog.places.length);
     for (const item of catalog.places) {
       const published = all.data.find(place => place.id === item.id);
       assert.ok(published, 'Geossítio ausente na API.');
@@ -79,8 +79,8 @@ async function main() {
       assert.ok(entries.every(review => review.placeId === place.id));
       reviews += entries.length;
     }
-    assert.equal(reviews, 1);
-    console.log(JSON.stringify({ places: all.data.length, geosites: catalog.places.length, reviews: 1, paginationIsolated: true, reviewsIsolated: true }));
+    assert.equal(reviews, 0);
+    console.log(JSON.stringify({ places: all.data.length, geosites: catalog.places.length, reviews, paginationIsolated: true, reviewsIsolated: true }));
   } finally {
     // Somente tokens emitidos por este teste; não deixar sessões de ensaio ativas.
     for (const token of knownTokens) {

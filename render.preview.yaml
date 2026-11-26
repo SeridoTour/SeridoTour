@@ -17,6 +17,8 @@ services:
         value: production
       - key: DEPLOYMENT_ENV
         value: preview
+      - key: CODIGO_GUIA
+        generateValue: true
       - key: PREVIEW_DATA_REVIEWED
         value: "false"
       - key: ENABLE_SWAGGER

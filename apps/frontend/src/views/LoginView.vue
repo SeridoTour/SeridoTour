@@ -98,7 +98,25 @@
             required
           />
 
-          <p v-if="!isLogin" class="register-label">
+          <label v-if="!isLogin && guideSignupEnabled" class="remember">
+            <input v-model="registerAsGuide" type="checkbox" />
+            <span>Cadastrar-me como guia</span>
+          </label>
+          <label v-if="!isLogin && guideSignupEnabled && registerAsGuide" class="register-label">
+            Código de guia
+            <input
+              v-model.trim="form.codigoguia"
+              class="extra-input"
+              type="password"
+              placeholder="Código de guia"
+              autocomplete="off"
+              minlength="8"
+              maxlength="128"
+              required
+            />
+          </label>
+
+          <p v-if="!isLogin && !registerAsGuide" class="register-label">
             Sua conta será de turista. O acesso de guia é liberado pela equipe responsável.
           </p>
 
@@ -184,17 +202,22 @@ const isLoading = ref(false)
 const showPassword = ref(false)
 const rememberMe = ref(false)
 const errorMessage = ref('')
+const guideSignupEnabled = import.meta.env.VITE_GUIDE_SIGNUP_ENABLED === 'true'
+const registerAsGuide = ref(false)
 
 const form = ref({
   name: '',
   email: '',
-  password: ''
+  password: '',
+  codigoguia: ''
 })
 
 function toggleMode() {
   isLogin.value = !isLogin.value
   errorMessage.value = ''
   form.value.password = ''
+  form.value.codigoguia = ''
+  registerAsGuide.value = false
 
   if (isLogin.value) {
     form.value.name = ''
@@ -219,11 +242,13 @@ async function handleSubmit() {
         password: form.value.password
       })
     } else {
-      const payload: { name: string; email: string; password: string } = {
+      const payload: { name: string; email: string; password: string; codigoguia?: string } = {
         name: form.value.name,
         email: form.value.email,
         password: form.value.password
       }
+
+      if (guideSignupEnabled && registerAsGuide.value) payload.codigoguia = form.value.codigoguia
 
       await authStore.register(payload)
     }

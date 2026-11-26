@@ -1,5 +1,17 @@
 # Deploy, preview e dados do SeridóTour
 
+## Guia por código e catálogo de 21 geossítios — 26/11/2026 — 1.0.0-beta.2
+
+Atualização exclusiva da branch `codex/preview-geoparque`. No cadastro da preview, a opção **Cadastrar-me como guia** mostra um campo obrigatório de código. A API só concede `GUIA` com `DEPLOYMENT_ENV=preview` e código igual ao segredo `CODIGO_GUIA` já existente no Render. O segredo não é enviado ao bundle nem versionado. Código inválido retorna 403; papel enviado pelo cliente continua recusado com 400. Cadastro sem código cria `USER`. Fora da preview, o formulário não oferece a opção e a API recusa cadastro por código. A concessão administrativa documentada abaixo continua disponível.
+
+Conforme a escolha de manter somente os geossítios, foram excluídos de **development-seridotour**: Cimento Elo, Cruzeiro, Pium, Praia de Maiami, Praia de Ponta Negra e Praia do amor. A única avaliação vinculada a esses locais também foi removida; não havia vínculos com roteiros. A transação verificou os seis IDs e comparou integralmente as linhas restantes antes/depois. Resultado confirmado: **21 locais, 21 fotos, 2 usuários, zero avaliações e zero roteiros**. Não houve upload ou exclusão de mídias no Cloudinary, nem alteração dos dados/fotos dos geossítios.
+
+Antes da limpeza foi criada a branch Neon **backup-development-before-legacy-cleanup-20261126**, ID `br-restless-firefly-atdcmzso`, a partir de `br-quiet-sea-atieyvt5`, no ponto `0/2FA17D0` de 26/11/2026 18:55:20 UTC. Ela conserva o estado anterior para recuperação e permanece sem compute. Os scripts de importação/publicação agora reconhecem também o catálogo sem os seis locais antigos; recibos anteriores à limpeza continuam exigindo nova conferência de inventário.
+
+Validação local: **121 testes backend, 58 frontend e 23 Cypress**, todos aprovados; mais **11 testes de proteção de scripts e 7 testes HTTP com PostgreSQL descartável**: **220 casos**. Builds backend/frontend preview, typecheck e ensaio de migrações/idempotência passaram. Cypress usa API simulada; HTTP real usa banco local descartável. O smoke remoto confere os 21 locais/fotos, rejeição de código inválido/papel forjado, login, permissões, rotação e revogação de sessões, sem criar contas. Sua execução e o estado dos deploys são verificados após a publicação.
+
+Não houve merge/push da `main`, escrita no banco de produção ou alteração de configuração da produção. A revisão de direitos/créditos das fotografias e as demais pendências da auditoria beta.1 continuam abertas; esta versão não as declara resolvidas. As seções abaixo preservam o histórico das decisões anteriores.
+
 ## Cadastro, concessão de GUIA e dependências — 24/11/2026
 
 O cadastro público agora cria **somente USER**. O backend recusa `codigoguia` e `role` enviados pelo cliente, e a criação fixa `Role.USER` independentemente do corpo recebido. O formulário deixou de pedir código e informa que o acesso de guia é liberado pela equipe responsável. `CODIGO_GUIA` foi retirado do Blueprint do preview; um eventual valor antigo no painel fica sem uso. Não houve alteração/rotação de credenciais compartilhadas nem mudança de papel das duas contas existentes no Neon.

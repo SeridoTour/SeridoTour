@@ -1,6 +1,6 @@
 {
   "name": "northeastour-monorepo",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "private": true,
   "description": "Monorepo do projeto NortheasTour - Planejamento de Roteiros Turísticos Regionais",
   "workspaces": [

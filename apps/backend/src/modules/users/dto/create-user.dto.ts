@@ -4,6 +4,8 @@ import {
   IsEmail,
   Matches,
   MinLength,
+  ValidateIf,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -23,4 +25,10 @@ export class CreateUserDto {
       'A senha deve conter pelo menos uma letra maiúscula e um caractere especial',
   })
   password!: string;
+
+  @ValidateIf((_, value) => value !== undefined)
+  @IsString()
+  @MinLength(8)
+  @MaxLength(128)
+  codigoguia?: string;
 }

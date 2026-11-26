@@ -56,12 +56,13 @@ describe('BE-AUTH | Autenticação', () => {
 describe('BE-USER | Cadastro e consulta de usuários', () => {
   const prisma = { user: { findUnique: jest.fn(), findFirst: jest.fn(), create: jest.fn() } };
   const input = { name: 'Ana', email: 'ana@example.test', password: 'Senha1!' };
+  const config = { get: jest.fn() };
   let service: UsersService;
 
   beforeEach(() => {
     jest.resetAllMocks();
     (bcrypt.hash as jest.Mock).mockResolvedValue('senha-criptografada');
-    service = new UsersService(prisma as any);
+    service = new UsersService(prisma as any, config as any);
   });
 
   it('BE-USER-01 impede e-mail duplicado antes de gravar', async () => {
@@ -89,10 +90,28 @@ describe('BE-USER | Cadastro e consulta de usuários', () => {
   });
 
   it('BE-USER-04 não concede GUIA mesmo com campos privilegiados no objeto', async () => {
-    await service.create({ ...input, codigoguia: 'codigo-legado', role: Role.GUIA } as any);
+    await service.create({ ...input, role: Role.GUIA } as any);
     expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({
       data: expect.objectContaining({ role: Role.USER }),
     }));
+  });
+
+  it.each([
+    ['preview', 'codigo-preview-exclusivo', 'codigo-preview-exclusivo', true],
+    ['preview', 'codigo-preview-exclusivo', 'codigo-incorreto', false],
+    ['preview', undefined, 'codigo-preview-exclusivo', false],
+    ['production', 'codigo-preview-exclusivo', 'codigo-preview-exclusivo', false],
+    [undefined, 'codigo-preview-exclusivo', 'codigo-preview-exclusivo', false],
+  ])('BE-USER-07 guia por código no ambiente %s', async (environment, expected, received, allowed) => {
+    config.get.mockImplementation((key: string) => key === 'DEPLOYMENT_ENV' ? environment : expected);
+    const operation = service.create({ ...input, codigoguia: received as string });
+    if (allowed) {
+      await operation;
+      expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ role: Role.GUIA }) }));
+    } else {
+      await expect(operation).rejects.toMatchObject({ status: 403 });
+      expect(prisma.user.create).not.toHaveBeenCalled();
+    }
   });
 
   it.each(['findOne', 'findById'] as const)('BE-USER-05 %s informa usuário inexistente', async (method) => {

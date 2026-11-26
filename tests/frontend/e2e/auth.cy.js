@@ -50,6 +50,39 @@ describe('CY-AUTH | Entrada, cadastro e rotas protegidas', () => {
     cy.wait('@mine');
     cy.location('pathname').should('eq', '/roteiros');
   });
+  it('CY-AUTH-10 cadastra guia enviando o código somente quando selecionado', () => {
+    cy.intercept('POST', `${API}/users/cadastrar`, { statusCode: 201, body: { role: 'GUIA' } }).as('registerGuide');
+    cy.intercept('POST', `${API}/auth/login`, { access_token: accessToken('GUIA') });
+    cy.intercept('GET', `${API}/itineraries`, []);
+    cy.intercept('GET', `${API}/itineraries/meus`, []);
+    visit('/login');
+    cy.contains('button', 'Cadastre-se').click();
+    cy.get('input[placeholder="E-mail"]').type('guide@example.test');
+    cy.get('input[placeholder="Senha"]').type('Only-test12!');
+    cy.get('input[placeholder="Seu nome completo"]').type('Guia Teste');
+    cy.contains('label', 'Cadastrar-me como guia').find('input').check();
+    cy.get('input[placeholder="Código de guia"]').should('have.attr', 'required');
+    cy.get('input[placeholder="Código de guia"]').type('codigo-preview-local');
+    cy.get('button[type="submit"]').click();
+    cy.wait('@registerGuide').its('request.body').should('deep.equal', { name: 'Guia Teste', email: 'guide@example.test', password: 'Only-test12!', codigoguia: 'codigo-preview-local' });
+    cy.location('pathname').should('eq', '/roteiros');
+  });
+
+  it('CY-AUTH-11 mantém o formulário quando o código é recusado', () => {
+    cy.intercept('POST', `${API}/users/cadastrar`, { statusCode: 403, body: { message: 'Código de guia inválido.' } }).as('invalidGuide');
+    visit('/login');
+    cy.contains('button', 'Cadastre-se').click();
+    cy.get('input[placeholder="E-mail"]').type('guide@example.test');
+    cy.get('input[placeholder="Senha"]').type('Only-test12!');
+    cy.get('input[placeholder="Seu nome completo"]').type('Guia Teste');
+    cy.contains('label', 'Cadastrar-me como guia').find('input').check();
+    cy.get('input[placeholder="Código de guia"]').type('codigo-incorreto');
+    cy.get('button[type="submit"]').click();
+    cy.wait('@invalidGuide');
+    cy.get('.error-message').should('contain', 'Código de guia inválido.');
+    cy.location('pathname').should('eq', '/login');
+  });
+
   it('CY-AUTH-06 recusa sessão expirada em rota protegida', () => {
     visit('/roteiros/new', { token: accessToken('USER', 1) });
     cy.location('pathname').should('eq', '/login');

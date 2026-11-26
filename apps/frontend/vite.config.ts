@@ -20,6 +20,11 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    define: {
+      'import.meta.env.VITE_GUIDE_SIGNUP_ENABLED': JSON.stringify(
+        isPreview || (mode === 'development' && process.env.VITE_GUIDE_SIGNUP_ENABLED === 'true') ? 'true' : 'false',
+      ),
+    },
     // Preserva o suporte de navegadores usado pelo build anterior (Vite 5).
     build: { target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'] },
     plugins: [vue(), {

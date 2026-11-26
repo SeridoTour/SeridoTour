@@ -116,6 +116,7 @@ export const useAuthStore = defineStore('auth', () => {
     name: string
     email: string
     password: string
+    codigoguia?: string
   }) => {
     await api.post('/users/cadastrar', payload)
     await login({ email: payload.email, password: payload.password })

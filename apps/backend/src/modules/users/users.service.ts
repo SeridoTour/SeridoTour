@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { createHash, timingSafeEqual } from 'node:crypto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ConflictException } from '@nestjs/common/exceptions/conflict.exception';
 import { RespostaDto } from './dto/resposta.dto';
@@ -10,7 +12,7 @@ import { Role } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly config: ConfigService) {}
 
   async listUsers(): Promise<RespostaDto[]> {
     const users = await this.prisma.user.findMany({
@@ -27,6 +29,16 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<RespostaDto> {
+    let role: Role = Role.USER;
+    if (createUserDto.codigoguia !== undefined) {
+      const expected = this.config.get<string>('CODIGO_GUIA');
+      const preview = this.config.get<string>('DEPLOYMENT_ENV') === 'preview';
+      const digest = (value: string) => createHash('sha256').update(value).digest();
+      if (!preview || !expected || !timingSafeEqual(digest(createUserDto.codigoguia), digest(expected))) {
+        throw new ForbiddenException('Código de guia inválido ou cadastro de guia indisponível.');
+      }
+      role = Role.GUIA;
+    }
     const existeEmail = await this.prisma.user.findUnique({
       where: {
         email: createUserDto.email,
@@ -54,8 +66,7 @@ export class UsersService {
         name: createUserDto.name,
         email: createUserDto.email,
         password: senhaCriptografada,
-        // O cadastro público nunca concede permissões de guia.
-        role: Role.USER,
+        role,
       },
       select: {
         name: true,

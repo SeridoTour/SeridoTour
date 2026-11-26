@@ -1,5 +1,5 @@
 {
-  "executedAt": "2026-11-26 12:28:36",
+  "executedAt": "2026-11-26 16:02:44",
   "scope": "Fluxos de interface em Electron headless, com a aplicação Vue real servida pelo Vite. API interceptada com fixtures e tokens fictícios; não valida integração com NestJS, PostgreSQL ou provedores externos.",
   "success": true,
   "browser": "electron",
@@ -10,127 +10,139 @@
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-01 encaminha visitante ao login preservando destino",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 943
+      "durationMs": 771
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-02 exibe erro de credenciais sem sair do login",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 1385
+      "durationMs": 1309
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-03 autentica usando a resposta atual do back-end e retorna ao destino",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 1329
+      "durationMs": 1065
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-04 impede turista de acessar cadastro exclusivo de guia",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 745
+      "durationMs": 688
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-05 cadastra usuário antes de autenticar",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 1560
+      "durationMs": 1457
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-10 cadastra guia enviando o código somente quando selecionado",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 2052
+    },
+    {
+      "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-11 mantém o formulário quando o código é recusado",
+      "file": "frontend/e2e/auth.cy.js",
+      "status": "passed",
+      "durationMs": 1795
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-06 recusa sessão expirada em rota protegida",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 312
+      "durationMs": 302
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-07 permite guia acessar cadastro de destino",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 413
+      "durationMs": 388
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-08 renova após 401 e repete a consulta com o token novo",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 514
+      "durationMs": 413
     },
     {
       "name": "CY-AUTH | Entrada, cadastro e rotas protegidas › CY-AUTH-09 encerra sessão revogada e retorna ao login",
       "file": "frontend/e2e/auth.cy.js",
       "status": "passed",
-      "durationMs": 618
+      "durationMs": 593
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-01 apresenta os destinos retornados pela API",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 847
+      "durationMs": 755
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-02 filtra por categoria e restaura todos",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 588
+      "durationMs": 555
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-03 busca cidade sem exigir acentos",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 615
+      "durationMs": 707
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-04 mostra estado vazio quando a busca não encontra destinos",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 344
+      "durationMs": 487
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-05 informa falha de API e permite tentar novamente",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 538
+      "durationMs": 443
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-06 mantém favorito após recarregar a página",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 980
+      "durationMs": 870
     },
     {
       "name": "CY-DEST | Exploração de destinos › CY-DEST-07 pagina destinos e redefine a página ao filtrar",
       "file": "frontend/e2e/destinations.cy.js",
       "status": "passed",
-      "durationMs": 663
+      "durationMs": 761
     },
     {
       "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-01 exige ao menos um destino antes de chamar a API",
       "file": "frontend/e2e/itineraries.cy.js",
       "status": "passed",
-      "durationMs": 1888
+      "durationMs": 1701
     },
     {
       "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-02 envia dados do formulário e mostra o roteiro salvo",
       "file": "frontend/e2e/itineraries.cy.js",
       "status": "passed",
-      "durationMs": 2209
+      "durationMs": 1668
     },
     {
       "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-03 bloqueia edição de roteiro em análise",
       "file": "frontend/e2e/itineraries.cy.js",
       "status": "passed",
-      "durationMs": 451
+      "durationMs": 303
     },
     {
       "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-04 bloqueia edição de roteiro de outro autor",
       "file": "frontend/e2e/itineraries.cy.js",
       "status": "passed",
-      "durationMs": 591
+      "durationMs": 310
     },
     {
       "name": "CY-ITIN | Criação e edição de roteiros › CY-ITIN-05 apresenta falha ao salvar e mantém os dados preenchidos",
       "file": "frontend/e2e/itineraries.cy.js",
       "status": "passed",
-      "durationMs": 1765
+      "durationMs": 1489
     }
   ]
 }

@@ -43,7 +43,7 @@ async function main() {
     server = spawn(process.execPath, [vite, '--host', host, '--port', String(port), '--strictPort'], {
       cwd: frontend,
       windowsHide: true,
-      env: { ...process.env, VITE_API_URL: 'http://127.0.0.1:3999' },
+      env: { ...process.env, VITE_API_URL: 'http://127.0.0.1:3999', VITE_GUIDE_SIGNUP_ENABLED: 'true' },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     server.stdout.on('data', (data) => { log += data; });
