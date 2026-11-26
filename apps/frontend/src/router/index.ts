@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import { clearRouteRecovery, recoverRoute } from '../utils/routeRecovery'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -131,7 +132,12 @@ router.beforeEach(async (to) => {
   if (to.meta.requiresGuest && auth.isAuthenticated) return { name: 'home' }
 })
 
-router.afterEach((to) => {
+router.onError((error, to) => {
+  recoverRoute(error, to.fullPath)
+})
+
+router.afterEach((to, _from, failure) => {
+  if (!failure) clearRouteRecovery()
   document.title = `${typeof to.meta.title === 'string' ? to.meta.title : 'Roteiros do Seridó'} · SeridóTour`
 })
 

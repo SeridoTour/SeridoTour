@@ -1,14 +1,14 @@
 # Relatório geral de testes
 
-Consolidado em 2026-11-26 16:05:03 (America/Sao_Paulo). Cada relatório conserva a data da sua execução.
+Consolidado em 2026-11-26 16:33:26 (America/Sao_Paulo). Cada relatório conserva a data da sua execução.
 
 | Suíte | Total | Aprovados | Reprovados | Pendentes | Linhas cobertas¹ | Relatório por caso |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | backend | 121 | 121 | 0 | 0 | 96.41% | [Abrir](backend/RELATORIO.md) |
-| frontend | 58 | 58 | 0 | 0 | 98.23% | [Abrir](frontend/RELATORIO.md) |
+| frontend | 64 | 64 | 0 | 0 | 98.23% | [Abrir](frontend/RELATORIO.md) |
 | cypress | 23 | 23 | 0 | 0 | não medida | [Abrir](cypress/RELATORIO.md) |
 
-**Total: 202 casos; 202 aprovados; 0 reprovados; 0 pendentes.**
+**Total: 208 casos; 208 aprovados; 0 reprovados; 0 pendentes.**
 
 ¹ Cobertura somente dos arquivos selecionados em `config/jest.*.cjs`; não representa toda a aplicação. Resumos de cobertura versionados em cada suíte; HTML completo gerado localmente em `coverage/index.html`.
 

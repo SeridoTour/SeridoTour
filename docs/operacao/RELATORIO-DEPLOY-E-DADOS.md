@@ -1,5 +1,13 @@
 # Deploy, preview e dados do SeridóTour
 
+## Recuperação de navegação após deploy — 26/11/2026
+
+Reproduzida na aba do guia a falha ao abrir roteiro, local e moderação: `Failed to fetch dynamically imported module`, referenciando arquivos de uma versão anterior. A conta mantinha `GUIA` no banco e na interface. Recarregar a aba restabeleceu as três telas. A [documentação do Vite](https://vite.dev/guide/build.html#load-error-handling) descreve esse cenário quando um novo deploy substitui os arquivos carregados sob demanda.
+
+O roteador agora reconhece falhas de carregamento de módulos/CSS e abre novamente o destino solicitado usando o HTML atual, preservando query e sessão. Registra uma única tentativa por destino até uma navegação bem-sucedida, evitando loop se a falha continuar. Não recarrega em erros de negócio/permissão nem aceita destino externo. Nenhuma permissão foi ampliada.
+
+Validação: 64 testes frontend aprovados (seis novos casos cobrem os três destinos, limite de tentativas, erros alheios e armazenamento indisponível), typecheck e build. Na preview publicada antes da correção, as três telas abriram após recarregar, a moderação mostrou corretamente zero roteiros, consultas autenticadas retornaram 200 e cadastros com corpo vazio retornaram 400 de validação, sem criar registros. O catálogo de 21 geossítios não foi alterado. Produção e main permanecem fora deste ajuste.
+
 ## Guia por código e catálogo de 21 geossítios — 26/11/2026 — 1.0.0-beta.2
 
 Atualização exclusiva da branch `codex/preview-geoparque`. No cadastro da preview, a opção **Cadastrar-me como guia** mostra um campo obrigatório de código. A API só concede `GUIA` com `DEPLOYMENT_ENV=preview` e código igual ao segredo `CODIGO_GUIA` já existente no Render. O segredo não é enviado ao bundle nem versionado. Código inválido retorna 403; papel enviado pelo cliente continua recusado com 400. Cadastro sem código cria `USER`. Fora da preview, o formulário não oferece a opção e a API recusa cadastro por código. A concessão administrativa documentada abaixo continua disponível.

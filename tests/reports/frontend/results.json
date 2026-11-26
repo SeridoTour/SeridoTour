@@ -1,13 +1,49 @@
 {
-  "executedAt": "2026-11-26 16:00:13",
+  "executedAt": "2026-11-26 16:31:39",
   "scope": "Testes Jest de stores Pinia, serviços, utilitários e componentes Vue em jsdom. Não valida renderização em navegador real.",
   "success": true,
   "tests": [
     {
+      "name": "FE-NAV | Recuperação de telas após deploy recupera arquivo antigo preservando o destino /roteiros/new",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 5
+    },
+    {
+      "name": "FE-NAV | Recuperação de telas após deploy recupera arquivo antigo preservando o destino /places/new",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "FE-NAV | Recuperação de telas após deploy recupera arquivo antigo preservando o destino /moderacao?status=EM_ANALISE",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "FE-NAV | Recuperação de telas após deploy não entra em loop se o arquivo continuar indisponível após recarregar",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "FE-NAV | Recuperação de telas após deploy não recarrega por erro da aplicação ou destino externo",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "FE-NAV | Recuperação de telas após deploy não recarrega sem conseguir registrar a tentativa",
+      "file": "tests/frontend/unit/routeRecovery.spec.ts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
       "name": "FE-FAV | Favoritos persistidos FE-FAV-01 inicia vazio quando não há dados",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 6
+      "durationMs": 3
     },
     {
       "name": "FE-FAV | Favoritos persistidos FE-FAV-02 ignora JSON corrompido",
@@ -31,7 +67,7 @@
       "name": "FE-PREF | Preferência de mapa FE-PREF-01 exibe mapa por padrão",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-PREF | Preferência de mapa FE-PREF-02 restaura mapa oculto e persiste alteração",
@@ -43,13 +79,13 @@
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-01 inicia visitante sem sessão",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 3
+      "durationMs": 2
     },
     {
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-02 recupera nome Unicode e perfil GUIA do JWT",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 2
     },
     {
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-03 recusa JWT inválido ou expirado 0",
@@ -67,7 +103,7 @@
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-03 recusa JWT inválido ou expirado 2",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-03 recusa JWT inválido ou expirado 3",
@@ -97,7 +133,7 @@
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-07 renova usando somente access_token, conforme o contrato da API",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 2
+      "durationMs": 1
     },
     {
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-08 limpa sessão se a API recusar a renovação",
@@ -109,37 +145,37 @@
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-09 agenda renovação na expiração do access token",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 36
+      "durationMs": 33
     },
     {
       "name": "FE-AUTH | Sessão e perfil FE-AUTH-10 logout solicita revogação, remove tokens e cancela renovação",
       "file": "tests/frontend/unit/stores.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 2
     },
     {
       "name": "FE-COMP | Componentes Vue reais FE-COMP-01 exibe nota acessível e arredonda estrelas preenchidas",
       "file": "tests/frontend/unit/components.spec.ts",
       "status": "passed",
-      "durationMs": 29
+      "durationMs": 26
     },
     {
       "name": "FE-COMP | Componentes Vue reais FE-COMP-02 abre e fecha modal ao mudar propriedade open",
       "file": "tests/frontend/unit/components.spec.ts",
       "status": "passed",
-      "durationMs": 11
+      "durationMs": 10
     },
     {
       "name": "FE-COMP | Componentes Vue reais FE-COMP-03 emite confirmação e cancelamento",
       "file": "tests/frontend/unit/components.spec.ts",
       "status": "passed",
-      "durationMs": 12
+      "durationMs": 9
     },
     {
       "name": "FE-COMP | Componentes Vue reais FE-COMP-04 bloqueia botões e Escape durante processamento",
       "file": "tests/frontend/unit/components.spec.ts",
       "status": "passed",
-      "durationMs": 4
+      "durationMs": 6
     },
     {
       "name": "FE-COMP | Componentes Vue reais FE-COMP-05 Escape emite fechamento quando o modal está livre",
@@ -151,7 +187,7 @@
       "name": "FE-COMP | Componentes Vue reais FE-COMP-06 cartão apresenta destino, link e seleção por foco",
       "file": "tests/frontend/unit/components.spec.ts",
       "status": "passed",
-      "durationMs": 15
+      "durationMs": 13
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-01 envia os parâmetros de paginação de destinos",
@@ -169,7 +205,7 @@
       "name": "FE-API | Contratos dos serviços HTTP FE-API-03 salva multipart de destino com id undefined",
       "file": "tests/frontend/unit/services.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 2
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-03 salva multipart de destino com id p1",
@@ -193,7 +229,7 @@
       "name": "FE-API | Contratos dos serviços HTTP FE-API-04 consulta escopo all",
       "file": "tests/frontend/unit/services.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-05 consulta detalhe público=false",
@@ -205,13 +241,13 @@
       "name": "FE-API | Contratos dos serviços HTTP FE-API-05 consulta detalhe público=true",
       "file": "tests/frontend/unit/services.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-06 salva roteiro com id undefined",
       "file": "tests/frontend/unit/services.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-06 salva roteiro com id i1",
@@ -229,7 +265,7 @@
       "name": "FE-API | Contratos dos serviços HTTP FE-API-08 encaminha falhas HTTP ao consumidor",
       "file": "tests/frontend/unit/services.spec.ts",
       "status": "passed",
-      "durationMs": 17
+      "durationMs": 8
     },
     {
       "name": "FE-API | Contratos dos serviços HTTP FE-API-09 remove destino e roteiro pelos endpoints correspondentes",
@@ -259,13 +295,13 @@
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-02 calcula iniciais de  Ana Maria Silva ",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-02 calcula iniciais de Ana",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-02 calcula iniciais de ",
@@ -277,7 +313,7 @@
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-03 utiliza mensagem de erro da API",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-04 reúne mensagens de validação da API",
@@ -295,13 +331,13 @@
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-05 retorna mensagem padrão para erro sem mensagem válida 1",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-05 retorna mensagem padrão para erro sem mensagem válida 2",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-06 usa imagem padrão para URL inválida: undefined",
@@ -325,13 +361,13 @@
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-06 usa imagem padrão para URL inválida: javascript:alert(1)",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-06 usa imagem padrão para URL inválida: data:image/png;base64,abc",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-06 usa imagem padrão para URL inválida: foto.jpg",
@@ -343,7 +379,7 @@
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-07 mantém URL HTTPS e resolve caminho de upload",
       "file": "tests/frontend/unit/format.spec.ts",
       "status": "passed",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "name": "FE-FORMAT | Busca, mensagens e apresentação FE-FORMAT-08 formata data em português",
